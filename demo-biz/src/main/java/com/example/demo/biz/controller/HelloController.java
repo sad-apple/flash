@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
 @Slf4j
@@ -31,8 +32,8 @@ public class HelloController {
     @ApiOperation(value = "redisLock")
     @GetMapping("/redisLock")
     public String redisLock(HttpServletResponse response) throws InterruptedException {
-        Lock obtain = redisLockRegistry.obtain("");
-        if (obtain.tryLock()) {
+        Lock obtain = redisLockRegistry.obtain("test_lock");
+        if (obtain.tryLock(20, TimeUnit.SECONDS)) {
             try {
                 Thread.sleep(5000);
                 log.info("进入锁");

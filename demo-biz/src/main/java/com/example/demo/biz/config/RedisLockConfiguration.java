@@ -16,8 +16,9 @@ public class RedisLockConfiguration {
 
     @Bean
     public RedisLockRegistry redisLockRegistry(RedisConnectionFactory redisConnectionFactory) {
-        log.info("配置redis lock");
-        return new RedisLockRegistry(redisConnectionFactory, "na-tool");
+        String registryKey = "demo-redis-lock-tool";
+        log.info("配置redis lock，前缀：{}", registryKey);
+        return new RedisLockRegistry(redisConnectionFactory, registryKey);
     }
 
 }
