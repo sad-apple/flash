@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: test
+
+  config:
+    import:
+      - classpath:/config/${spring.profiles.active}/biz-a.yml
+      - classpath:/config/${spring.profiles.active}/biz-b.yml
