@@ -70,6 +70,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>biz-web</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>

@@ -1,8 +1,7 @@
-package com.example.demo.biz.controller;
+package com.example.biz.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.redis.util.RedisLockRegistry;
@@ -35,10 +34,11 @@ public class HelloController {
         Lock obtain = redisLockRegistry.obtain("test_lock");
         if (obtain.tryLock(20, TimeUnit.SECONDS)) {
             try {
-                Thread.sleep(5000);
                 log.info("进入锁");
+                Thread.sleep(5000);
             }finally {
                 obtain.unlock();
+                log.info("解锁");
             }
         } else {
             log.info("获取锁失败");

@@ -6,34 +6,26 @@
 
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>spring-boot-demo</artifactId>
+        <artifactId>demo-biz</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>demo-core</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>biz-web</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
+            <groupId>com.example</groupId>
+            <artifactId>biz-dao</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
+            <groupId>com.example</groupId>
+            <artifactId>biz-service</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>
