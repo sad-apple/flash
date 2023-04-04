@@ -1,4 +1,4 @@
-package com.example.core.config;
+package com.ndsc.core.config;
 
 import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class SwaggerConfiguration {
                 .apiInfo(apiInfo())
                 .groupName(groupName)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.biz.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.ndsc.biz.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .extensions(openApiExtensionResolver.buildExtensions(groupName));

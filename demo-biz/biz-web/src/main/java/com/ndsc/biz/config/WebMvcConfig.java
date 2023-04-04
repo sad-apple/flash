@@ -1,4 +1,4 @@
-package com.example.biz.config;
+package com.ndsc.biz.config;
 
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

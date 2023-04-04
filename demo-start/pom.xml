@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.example</groupId>
+        <groupId>com.ndsc</groupId>
         <artifactId>spring-boot-demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -13,7 +13,7 @@
     <artifactId>demo-start</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.example</groupId>
+            <groupId>com.ndsc</groupId>
             <artifactId>biz-web</artifactId>
         </dependency>
     </dependencies>
@@ -37,8 +37,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>8</source>
+                    <target>8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

@@ -8,7 +8,7 @@
         <version>2.5.14</version>
         <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
     </parent>-->
-    <groupId>com.example</groupId>
+    <groupId>com.ndsc</groupId>
     <artifactId>spring-boot-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-demo</name>
@@ -54,23 +54,23 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.example</groupId>
+                <groupId>com.ndsc</groupId>
                 <artifactId>demo-biz</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.example</groupId>
+                <groupId>com.ndsc</groupId>
                 <artifactId>demo-start</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.example</groupId>
+                <groupId>com.ndsc</groupId>
                 <artifactId>demo-core</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>
-                <groupId>com.example</groupId>
+                <groupId>com.ndsc</groupId>
                 <artifactId>biz-web</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>

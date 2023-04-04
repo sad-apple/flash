@@ -5,12 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.example</groupId>
+        <groupId>com.ndsc</groupId>
         <artifactId>demo-biz</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>biz-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.ndsc</groupId>
+            <artifactId>biz-dao</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

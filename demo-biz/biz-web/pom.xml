@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.example</groupId>
+        <groupId>com.ndsc</groupId>
         <artifactId>demo-biz</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -14,11 +14,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.example</groupId>
+            <groupId>com.ndsc</groupId>
             <artifactId>biz-dao</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.example</groupId>
+            <groupId>com.ndsc</groupId>
             <artifactId>biz-service</artifactId>
         </dependency>
         <dependency>
@@ -28,4 +28,16 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
