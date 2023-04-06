@@ -22,7 +22,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     /**
-     * todo 跨域配置，待验证
+     * 跨域配置
      * @return
      */
     @Bean
