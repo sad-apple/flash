@@ -2,7 +2,7 @@ package com.ndsc.biz.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ndsc.biz.dao.entity.User;
+import com.ndsc.biz.dao.entity.SysUser;
 import com.ndsc.biz.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,14 +24,14 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/users")
-    public boolean insert(@RequestBody User user) {
-        userService.save(user);
+    public boolean insert(@RequestBody SysUser sysUser) {
+        userService.save(sysUser);
         return true;
     }
 
     @GetMapping("/users/user/page")
-    public Page<User> page(Integer page, Integer size) {
-        return userService.page(Page.of(page, size), new LambdaQueryWrapper<User>().orderByDesc(User::getCreateTime));
+    public Page<SysUser> page(Integer page, Integer size) {
+        return userService.page(Page.of(page, size), new LambdaQueryWrapper<SysUser>().orderByDesc(SysUser::getCreateTime));
     }
 
     @DeleteMapping("/users/{id}")
@@ -40,12 +40,12 @@ public class UserController {
     }
 
     @PutMapping("/users")
-    public boolean update(@RequestBody User user) {
-        return userService.updateById(user);
+    public boolean update(@RequestBody SysUser sysUser) {
+        return userService.updateById(sysUser);
     }
 
     @GetMapping("/users/{id}")
-    public User getById(@PathVariable Long id) {
+    public SysUser getById(@PathVariable Long id) {
         return userService.getById(id);
     }
 
