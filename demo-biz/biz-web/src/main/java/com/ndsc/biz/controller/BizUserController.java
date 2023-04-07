@@ -45,8 +45,9 @@ public class BizUserController {
     }
 
     @GetMapping("/biz-users/{id}")
-    public BizUser getById(@PathVariable Long id) {
-        return userService.getById(id);
+    public BizUser getById(@PathVariable String id) {
+        return userService.selectById(id);
+//        return userService.getById(id);
     }
 
 }

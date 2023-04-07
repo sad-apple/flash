@@ -10,4 +10,5 @@ import com.ndsc.biz.dao.entity.SysUser;
  */
 public interface BizUserMapper extends BaseMapper<BizUser> {
 
+    BizUser selectByBizId(String id);
 }

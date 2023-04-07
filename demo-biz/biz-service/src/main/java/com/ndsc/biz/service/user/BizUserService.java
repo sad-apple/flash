@@ -12,4 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class BizUserService extends ServiceImpl<BizUserMapper, BizUser> {
 
+    public BizUser selectById(String id) {
+        return baseMapper.selectByBizId(id);
+    }
+
 }
