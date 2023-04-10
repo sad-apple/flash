@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace = "com.ndsc.biz.dao.mapper.BizUserMapper">
-    <select id="selectByBizId" resultType="com.ndsc.biz.dao.entity.BizUser">
+
+    <resultMap id="result" type="com.ndsc.biz.dao.entity.BizUser">
+        <result column="cid" property="cid" typeHandler="com.ndsc.biz.dao.mybatis.type.EncryptTypeHandler"/>
+        <result column="phone" property="phone" typeHandler="com.ndsc.biz.dao.mybatis.type.EncryptTypeHandler"/>
+    </resultMap>
+
+    <select id="selectByBizId" resultType="com.ndsc.biz.dao.entity.BizUser" resultMap="result">
         select * from biz_user where id = ${id}
     </select>
 </mapper>

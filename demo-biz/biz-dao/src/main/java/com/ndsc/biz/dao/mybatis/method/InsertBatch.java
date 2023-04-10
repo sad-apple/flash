@@ -1,4 +1,4 @@
-package com.ndsc.biz.dao.methods;
+package com.ndsc.biz.dao.mybatis.method;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
@@ -14,7 +14,7 @@ public class InsertBatch extends AbstractMethod {
      * @param methodName 方法名
      * @since 3.5.0
      */
-    protected InsertBatch(String methodName) {
+    public InsertBatch(String methodName) {
         super(methodName);
     }
 

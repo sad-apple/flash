@@ -1,10 +1,11 @@
-package com.ndsc.biz.dao.config;
+package com.ndsc.biz.dao.mybatis;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 
 /**
@@ -13,13 +14,12 @@ import java.time.LocalDateTime;
  * 新增自动填充
  */
 @Slf4j
-@Component
-public class MetaObjectHandlerImpl implements MetaObjectHandler {
+public class NdscMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
-        //避免使用metaObject.setValue()
+        // todo 自动填充创建人
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now())
             .strictInsertFill(metaObject, "createBy", String.class, "zsp");
     }
@@ -27,6 +27,7 @@ public class MetaObjectHandlerImpl implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ....");
+        // todo 自动填充修改人
         this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now())
             .strictUpdateFill(metaObject, "updateBy", String.class, "zsp");
     }

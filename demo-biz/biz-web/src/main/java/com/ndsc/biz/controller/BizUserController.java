@@ -31,7 +31,7 @@ public class BizUserController {
 
     @GetMapping("/biz-users/user/page")
     public Page<BizUser> page(Integer page, Integer size) {
-        return userService.page(Page.of(page, size), new LambdaQueryWrapper<BizUser>().orderByDesc(BizUser::getCreateTime));
+        return userService.page(Page.of(page, size));
     }
 
     @DeleteMapping("/biz-users/{id}")

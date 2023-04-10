@@ -16,10 +16,11 @@
     <packaging>pom</packaging>
     <properties>
         <java.version>1.8</java.version>
-        <mybatis-plus-boot-starter.version>3.5.3</mybatis-plus-boot-starter.version>
+        <mybatis-plus.version>3.5.3</mybatis-plus.version>
         <druid.version>1.1.22</druid.version>
         <dynamic-datasource-spring-boot-starter.version>3.2.0</dynamic-datasource-spring-boot-starter.version>
         <knife4f.version>4.0.0</knife4f.version>
+        <com.njusc.util.version>1.0.1</com.njusc.util.version>
     </properties>
 
     <modules>
@@ -44,7 +45,12 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -91,6 +97,12 @@
                 <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
                 <version>${knife4f.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.njusc</groupId>
+                <artifactId>util</artifactId>
+                <version>${com.njusc.util.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <build>
