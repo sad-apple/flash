@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.ndsc.biz.dao.mybatis.annotation.FieldSensitive;
-import com.ndsc.biz.dao.mybatis.type.EncryptTypeHandler;
-import com.ndsc.core.sensitive.SensitiveType;
+import com.ndsc.tool.mybatis.annotation.FieldSensitive;
+import com.ndsc.tool.mybatis.constant.SensitiveType;
+import com.ndsc.tool.mybatis.type.EncryptTypeHandler;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,6 +1,6 @@
-package com.ndsc.biz.dao.mybatis.annotation;
+package com.ndsc.tool.mybatis.annotation;
 
-import com.ndsc.biz.dao.mybatis.constant.EncryptEnum;
+import com.ndsc.tool.mybatis.constant.SensitiveType;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -11,12 +11,13 @@ import java.lang.annotation.Target;
 
 /**
  * @author zsp
- * @date 2023/4/6 16:30
+ * @date 2023/4/7 11:18
  */
 @Documented
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
-public @interface FieldEncrypt {
-    EncryptEnum value() default EncryptEnum.AES;
+public @interface FieldSensitive {
+    SensitiveType value() default SensitiveType.COMMON;
+
 }

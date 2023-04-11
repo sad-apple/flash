@@ -1,4 +1,4 @@
-package com.ndsc.biz.dao.mybatis.interceptor;
+package com.ndsc.tool.mybatis.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.cache.CacheKey;

@@ -13,6 +13,18 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
@@ -35,7 +47,7 @@
         </dependency>
         <dependency>
             <groupId>com.ndsc</groupId>
-            <artifactId>demo-core</artifactId>
+            <artifactId>demo-mybatis-tool</artifactId>
         </dependency>
     </dependencies>
 </project>

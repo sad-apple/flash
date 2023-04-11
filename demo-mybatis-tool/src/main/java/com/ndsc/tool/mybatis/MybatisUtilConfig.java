@@ -1,7 +1,6 @@
-package com.ndsc.biz.dao.mybatis;
+package com.ndsc.tool.mybatis;
 
-import com.ndsc.biz.dao.mybatis.interceptor.FieldEncryptInterceptor;
-import com.ndsc.biz.dao.mybatis.interceptor.FieldSensitiveInterceptor;
+import com.ndsc.tool.mybatis.interceptor.FieldSensitiveInterceptor;
 import org.springframework.context.annotation.Bean;
 
 /**

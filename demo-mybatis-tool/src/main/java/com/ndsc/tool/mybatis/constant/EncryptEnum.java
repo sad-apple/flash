@@ -1,4 +1,4 @@
-package com.ndsc.biz.dao.mybatis.constant;
+package com.ndsc.tool.mybatis.constant;
 
 /**
  * @author zsp

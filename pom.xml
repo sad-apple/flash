@@ -2,12 +2,6 @@
 <project xmlns = "http://maven.apache.org/POM/4.0.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!--<parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.14</version>
-        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
-    </parent>-->
     <groupId>com.ndsc</groupId>
     <artifactId>spring-boot-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -27,6 +21,7 @@
         <module>demo-start</module>
         <module>demo-biz</module>
         <module>demo-core</module>
+        <module>demo-mybatis-tool</module>
     </modules>
 
     <dependencies>
@@ -101,6 +96,12 @@
                 <groupId>com.njusc</groupId>
                 <artifactId>util</artifactId>
                 <version>${com.njusc.util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ndsc</groupId>
+                <artifactId>demo-mybatis-tool</artifactId>
+                <version>1.0.0</version>
             </dependency>
 
         </dependencies>

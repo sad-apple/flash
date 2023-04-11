@@ -1,5 +1,6 @@
-package com.ndsc.core.sensitive;
+package com.ndsc.tool.mybatis.util;
 
+import com.ndsc.tool.mybatis.constant.SensitiveType;
 import com.njusc.util.RegUtil;
 import org.springframework.util.StringUtils;
 

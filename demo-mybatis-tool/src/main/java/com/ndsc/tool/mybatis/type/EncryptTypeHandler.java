@@ -1,4 +1,4 @@
-package com.ndsc.biz.dao.mybatis.type;
+package com.ndsc.tool.mybatis.type;
 
 import com.njusc.util.AesUtil;
 import org.apache.ibatis.type.BaseTypeHandler;

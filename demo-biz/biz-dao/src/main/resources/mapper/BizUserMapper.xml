@@ -3,8 +3,8 @@
 <mapper namespace = "com.ndsc.biz.dao.mapper.BizUserMapper">
 
     <resultMap id="result" type="com.ndsc.biz.dao.entity.BizUser">
-        <result column="cid" property="cid" typeHandler="com.ndsc.biz.dao.mybatis.type.EncryptTypeHandler"/>
-        <result column="phone" property="phone" typeHandler="com.ndsc.biz.dao.mybatis.type.EncryptTypeHandler"/>
+        <result column="cid" property="cid" typeHandler="com.ndsc.tool.mybatis.type.EncryptTypeHandler"/>
+        <result column="phone" property="phone" typeHandler="com.ndsc.tool.mybatis.type.EncryptTypeHandler"/>
     </resultMap>
 
     <select id="selectByBizId" resultType="com.ndsc.biz.dao.entity.BizUser" resultMap="result">

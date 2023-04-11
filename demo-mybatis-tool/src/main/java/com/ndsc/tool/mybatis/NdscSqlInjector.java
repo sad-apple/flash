@@ -1,9 +1,9 @@
-package com.ndsc.biz.dao.mybatis;
+package com.ndsc.tool.mybatis;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
-import com.ndsc.biz.dao.mybatis.method.InsertBatch;
+import com.ndsc.tool.mybatis.method.InsertBatch;
 
 import java.util.List;
 

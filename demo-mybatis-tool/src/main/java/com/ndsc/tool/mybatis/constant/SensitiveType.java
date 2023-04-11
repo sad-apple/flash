@@ -1,4 +1,4 @@
-package com.ndsc.core.sensitive;
+package com.ndsc.tool.mybatis.constant;
 
 /**
  * @author zsp

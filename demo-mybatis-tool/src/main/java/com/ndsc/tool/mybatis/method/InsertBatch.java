@@ -1,4 +1,4 @@
-package com.ndsc.biz.dao.mybatis.method;
+package com.ndsc.tool.mybatis.method;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;

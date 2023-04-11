@@ -1,11 +1,9 @@
-package com.ndsc.biz.dao.mybatis;
+package com.ndsc.tool.mybatis;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
-import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 
 /**

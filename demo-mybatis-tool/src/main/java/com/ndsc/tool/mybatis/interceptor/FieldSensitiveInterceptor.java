@@ -1,7 +1,7 @@
-package com.ndsc.biz.dao.mybatis.interceptor;
+package com.ndsc.tool.mybatis.interceptor;
 
-import com.ndsc.biz.dao.mybatis.annotation.FieldSensitive;
-import com.ndsc.core.sensitive.SensitiveInfoUtil;
+import com.ndsc.tool.mybatis.annotation.FieldSensitive;
+import com.ndsc.tool.mybatis.util.SensitiveInfoUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.plugin.Interceptor;

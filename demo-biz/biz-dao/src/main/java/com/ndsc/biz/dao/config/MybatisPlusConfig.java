@@ -3,7 +3,7 @@ package com.ndsc.biz.dao.config;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.ndsc.biz.dao.mybatis.MybatisUtilConfig;
+import com.ndsc.tool.mybatis.MybatisUtilConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
