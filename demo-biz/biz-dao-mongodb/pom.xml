@@ -10,26 +10,14 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>biz-web</artifactId>
+    <artifactId>biz-dao-mongodb</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
-            <groupId>com.ndsc</groupId>
-            <artifactId>biz-dao</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.ndsc</groupId>
-            <artifactId>biz-service</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.ndsc</groupId>
-            <artifactId>biz-logback-mysql</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
-
     </dependencies>
+
 </project>

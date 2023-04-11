@@ -41,6 +41,15 @@
         </encoder>
         <file>${LOG_HOME}/error-log.html</file>
     </appender>
+
+    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://localhost:3306/logback</url>
+            <user>root</user>
+            <password>root</password>
+        </connectionSource>
+    </appender>
     <!-- 生成 error html格式日志结束 -->
 
     <!-- 每天生成一个html格式的日志开始 -->
@@ -73,6 +82,7 @@
         <appender-ref ref="FILE" />
         <appender-ref ref="HTML" />
         <appender-ref ref="FILE_HTML" />
+        <appender-ref ref="DB" />
     </root>
 
 </configuration>

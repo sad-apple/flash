@@ -44,12 +44,12 @@ spring:
         # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       datasource:
-        master:
+        mysql:
           url: jdbc:mysql://127.0.0.1:3306/flyway?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
           username: ENC(VZamSTMi224AH6RUtJGXNldiDp/XEL2ozRhBUu/o9ChodT4JEb9kE/j0EFhXKbjsfvLVacUW0AUzetA6OrNJug==)
           password: ENC(VZamSTMi224AH6RUtJGXNldiDp/XEL2ozRhBUu/o9ChodT4JEb9kE/j0EFhXKbjsfvLVacUW0AUzetA6OrNJug==)
           driver-class-name: com.mysql.cj.jdbc.Driver
-
+      primary: mysql
 
   redis:
     host: localhost
@@ -85,6 +85,9 @@ spring:
   sql:
     init:
       schema-locations:
+  data:
+    mongodb:
+      uri: mongodb://root:x+s9zI&VA!s@localhost:27017/test?authSource=admin&authMechanism=SCRAM-SHA-1
 
 mybatis-plus:
   mapper-locations:
