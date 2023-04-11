@@ -21,6 +21,7 @@ import java.sql.Statement;
 /**
  * @author zsp
  * @date 2023/4/6 15:46
+ * 加密拦截器 未完成
  */
 @Slf4j
 @Intercepts(
@@ -32,6 +33,7 @@ import java.sql.Statement;
                 @Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class, Integer.class})
         }
 )
+@Deprecated
 public class FieldEncryptInterceptor implements Interceptor {
 
     @Override
