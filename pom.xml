@@ -22,6 +22,7 @@
         <module>demo-biz</module>
         <module>demo-core</module>
         <module>demo-mybatis-tool</module>
+        <module>demo-mongodb</module>
     </modules>
 
     <dependencies>

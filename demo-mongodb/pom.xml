@@ -6,17 +6,21 @@
 
     <parent>
         <groupId>com.ndsc</groupId>
-        <artifactId>demo-biz</artifactId>
+        <artifactId>spring-boot-demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>biz-dao-mongodb</artifactId>
+    <artifactId>demo-mongodb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ndsc</groupId>
+            <artifactId>demo-core</artifactId>
         </dependency>
     </dependencies>
 

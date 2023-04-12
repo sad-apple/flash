@@ -17,7 +17,6 @@
         <module>biz-web</module>
         <module>biz-service</module>
         <module>biz-dao</module>
-        <module>biz-dao-mongodb</module>
         <module>biz-logback-mysql</module>
     </modules>
 
