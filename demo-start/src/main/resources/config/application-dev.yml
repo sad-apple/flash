@@ -88,6 +88,12 @@ spring:
   data:
     mongodb:
       uri: mongodb://root:x+s9zI&VA!s@localhost:27017/test?authSource=admin&authMechanism=SCRAM-SHA-1
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      location: /data/tmp
+      enabled: true
 
 mybatis-plus:
   mapper-locations:

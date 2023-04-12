@@ -16,6 +16,11 @@
             <groupId>com.ndsc</groupId>
             <artifactId>biz-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.ndsc</groupId>
+            <artifactId>biz-dao-mongodb</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

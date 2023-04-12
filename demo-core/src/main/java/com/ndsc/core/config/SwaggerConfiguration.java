@@ -37,6 +37,19 @@ public class SwaggerConfiguration {
                 .extensions(openApiExtensionResolver.buildExtensions(groupName));
     }
 
+    @Bean(value = "mongodbApi")
+    public Docket mongodbApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .host("https://www.baidu.com")
+                .apiInfo(apiInfo())
+                .groupName("mongodb test")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.ndsc.biz.mongo.controller"))
+                .paths(PathSelectors.any())
+                .build()
+                .extensions(openApiExtensionResolver.buildExtensions("mongodb test"));
+    }
+
     private ApiInfo apiInfo() {
         Contact contact = new Contact("zsp", "http://www.ndscsoft.com/", "614272936@qq.com");
 
