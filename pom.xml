@@ -23,6 +23,8 @@
         <module>demo-core</module>
         <module>demo-mybatis-tool</module>
         <module>demo-mongodb</module>
+        <module>demo-flowable</module>
+        <module>demo-rabbitmq</module>
     </modules>
 
     <dependencies>

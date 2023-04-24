@@ -6,6 +6,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   autoconfigure:
+    #    mybatis-plus会判断是否引入druid，如果引入会优先使用druid，会跟下面这个自动配置类冲突，所以要去掉
     exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
   datasource:
     druid:
@@ -17,6 +18,7 @@ spring:
         allow:
       web-stat-filter:
         enabled: true
+    #   mybatis数据库连接配置
     dynamic:
       druid: # 全局druid参数，绝大部分值和默认保持一致。(现已支持的参数如下,不清楚含义不要乱设置)
         # 连接池的配置信息
@@ -42,17 +44,18 @@ spring:
         # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       datasource:
-        master:
-          url: jdbc:mysql://127.0.0.1:3306/flyway-test?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
-          username: root
-          password: root
+        mysql:
+          url: jdbc:mysql://127.0.0.1:3306/activiti?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+          username: ENC(VZamSTMi224AH6RUtJGXNldiDp/XEL2ozRhBUu/o9ChodT4JEb9kE/j0EFhXKbjsfvLVacUW0AUzetA6OrNJug==)
+          password: ENC(VZamSTMi224AH6RUtJGXNldiDp/XEL2ozRhBUu/o9ChodT4JEb9kE/j0EFhXKbjsfvLVacUW0AUzetA6OrNJug==)
           driver-class-name: com.mysql.cj.jdbc.Driver
+      primary: mysql
 
   redis:
     host: localhost
     port: 6379
     password: 123456
-    database: 0
+    database: 12
 
   # flyway 配置
   flyway:
@@ -76,11 +79,40 @@ spring:
     # 需要 flyway 管控的 schema list,这里我们配置为flyway  缺省的话, 使用spring.datasource.url 配置的那个 schema,
     # 可以指定多个schema, 但仅会在第一个schema下建立 metadata 表, 也仅在第一个schema应用migration sql 脚本.
     # 但flyway Clean 命令会依次在这些schema下都执行一遍. 所以 确保生产 spring.flyway.clean-disabled 为 true
-    schemas: flyway-test
+    schemas: flyway
     # 执行迁移时是否自动调用验证   当你的 版本不符合逻辑 比如 你先执行了 DML 而没有 对应的DDL 会抛出异常
     validate-on-migrate: true
+  sql:
+    init:
+      schema-locations:
+  data:
+    mongodb:
+      uri: mongodb://root:x+s9zI&VA!s@localhost:27017/activiti?authSource=admin&authMechanism=SCRAM-SHA-1
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      location: /data/tmp
+      enabled: true
 
-
+mybatis-plus:
+  mapper-locations:
+    - classpath*:/mapper/*Mapper.xml
+    - classpath*:com.ndsc.**.dao.mapper.**
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      #主键类型  0:"数据库ID自增",1:"该类型为未设置主键类型", 2:"用户输入ID",3:"全局唯一ID (数字类型唯一ID)", 4:"全局唯一ID UUID",5:"字符串全局唯一ID (idWorker 的字符串表示)";
+      id-type: ASSIGN_ID
+      # 默认数据库表下划线命名
+      table-underline: true
+  configuration:
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 返回类型为Map,显示null对应的字段
+    call-setters-on-nulls: true
+  type-aliases-package:
 
 knife4j:
   enable: true

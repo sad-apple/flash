@@ -13,12 +13,22 @@
     <artifactId>demo-start</artifactId>
     <dependencies>
         <dependency>
+            <groupId>ch.qos.logback.db</groupId>
+            <artifactId>logback-classic-db</artifactId>
+            <version>1.2.11.1</version>
+        </dependency>
+        <!--<dependency>
             <groupId>com.ndsc</groupId>
             <artifactId>biz-web</artifactId>
         </dependency>
         <dependency>
             <groupId>com.ndsc</groupId>
             <artifactId>demo-mongodb</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.ndsc</groupId>
+            <artifactId>demo-flowable</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
