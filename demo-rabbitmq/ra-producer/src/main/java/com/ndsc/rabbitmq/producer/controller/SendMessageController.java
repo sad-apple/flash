@@ -24,11 +24,8 @@ public class SendMessageController {
     @Autowired
     private TestService testService;
 
-    @GetMapping("{testService.getUrl('dfe')}")
-//    @GetMapping("/sendDirectMessage")
+    @GetMapping("/sendDirectMessage")
     public String sendDirectMessage() {
-        System.out.println(testService.getUrl("dfe"));
-
         for (int i = 0; i < 10; i++) {
             String messageId = String.valueOf(UUID.randomUUID());
             String messageData = "test message, hello!";
