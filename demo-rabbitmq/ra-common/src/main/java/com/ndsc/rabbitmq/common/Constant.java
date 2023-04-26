@@ -6,7 +6,9 @@ package com.ndsc.rabbitmq.common;
  */
 public class Constant {
 
-    public static final String TEST_DIRECT_QUEUE = "TestDirectQueue";
-    public static final String TEST_DIRECT_EXCHANGE = "TestDirectExchange";
-    public static final String TEST_DIRECT_ROUTING = "TestDirectRouting";
+    public static final String DIRECT_QUEUE = "direct-queue";
+    public static final String DIRECT_EXCHANGE = "direct-exchange";
+    public static final String DIRECT_ROUTING = "direct-routing";
+    public static final String TOPIC_EXCHANGE = "topic-exchange";
+
 }

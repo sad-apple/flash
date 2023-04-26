@@ -12,7 +12,7 @@ import java.util.Map;
  * @date 2023/4/24 14:18
  */
 @Component
-@RabbitListener(queues = Constant.TEST_DIRECT_QUEUE)
+@RabbitListener(queues = Constant.DIRECT_QUEUE)
 public class DirectReceiver1 {
 
     @RabbitHandler

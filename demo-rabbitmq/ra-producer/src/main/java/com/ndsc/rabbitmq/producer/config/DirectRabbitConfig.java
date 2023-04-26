@@ -5,6 +5,7 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,22 +23,30 @@ public class DirectRabbitConfig {
         //   return new Queue("TestDirectQueue",true,true,false);
 
         //一般设置一下队列的持久化就好,其余两个就是默认false
-        return new Queue(Constant.TEST_DIRECT_QUEUE, false, false, true);
+        return new Queue(Constant.DIRECT_QUEUE, false, false, true);
     }
 
     //Direct交换机 起名：TestDirectExchange
     @Bean
     DirectExchange testDirectExchange() {
         //  return new DirectExchange("TestDirectExchange",true,true);
-        return new DirectExchange(Constant.TEST_DIRECT_EXCHANGE,false,true);
+        return new DirectExchange(Constant.DIRECT_EXCHANGE, false, true);
     }
 
     //绑定  将队列和交换机绑定, 并设置用于匹配键：TestDirectRouting
     @Bean
     Binding bindingDirect() {
-        return BindingBuilder.bind(testDirectQueue()).to(testDirectExchange()).with(Constant.TEST_DIRECT_ROUTING);
+        return BindingBuilder.bind(testDirectQueue()).to(testDirectExchange()).with(Constant.DIRECT_ROUTING);
+    }
+    @Bean
+    TopicExchange topicExchange() {
+        return new TopicExchange(Constant.TOPIC_EXCHANGE);
     }
 
+    @Bean
+    Binding bindingTopic() {
+        return BindingBuilder.bind(testDirectQueue()).to(topicExchange()).with(Constant.DIRECT_ROUTING);
+    }
 
 
     /*@Bean
