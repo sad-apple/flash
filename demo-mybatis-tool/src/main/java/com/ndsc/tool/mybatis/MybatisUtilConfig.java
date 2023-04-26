@@ -18,6 +18,10 @@ public class MybatisUtilConfig {
         return new NdscSqlInjector();
     }
 
+    /**
+     * 自动插入
+     * @return
+     */
     @Bean
     public NdscMetaObjectHandler metaObjectHandler() {
         return new NdscMetaObjectHandler();

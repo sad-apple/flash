@@ -6,3 +6,6 @@ spring:
     import:
       - classpath:/config/${spring.profiles.active}/biz-a.yml
       - classpath:/config/${spring.profiles.active}/biz-b.yml
+
+  freemarker:
+    check-template-location: false

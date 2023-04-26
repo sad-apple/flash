@@ -19,6 +19,7 @@ public class NdscMetaObjectHandler implements MetaObjectHandler {
         log.info("start insert fill ....");
         // todo 自动填充创建人
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now())
+            .strictInsertFill(metaObject, "insertTime", LocalDateTime.class, LocalDateTime.now())
             .strictInsertFill(metaObject, "createBy", String.class, "zsp");
     }
 

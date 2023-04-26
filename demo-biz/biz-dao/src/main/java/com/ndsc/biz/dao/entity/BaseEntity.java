@@ -21,6 +21,9 @@ import java.time.LocalDateTime;
 public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 设置逻辑删除
+     */
     @TableLogic
     private Integer isDel = 0;
 
