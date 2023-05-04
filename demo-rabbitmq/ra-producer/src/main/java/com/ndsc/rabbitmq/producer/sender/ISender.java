@@ -6,6 +6,7 @@ package com.ndsc.rabbitmq.producer.sender;
  */
 public interface ISender {
 
+    void send(String routingKey, Object msg);
     void send(Object msg);
 
 }

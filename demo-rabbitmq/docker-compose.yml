@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  ra-producer:
+    container_name: ra-producer
+    image: ra-producer
+    build:
+      context: .
+      dockerfile: ./ra-producer/Dockerfile
+    ports:
+      - 18181:18181
+    networks:
+      - ra-demo
+
+networks:
+  ra-demo:
+    external: true

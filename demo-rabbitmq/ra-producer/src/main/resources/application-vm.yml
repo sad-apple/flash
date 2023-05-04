@@ -1,8 +1,8 @@
 server:
-  port: 18182
+  port: 18181
 spring:
   rabbitmq:
-    host: localhost
+    host: rabbitmq
     port: 5672
     username: rabbit
     password: rabbit@123
