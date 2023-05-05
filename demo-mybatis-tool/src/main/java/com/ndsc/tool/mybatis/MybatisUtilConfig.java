@@ -19,7 +19,7 @@ public class MybatisUtilConfig {
     }
 
     /**
-     * 自动插入
+     * 自动填充数据
      * @return
      */
     @Bean
