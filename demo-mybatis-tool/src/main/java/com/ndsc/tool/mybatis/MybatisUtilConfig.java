@@ -1,12 +1,18 @@
 package com.ndsc.tool.mybatis;
 
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.ndsc.tool.mybatis.interceptor.FieldSensitiveInterceptor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author zsp
  * @date 2023/4/7 16:40
  */
+@Configuration
+@ComponentScan(basePackageClasses = MybatisUtilConfig.class)
 public class MybatisUtilConfig {
 
     /**
@@ -23,6 +29,7 @@ public class MybatisUtilConfig {
      * @return
      */
     @Bean
+    @ConditionalOnMissingBean(MetaObjectHandler.class)
     public NdscMetaObjectHandler metaObjectHandler() {
         return new NdscMetaObjectHandler();
     }
