@@ -33,8 +33,7 @@ public class FieldSensitiveInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-
-        System.out.println("Result Plugin 拦截 :"+invocation.getMethod());
+        log.debug("Result Plugin 拦截 : {}", invocation.getMethod());
         Object result = invocation.proceed();
         if (result instanceof Collection) {
             Collection<Object> objList= (Collection) result;
@@ -57,12 +56,15 @@ public class FieldSensitiveInterceptor implements Interceptor {
                 continue;
             }
             PropertyDescriptor ps = BeanUtils.getPropertyDescriptor(object.getClass(), field.getName());
+            if (ps == null) {
+                continue;
+            }
+
             if (ps.getReadMethod() == null || ps.getWriteMethod() == null) {
                 continue;
             }
             Object value = ps.getReadMethod().invoke(object);
             if (value != null) {
-                System.out.println(value);
                 try {
                     String serialize = SensitiveInfoUtil.sensitize(confidential.value(), value);
                     ps.getWriteMethod().invoke(object, serialize);
