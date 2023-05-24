@@ -12,12 +12,18 @@ import java.lang.annotation.Target;
 /**
  * @author zsp
  * @date 2023/4/7 11:18
+ * 敏感词过滤
  */
 @Documented
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 public @interface FieldSensitive {
+
+    /**
+     * 指定敏感词类型
+     * @return
+     */
     SensitiveType value() default SensitiveType.COMMON;
 
 }

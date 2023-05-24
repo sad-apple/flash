@@ -12,6 +12,7 @@ import java.lang.annotation.Target;
 /**
  * @author zsp
  * @date 2023/4/6 16:30
+ * 字段加密
  */
 @Documented
 @Inherited

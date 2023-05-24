@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ndsc</groupId>
+        <artifactId>spring-boot-demo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <!--<parent>
+        <artifactId>demo-bom</artifactId>
+        <groupId>com.ndsc</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>-->
+
+    <groupId>com.ndsc.system</groupId>
+    <artifactId>demo-system</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>demo-start</module>
+        <module>demo-biz</module>
+        <module>demo-core</module>
+        <module>demo-mongodb</module>
+    </modules>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ndsc</groupId>
+                <artifactId>demo-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.ndsc.system</groupId>
+                <artifactId>biz-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ndsc.system</groupId>
+                <artifactId>biz-dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ndsc.system</groupId>
+                <artifactId>biz-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ndsc.system</groupId>
+                <artifactId>demo-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ndsc.system</groupId>
+                <artifactId>demo-mongodb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
