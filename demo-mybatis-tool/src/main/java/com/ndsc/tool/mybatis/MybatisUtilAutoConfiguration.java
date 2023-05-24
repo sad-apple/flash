@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023/4/7 16:40
  */
 @Configuration
-@ComponentScan(basePackageClasses = MybatisUtilConfig.class)
-public class MybatisUtilConfig {
+@ComponentScan(basePackageClasses = MybatisUtilAutoConfiguration.class)
+public class MybatisUtilAutoConfiguration {
 
     /**
      * 自定义 SqlInjector
