@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.ndsc</groupId>
+        <groupId>com.flash</groupId>
         <artifactId>spring-boot-flash</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>demo-rabbitmq</artifactId>
@@ -35,7 +35,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.ndsc</groupId>
+                <groupId>com.flash</groupId>
                 <artifactId>ra-common</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>

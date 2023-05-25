@@ -25,7 +25,7 @@
             <artifactId>demo-mongodb</artifactId>
         </dependency>
         <!--<dependency>
-            <groupId>com.ndsc</groupId>
+            <groupId>com.flash</groupId>
             <artifactId>demo-flowable</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>-->

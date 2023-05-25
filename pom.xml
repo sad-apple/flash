@@ -10,20 +10,22 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.ndsc</groupId>
+    <groupId>com.flash</groupId>
     <artifactId>spring-boot-flash</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>spring-boot-flash</name>
     <description>spring-boot-flash</description>
     <packaging>pom</packaging>
     <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
     </properties>
 
     <modules>
         <module>demo-mybatis-tool</module>
         <module>demo-rabbitmq</module>
-        <module>demo-bom</module>
+        <module>flash-dependencies</module>
         <module>demo-system</module>
+        <module>flash-parent</module>
     </modules>
 
     <dependencies>
@@ -40,19 +42,19 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.ndsc</groupId>
+                <groupId>com.flash</groupId>
                 <artifactId>demo-mybatis-tool</artifactId>
                 <version>1.0.0</version>
             </dependency>
-            <dependency>
-                <groupId>com.ndsc</groupId>
-                <artifactId>demo-system</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.flash</groupId>-->
+<!--                <artifactId>demo-system</artifactId>-->
+<!--                <version>${project.version}</version>-->
+<!--            </dependency>-->
 
         </dependencies>
     </dependencyManagement>
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -63,7 +65,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <!-- 打包跳过测试 -->
+            &lt;!&ndash; 打包跳过测试 &ndash;&gt;
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -71,7 +73,7 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
-            <!-- 源码打包上传 -->
+            &lt;!&ndash; 源码打包上传 &ndash;&gt;
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -85,5 +87,5 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 </project>

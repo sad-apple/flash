@@ -5,15 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.ndsc</groupId>
-        <artifactId>spring-boot-flash</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>com.flash</groupId>
+        <artifactId>flash-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../flash-parent</relativePath>
     </parent>
-    <!--<parent>
-        <artifactId>demo-bom</artifactId>
-        <groupId>com.ndsc</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>-->
 
     <groupId>com.ndsc.system</groupId>
     <artifactId>demo-system</artifactId>
@@ -30,13 +26,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>com.ndsc</groupId>
-                <artifactId>demo-bom</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <dependency>
                 <groupId>com.ndsc.system</groupId>
                 <artifactId>biz-web</artifactId>

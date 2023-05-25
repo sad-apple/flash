@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.ndsc</groupId>
+        <groupId>com.flash</groupId>
         <artifactId>spring-boot-flash</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>demo-mybatis-tool</artifactId>
@@ -16,9 +16,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.ndsc</groupId>
-                <artifactId>demo-bom</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-dependencies</artifactId>
+                <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

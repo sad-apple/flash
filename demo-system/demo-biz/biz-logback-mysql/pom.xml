@@ -7,11 +7,10 @@
     <parent>
         <groupId>com.ndsc.system</groupId>
         <artifactId>demo-biz</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>biz-logback-mysql</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>

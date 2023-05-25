@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.ndsc</groupId>
+        <groupId>com.flash</groupId>
         <artifactId>demo-rabbitmq</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -15,7 +15,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.ndsc</groupId>
+            <groupId>com.flash</groupId>
             <artifactId>ra-common</artifactId>
         </dependency>
     </dependencies>
