@@ -11,10 +11,10 @@
     </parent>-->
 
     <groupId>com.flash</groupId>
-    <artifactId>spring-boot-flash</artifactId>
+    <artifactId>flash</artifactId>
     <version>${revision}</version>
-    <name>spring-boot-flash</name>
-    <description>spring-boot-flash</description>
+    <name>flash</name>
+    <description>flash</description>
     <packaging>pom</packaging>
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
