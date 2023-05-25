@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.ndsc</groupId>
-        <artifactId>spring-boot-demo</artifactId>
+        <artifactId>spring-boot-flash</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

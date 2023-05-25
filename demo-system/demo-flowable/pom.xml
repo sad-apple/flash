@@ -5,13 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.ndsc</groupId>
-        <artifactId>spring-boot-demo</artifactId>
+        <groupId>com.ndsc.system</groupId>
+        <artifactId>demo-system</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>demo-flowable</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <properties>
         <flowable.version>6.8.0</flowable.version>
     </properties>
@@ -22,7 +21,7 @@
             <artifactId>demo-mybatis-tool</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.ndsc</groupId>
+            <groupId>com.ndsc.system</groupId>
             <artifactId>demo-core</artifactId>
         </dependency>
         <dependency>

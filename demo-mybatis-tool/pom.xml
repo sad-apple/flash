@@ -6,12 +6,24 @@
 
     <parent>
         <groupId>com.ndsc</groupId>
-        <artifactId>spring-boot-demo</artifactId>
+        <artifactId>spring-boot-flash</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>demo-mybatis-tool</artifactId>
     <version>1.0.0</version>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ndsc</groupId>
+                <artifactId>demo-bom</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>

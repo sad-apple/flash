@@ -15,8 +15,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.ndsc</groupId>
+            <groupId>com.ndsc.system</groupId>
             <artifactId>demo-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

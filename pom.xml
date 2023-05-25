@@ -11,23 +11,16 @@
     </parent>
 
     <groupId>com.ndsc</groupId>
-    <artifactId>spring-boot-demo</artifactId>
+    <artifactId>spring-boot-flash</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-demo</name>
-    <description>spring-boot-demo</description>
+    <name>spring-boot-flash</name>
+    <description>spring-boot-flash</description>
     <packaging>pom</packaging>
     <properties>
-<!--        <java.version>1.8</java.version>-->
-<!--        <mybatis-plus.version>3.5.3</mybatis-plus.version>-->
-<!--        <druid.version>1.1.22</druid.version>-->
-<!--        <dynamic-datasource-spring-boot-starter.version>3.2.0</dynamic-datasource-spring-boot-starter.version>-->
-<!--        <knife4f.version>4.0.0</knife4f.version>-->
-        <com.njusc.util.version>1.0.1</com.njusc.util.version>
     </properties>
 
     <modules>
         <module>demo-mybatis-tool</module>
-        <module>demo-flowable</module>
         <module>demo-rabbitmq</module>
         <module>demo-bom</module>
         <module>demo-system</module>
