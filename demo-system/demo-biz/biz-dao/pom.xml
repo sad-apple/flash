@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.ndsc.system</groupId>
         <artifactId>demo-biz</artifactId>
-        <version>${revision}</version>
+        <version>${system.version}</version>
     </parent>
 
     <artifactId>biz-dao</artifactId>

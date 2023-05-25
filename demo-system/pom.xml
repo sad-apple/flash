@@ -14,6 +14,11 @@
     <groupId>com.ndsc.system</groupId>
     <artifactId>demo-system</artifactId>
     <packaging>pom</packaging>
+    <version>${system.version}</version>
+
+    <properties>
+        <system.version>1.0.0</system.version>
+    </properties>
 
     <modules>
         <module>demo-start</module>

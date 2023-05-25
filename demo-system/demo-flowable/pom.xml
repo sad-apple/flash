@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.ndsc.system</groupId>
         <artifactId>demo-system</artifactId>
-        <version>${revision}</version>
+        <version>${system.version}</version>
     </parent>
 
     <artifactId>demo-flowable</artifactId>
@@ -16,10 +16,10 @@
     </properties>
 
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>com.flash</groupId>
             <artifactId>demo-mybatis-tool</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.ndsc.system</groupId>
             <artifactId>demo-core</artifactId>

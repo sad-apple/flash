@@ -3,12 +3,12 @@
         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
+    <!--<parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.14</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
+    </parent>-->
 
     <groupId>com.flash</groupId>
     <artifactId>spring-boot-flash</artifactId>
@@ -21,31 +21,31 @@
     </properties>
 
     <modules>
-        <module>demo-mybatis-tool</module>
-        <module>demo-rabbitmq</module>
+<!--        <module>demo-mybatis-tool</module>-->
+<!--        <module>demo-rabbitmq</module>-->
         <module>flash-dependencies</module>
-        <module>demo-system</module>
+<!--        <module>demo-system</module>-->
         <module>flash-parent</module>
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
-    </dependencies>
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-devtools</artifactId>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
+            <!--<dependency>
                 <groupId>com.flash</groupId>
                 <artifactId>demo-mybatis-tool</artifactId>
                 <version>1.0.0</version>
-            </dependency>
+            </dependency>-->
 <!--            <dependency>-->
 <!--                <groupId>com.flash</groupId>-->
 <!--                <artifactId>demo-system</artifactId>-->
@@ -54,38 +54,4 @@
 
         </dependencies>
     </dependencyManagement>
-    <!--<build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            &lt;!&ndash; 打包跳过测试 &ndash;&gt;
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
-            </plugin>
-            &lt;!&ndash; 源码打包上传 &ndash;&gt;
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>-->
 </project>
