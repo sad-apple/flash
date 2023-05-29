@@ -94,6 +94,11 @@
                 <artifactId>flash-common</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-mybatis-plus</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

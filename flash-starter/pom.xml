@@ -20,6 +20,10 @@
     </properties>
 
 
+    <modules>
+        <module>flash-mybatis-plus-starter</module>
+    </modules>
+
     <build>
         <plugins>
             <plugin>
