@@ -8,12 +8,9 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import static com.flash.web.response.ResponseEnum.SYSTEM_ERROR;
-
 /**
  * 自定义异常处理器
  *
- * @author panda
  */
 @RestControllerAdvice
 @Slf4j

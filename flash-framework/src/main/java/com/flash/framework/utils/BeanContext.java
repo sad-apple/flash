@@ -20,12 +20,10 @@ package com.flash.framework.utils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
 /**
  *  bean context
  */
-@Component
 public class BeanContext implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;

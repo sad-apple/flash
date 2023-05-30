@@ -119,7 +119,7 @@
             </dependency>
             <dependency>
                 <groupId>com.flash</groupId>
-                <artifactId>flash-web</artifactId>
+                <artifactId>flash-boot</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
@@ -130,6 +130,11 @@
             <dependency>
                 <groupId>com.flash</groupId>
                 <artifactId>flash-boot-starter-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-boot-starter-http</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

@@ -6,19 +6,22 @@
 
     <parent>
         <groupId>com.flash</groupId>
-        <artifactId>flash-boot-starter</artifactId>
+        <artifactId>flash-parent</artifactId>
         <version>${revision}</version>
+        <relativePath>../flash-parent</relativePath>
     </parent>
 
-    <artifactId>flash-boot-starter-web</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>flash-boot</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.flash</groupId>
-            <artifactId>flash-boot</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.flash</groupId>
+            <artifactId>flash-framework</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

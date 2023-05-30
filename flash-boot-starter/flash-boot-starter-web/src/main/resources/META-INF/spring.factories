@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.flash.web.autoconfigure.FlashWebAutoConfiguration,\
+cn.org.easysite.spring.boot.autoconfigure.SpringMvcConfiguration
