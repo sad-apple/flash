@@ -134,7 +134,7 @@
             </dependency>
             <dependency>
                 <groupId>com.flash</groupId>
-                <artifactId>flash-boot-starter-http</artifactId>
+                <artifactId>flash-boot-starter-rest</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
