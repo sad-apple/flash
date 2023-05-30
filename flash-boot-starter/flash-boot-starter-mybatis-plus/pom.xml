@@ -6,17 +6,18 @@
 
     <parent>
         <groupId>com.flash</groupId>
-        <artifactId>flash-starter</artifactId>
+        <artifactId>flash-boot-starter</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>flash-mybatis-plus-starter</artifactId>
+    <artifactId>flash-boot-starter-mybatis-plus</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.flash</groupId>
             <artifactId>flash-mybatis-plus</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

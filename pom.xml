@@ -26,7 +26,7 @@
         <module>flash-dependencies</module>
 <!--        <module>demo-system</module>-->
         <module>flash-parent</module>
-        <module>flash-starter</module>
+        <module>flash-boot-starter</module>
         <module>flash-mybatis-plus</module>
         <module>flash-common</module>
 <!--        <module>flash-smartdoc</module>-->

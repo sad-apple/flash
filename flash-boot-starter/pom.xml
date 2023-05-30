@@ -11,7 +11,7 @@
         <relativePath>../flash-parent</relativePath>
     </parent>
 
-    <artifactId>flash-starter</artifactId>
+    <artifactId>flash-boot-starter</artifactId>
     <packaging>pom</packaging>
 
     <properties>
@@ -21,7 +21,7 @@
 
 
     <modules>
-        <module>flash-mybatis-plus-starter</module>
+        <module>flash-boot-starter-mybatis-plus</module>
     </modules>
 
     <build>

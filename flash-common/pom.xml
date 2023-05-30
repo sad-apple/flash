@@ -30,5 +30,16 @@
             <groupId>com.njusc</groupId>
             <artifactId>util</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <optional>true</optional>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

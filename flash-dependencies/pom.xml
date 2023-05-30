@@ -16,9 +16,10 @@
 
     <properties>
         <java.version>17</java.version>
-        <mybatis-plus.version>3.5.3</mybatis-plus.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <druid.version>1.1.22</druid.version>
-        <dynamic-datasource-spring-boot-starter.version>3.2.0</dynamic-datasource-spring-boot-starter.version>
+        <mysql-connector.version>8.0.33</mysql-connector.version>
+        <dynamic-datasource-spring-boot-starter.version>3.6.1</dynamic-datasource-spring-boot-starter.version>
         <knife4f.version>4.0.0</knife4f.version>
         <com.njusc.util.version>1.0.1</com.njusc.util.version>
         <logback-classic-db.version>1.2.11.1</logback-classic-db.version>
@@ -60,6 +61,12 @@
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>${dynamic-datasource-spring-boot-starter.version}</version>
             </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+                <scope>runtime</scope>
+            </dependency>
 
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
@@ -97,6 +104,16 @@
             <dependency>
                 <groupId>com.flash</groupId>
                 <artifactId>flash-mybatis-plus</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-boot-starter-mybatis-plus</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-boot-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>
@@ -243,29 +260,6 @@
                                     </outputProperties>
                                 </transformationSet>
                             </transformationSets>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <!-- Attach effective POM -->
-                        <id>attach-artifacts</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>attach-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <artifacts>
-                                <artifact>
-                                    <file>${project.build.directory}/effective-pom/spring-boot-dependencies.xml</file>
-                                    <type>effective-pom</type>
-                                </artifact>
-                            </artifacts>
                         </configuration>
                     </execution>
                 </executions>
