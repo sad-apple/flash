@@ -29,6 +29,7 @@
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
+        <knife4j-openapi3.version>4.1.0</knife4j-openapi3.version>
     </properties>
 
     <dependencyManagement>
@@ -115,6 +116,26 @@
                 <groupId>com.flash</groupId>
                 <artifactId>flash-boot-starter</artifactId>
                 <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-framework</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-boot-starter-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j-openapi3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -29,6 +29,8 @@
         <module>flash-boot-starter</module>
         <module>flash-mybatis-plus</module>
         <module>flash-common</module>
+        <module>flash-framework</module>
+        <module>flash-web</module>
 <!--        <module>flash-smartdoc</module>-->
     </modules>
 

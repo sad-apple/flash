@@ -22,6 +22,8 @@
 
     <modules>
         <module>flash-boot-starter-mybatis-plus</module>
+        <module>flash-boot-starter-web</module>
+        <module>flash-boot-starter-openapi3</module>
     </modules>
 
     <build>
