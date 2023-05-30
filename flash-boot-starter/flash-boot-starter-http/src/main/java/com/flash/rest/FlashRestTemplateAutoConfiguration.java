@@ -22,12 +22,12 @@ import java.util.List;
  */
 @Configuration
 @EnableConfigurationProperties(RestProperties.class)
-public class RestTemplateAutoConfiguration {
+public class FlashRestTemplateAutoConfiguration {
 
 
     @ConditionalOnMissingBean
     @Bean
-    ClientHttpRequestFactory clientHttpRequestFactory(RestProperties restProperties) {
+    public ClientHttpRequestFactory clientHttpRequestFactory(RestProperties restProperties) {
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
         requestFactory.setConnectTimeout(restProperties.getConnectTimeout());
         requestFactory.setReadTimeout(restProperties.getReadTimeout());
@@ -36,7 +36,7 @@ public class RestTemplateAutoConfiguration {
 
     @ConditionalOnMissingBean
     @Bean
-    RestTemplate restTemplate(ClientHttpRequestFactory clientHttpRequestFactory) {
+    public RestTemplate flashRestTemplate(ClientHttpRequestFactory clientHttpRequestFactory) {
         RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
         restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(StandardCharsets.UTF_8));
         List<ClientHttpRequestInterceptor> interceptors=new ArrayList<>();

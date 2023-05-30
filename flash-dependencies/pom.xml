@@ -138,6 +138,11 @@
                 <version>${revision}</version>
             </dependency>
             <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-boot-starter-openapi3</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>${knife4j-openapi3.version}</version>
