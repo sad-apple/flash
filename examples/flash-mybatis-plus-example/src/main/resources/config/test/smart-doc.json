@@ -1,0 +1,11 @@
+{
+  "outPath": "src/main/resources/static/doc",
+  "projectName": "测试项目",
+  "packageFilters": "com.example.mybatisplus.controller.*",
+  "openUrl": "http://172.168.14.244:7700/api",
+  "appToken": "9bf2247023eb406cb2b63d11dcc7ee15",
+  "debugEnvName": "开发环境",
+  "debugEnvUrl": "http://localhost:8080/test",
+  "tornaDebug": true,
+  "replace": true
+}

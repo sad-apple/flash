@@ -16,6 +16,7 @@
 
     <modules>
         <module>flash-smartdoc-knife4j-example</module>
+        <module>flash-mybatis-plus-example</module>
     </modules>
 
 </project>
