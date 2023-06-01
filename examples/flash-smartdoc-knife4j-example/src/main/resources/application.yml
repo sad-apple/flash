@@ -1,0 +1,11 @@
+server:
+  servlet:
+    context-path:
+  port: 8080
+
+knife4j:
+  enable: true
+
+springdoc:
+  swagger-ui:
+    url: /doc/openapi.json

@@ -32,7 +32,7 @@
         <module>flash-framework</module>
         <module>flash-boot</module>
 
-<!--        <module>flash-smartdoc</module>-->
+        <module>examples</module>
     </modules>
 
 <!--    <dependencies>-->
