@@ -1,6 +1,6 @@
 package com.flash.mybatis.annotation;
 
-import com.flash.common.constant.SensitiveType;
+import com.flash.common.sensitive.constant.SensitiveType;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

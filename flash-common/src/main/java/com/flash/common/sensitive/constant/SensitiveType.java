@@ -1,4 +1,4 @@
-package com.flash.common.constant;
+package com.flash.common.sensitive.constant;
 
 /**
  * @author zsp

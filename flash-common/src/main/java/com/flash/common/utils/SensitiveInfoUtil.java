@@ -1,6 +1,6 @@
 package com.flash.common.utils;
 
-import com.flash.common.constant.SensitiveType;
+import com.flash.common.sensitive.constant.SensitiveType;
 import com.njusc.util.RegUtil;
 import org.springframework.util.StringUtils;
 

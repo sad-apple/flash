@@ -3,7 +3,7 @@ package com.example.mybatisplus.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.flash.common.constant.SensitiveType;
+import com.flash.common.sensitive.constant.SensitiveType;
 import com.flash.mybatis.annotation.FieldSensitive;
 import lombok.Data;
 
