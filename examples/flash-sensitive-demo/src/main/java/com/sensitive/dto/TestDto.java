@@ -2,6 +2,8 @@ package com.sensitive.dto;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.flash.common.sensitive.annotations.SensitiveFormat;
+import com.flash.common.sensitive.constant.SensitiveType;
 
 /**
  * @author zsp
@@ -11,7 +13,7 @@ public class TestDto {
 
     private String email;
 
-    @SencitiveFormat
+    @SensitiveFormat(SensitiveType.MOBILE_PHONE)
     private String phone;
 
     public TestDto(String phone) {
