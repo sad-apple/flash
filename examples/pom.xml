@@ -18,6 +18,25 @@
         <module>flash-smartdoc-knife4j-example</module>
         <module>flash-mybatis-plus-example</module>
         <module>flash-sensitive-demo</module>
+        <module>flash-ocr-demo</module>
+        <module>flash-aias-ocr-demo</module>
     </modules>
 
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
