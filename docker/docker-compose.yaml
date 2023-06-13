@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  paddle:
+    image: registry.baidubce.com/paddlepaddle/paddle:2.4.2
+    container_name: paddle
+    volumes:
+      - ./data:/paddle
