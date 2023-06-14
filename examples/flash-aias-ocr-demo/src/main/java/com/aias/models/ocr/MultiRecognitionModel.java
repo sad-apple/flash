@@ -11,7 +11,7 @@ import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import com.aias.domain.RecognizerInfo;
 import com.aias.models.OcrModel;
-import com.aias.utils.ImageUtils;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -19,8 +19,8 @@ import org.springframework.util.StopWatch;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutionException;
@@ -56,7 +56,7 @@ public class MultiRecognitionModel extends OcrModel {
         detectWatch.start();
         DetectedObjects detections = detector.predict(image);
         detectWatch.stop();
-        log.info("检测耗时 time:{}mm", detectWatch.getTotalTimeMillis());
+        log.info("detect time:{}mm", detectWatch.getTotalTimeMillis());
 
         List<DetectedObjects.DetectedObject> boxes = detections.items();
         List<String> names = new ArrayList<>();
@@ -65,7 +65,11 @@ public class MultiRecognitionModel extends OcrModel {
 
         recognizeWatch.start();
 
-        ConcurrentLinkedQueue<DetectedObjects.DetectedObject> queue = new ConcurrentLinkedQueue<>(boxes);
+        ConcurrentLinkedQueue<DetectedObjectWrapper> queue = new ConcurrentLinkedQueue<>();
+        for (int i = 0; i < boxes.size(); i++) {
+            DetectedObjectWrapper detectedObjectWrapper = new DetectedObjectWrapper(boxes.get(i), i);
+            queue.add(detectedObjectWrapper);
+        }
 
         int corePoolSize = taskExecutor.getCorePoolSize();
         List<Callable<List<RecognizerInfo>>> callables = new ArrayList<>(corePoolSize);
@@ -84,7 +88,10 @@ public class MultiRecognitionModel extends OcrModel {
         for (Future<List<RecognizerInfo>> future : futures) {
             try {
                 List<RecognizerInfo> recognizerInfos = future.get();
+                recognizerInfos.sort(Comparator.comparing(RecognizerInfo::getSort));
                 for (RecognizerInfo recognizerInfo : recognizerInfos) {
+                    // todo 待删除
+                    System.out.println(recognizerInfo.getTxt());
                     names.add(recognizerInfo.getTxt());
                     prob.add(recognizerInfo.getProb());
                     rect.add(recognizerInfo.getBox());
@@ -107,12 +114,12 @@ public class MultiRecognitionModel extends OcrModel {
 
     private class InferCallable implements Callable<List<RecognizerInfo>> {
         private final Predictor<Image, String> recognizer;
-        private final ConcurrentLinkedQueue<DetectedObjects.DetectedObject> queue;
+        private final ConcurrentLinkedQueue<DetectedObjectWrapper> queue;
         private final Image image;
         private final List<RecognizerInfo> resultList = new ArrayList<>();
 
 
-        public InferCallable(ZooModel<Image, String> recognitionModel, ConcurrentLinkedQueue<DetectedObjects.DetectedObject> queue, Image image) {
+        public InferCallable(ZooModel<Image, String> recognitionModel, ConcurrentLinkedQueue<DetectedObjectWrapper> queue, Image image) {
             this.recognizer = recognitionModel.newPredictor();
             this.queue = queue;
             this.image = image;
@@ -120,22 +127,36 @@ public class MultiRecognitionModel extends OcrModel {
 
         @Override
         public List<RecognizerInfo> call() throws TranslateException {
-            DetectedObjects.DetectedObject box = queue.poll();
+            DetectedObjectWrapper wrapper = queue.poll();
+            while (wrapper != null) {
+                DetectedObjects.DetectedObject box = wrapper.getDetectedObject();
+                Integer sort = wrapper.getSort();
 
-            while (box != null) {
                 Image subImg = getSubImage(image, box.getBoundingBox());
                 if (subImg.getHeight() * 1.0 / subImg.getWidth() > 1.5) {
                     subImg = rotateImg(subImg);
                 }
                 String txt = recognizer.predict(subImg);
-                // todo 待删除
-                System.out.println(txt);
-                RecognizerInfo recognizerInfo = new RecognizerInfo(txt, box.getBoundingBox(), -1.0);
+                RecognizerInfo recognizerInfo = new RecognizerInfo(txt, box.getBoundingBox(), -1.0, sort);
                 resultList.add(recognizerInfo);
-                box = queue.poll();
-
+                wrapper = queue.poll();
             }
             return resultList;
         }
     }
+
+    @Data
+    public static class DetectedObjectWrapper {
+
+        private DetectedObjects.DetectedObject detectedObject;
+
+        private Integer sort;
+
+        public DetectedObjectWrapper(DetectedObjects.DetectedObject detectedObject, Integer sort) {
+            this.detectedObject = detectedObject;
+            this.sort = sort;
+        }
+
+    }
+
 }
