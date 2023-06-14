@@ -6,10 +6,9 @@ import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.modality.cv.output.Rectangle;
 import com.aias.domain.DataBean;
 import com.aias.domain.Point;
-import com.aias.models.ocr.RecognitionModel;
+import com.aias.models.OcrModel;
 import com.aias.service.OcrService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Calvin
- * @date Jun 12, 2021
+ * @author zsp
  */
+@Slf4j
 @Service
 public class OcrServiceImpl implements OcrService {
-    private Logger logger = LoggerFactory.getLogger(OcrServiceImpl.class);
     @Autowired
-    private RecognitionModel recognitionModel;
+    private OcrModel recognitionModel;
 
     @Override
     public List<DataBean> getGeneralInfo(Image image) {
@@ -53,7 +51,7 @@ public class OcrServiceImpl implements OcrService {
             }
             return dataList;
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            log.error(e.getMessage());
             e.printStackTrace();
             return null;
         }
