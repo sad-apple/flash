@@ -3,8 +3,9 @@ package com.aias.controller;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
 import com.aias.domain.DataBean;
-import com.aias.domain.ResultBean;
 import com.aias.service.OcrService;
+import com.flash.web.response.Response;
+import com.flash.web.response.ResponseEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,10 @@ public class OcrController {
      * @throws IOException
      */
     @GetMapping(value = "/generalInfoForImageUrl")
-    public ResultBean<?> generalInfoForImageUrl(@RequestParam(value = "url") String url) throws IOException {
+    public ResponseEntity<?> generalInfoForImageUrl(@RequestParam(value = "url") String url) throws IOException {
         Image image = ImageFactory.getInstance().fromUrl(url);
         List<DataBean> dataList = inferService.getGeneralInfo(image);
-        return ResultBean.success().add("result", dataList);
+        return Response.success(dataList);
     }
 
     /**
@@ -51,7 +52,7 @@ public class OcrController {
      * @return
      */
     @PostMapping("/generalInfoForImageFile")
-    public ResultBean<?> generalInfoForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
+    public ResponseEntity<?> generalInfoForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
         InputStream inputStream = null;
         try {
             inputStream = imageFile.getInputStream();
@@ -60,12 +61,11 @@ public class OcrController {
             Image image = ImageFactory.getInstance().fromInputStream(inputStream);
             List<DataBean> dataList = inferService.getGeneralInfo(image);
             
-            return ResultBean.success().add("result", dataList)
-                    .add("base64Img", "data:image/jpeg;base64," + base64Img);
+            return Response.success(dataList);
         } catch (Exception e) {
             log.error(e.getMessage());
             e.printStackTrace();
-            return ResultBean.failure().add("errors", e.getMessage());
+            return Response.failure(e.getMessage());
         } finally {
             if (inputStream != null) {
                 try {
