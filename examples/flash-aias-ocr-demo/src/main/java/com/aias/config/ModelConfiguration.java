@@ -2,6 +2,8 @@ package com.aias.config;
 
 import ai.djl.MalformedModelException;
 import ai.djl.repository.zoo.ModelNotFoundException;
+import com.aias.models.OcrModel;
+import com.aias.models.ocr.MultiRecognitionModel;
 import com.aias.models.ocr.RecognitionModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +13,7 @@ import org.springframework.util.StringUtils;
 import java.io.IOException;
 
 /**
- * @author Calvin
- * @date Oct 19, 2021
+ * @author zsp
  */
 @Configuration
 public class ModelConfiguration {
@@ -34,19 +35,24 @@ public class ModelConfiguration {
     private String serverDet;
     @Value("${model.server.rec}")
     private String serverRec;
+    @Value("${model.enable-multi}")
+    private Boolean enbaleMulti;
 
     @Bean
-    public RecognitionModel recognitionModel() throws IOException, ModelNotFoundException, MalformedModelException {
-        RecognitionModel recognitionModel = new RecognitionModel();
-        if (!StringUtils.hasLength(type) || "mobile".equalsIgnoreCase(type)) {
-            recognitionModel.init(mobileDet, mobileRec);
-        } else if ("light".equalsIgnoreCase(type)) {
-            recognitionModel.init(lightDet, lightRec);
-        } else if ("server".equalsIgnoreCase(type)) {
-            recognitionModel.init(serverDet, serverRec);
-        } else {
-            recognitionModel.init(mobileDet, mobileRec);
+    public OcrModel recognitionModel() throws IOException, ModelNotFoundException, MalformedModelException {
+        OcrModel ocrModel = new RecognitionModel();
+        if (enbaleMulti) {
+            ocrModel = new MultiRecognitionModel();
         }
-        return recognitionModel;
+        if (!StringUtils.hasLength(type) || "mobile".equalsIgnoreCase(type)) {
+            ocrModel.init(mobileDet, mobileRec);
+        } else if ("light".equalsIgnoreCase(type)) {
+            ocrModel.init(lightDet, lightRec);
+        } else if ("server".equalsIgnoreCase(type)) {
+            ocrModel.init(serverDet, serverRec);
+        } else {
+            ocrModel.init(mobileDet, mobileRec);
+        }
+        return ocrModel;
     }
 }

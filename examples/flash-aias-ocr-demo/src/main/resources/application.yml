@@ -10,13 +10,9 @@ springdoc:
 
 # Model type: mobile, light, server
 model:
+  enable-multi: true
   # OCR
   type: server
-  table:
-    # Layout detection model URI
-    layout: models/ppyolov2_r50vd_dcn_365e_publaynet_infer.zip
-    # Table detection model URI
-    table-en: models/en_table.zip
   mobile:
     # mobile detection model URI
     det: models/ch_ppocr_mobile_v2.0_det_infer.zip
