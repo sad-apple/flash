@@ -1,6 +1,7 @@
 package com.aias.domain;
 
 import ai.djl.modality.cv.output.BoundingBox;
+import com.aias.models.ocr.MultiRecognitionModel;
 import lombok.Data;
 
 /**
@@ -11,7 +12,8 @@ import lombok.Data;
 public class RecognizerInfo {
 
     /**
-     * ConcurrentLinkedQueue size
+     * 防止多线程执行之后的无序
+     * {@link MultiRecognitionModel.DetectedObjectWrapper#getSort()}
      */
     private int sort;
 
@@ -25,6 +27,13 @@ public class RecognizerInfo {
         this.txt = txt;
         this.box = box;
         this.prob = prob;
+    }
+
+    public RecognizerInfo(String txt, BoundingBox box, Double prob, int sort) {
+        this.txt = txt;
+        this.box = box;
+        this.prob = prob;
+        this.sort = sort;
     }
 
 }

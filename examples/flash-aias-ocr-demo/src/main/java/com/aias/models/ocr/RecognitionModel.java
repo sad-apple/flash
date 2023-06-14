@@ -10,14 +10,12 @@ import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
 import com.aias.models.OcrModel;
-import com.aias.utils.ImageUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author zsp
