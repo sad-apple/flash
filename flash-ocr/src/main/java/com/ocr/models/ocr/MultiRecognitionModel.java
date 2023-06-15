@@ -1,7 +1,6 @@
 package com.ocr.models.ocr;
 
 import ai.djl.MalformedModelException;
-import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
@@ -13,7 +12,6 @@ import com.ocr.domain.RecognizerInfo;
 import com.ocr.models.OcrModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.StopWatch;
 
@@ -97,9 +95,8 @@ public class MultiRecognitionModel extends OcrModel {
                 throw new TranslateException("multi recognition failed!");
             }
         }
-        // TODO: 2023/6/15
-        recognizerInfos.sort(Comparator.comparing(RecognizerInfo::getSort));
-        recognizerInfos.sort(Comparator.comparing(recognizerInfo -> recognizerInfo.getSort()));
+        // reverse
+        recognizerInfos.sort(Comparator.comparing(RecognizerInfo::getSort).reversed());
         for (RecognizerInfo recognizerInfo : recognizerInfos) {
             // todo 待删除
             System.out.println(recognizerInfo.getTxt());
