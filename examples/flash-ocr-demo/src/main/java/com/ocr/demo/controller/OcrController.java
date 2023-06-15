@@ -2,38 +2,78 @@ package com.ocr.demo.controller;
 
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
-import ai.djl.translate.TranslateException;
-import com.aias.ocr.apps.OcrDirectionDetector;
-import com.aias.ocr.apps.OcrRecService;
+import com.flash.web.response.Response;
+import com.flash.web.response.ResponseEntity;
+import com.ocr.domain.DataBean;
+import com.ocr.service.OcrService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.util.List;
 
 /**
+ * ocr文字识别
  * @author zsp
- * @date 2023/6/9 13:28
  */
 @RestController
+@Slf4j
+@RequestMapping("/ocr")
 public class OcrController {
 
-//    @Autowired
-//    private OcrDirectionDetector detector;
+
     @Autowired
-    private OcrRecService ocrRecService;
+    private OcrService ocrService;
 
-
-    @PostMapping("/ocr-direction")
-    public List<String> ocrDirection() throws IOException, TranslateException {
-//        Path imageFile = Paths.get("src/test/resources/ticket_90.png");
-        Path imageFile = Paths.get("E:\\workspace\\person\\flash\\examples\\flash-ocr-demo\\src\\test\\resources\\ticket_0.png");
-        Image image = ImageFactory.getInstance().fromFile(imageFile);
-        List<String> predict = ocrRecService.predict(image);
-        return predict;
+    /**
+     * 根据url进行解析
+     * @param url
+     * @return
+     * @throws IOException
+     */
+    @GetMapping(value = "/generalInfoForImageUrl")
+    public ResponseEntity<?> generalInfoForImageUrl(@RequestParam(value = "url") String url) throws IOException {
+        Image image = ImageFactory.getInstance().fromUrl(url);
+        List<DataBean> dataList = ocrService.getGeneralInfo(image);
+        return Response.success(dataList);
     }
 
+    /**
+     * 上传图片进行解析
+     * @param imageFile
+     * @return
+     */
+    @PostMapping("/generalInfoForImageFile")
+    public ResponseEntity<?> generalInfoForImageFile(@RequestParam(value = "imageFile") MultipartFile imageFile) {
+        InputStream inputStream = null;
+        try {
+            inputStream = imageFile.getInputStream();
+            String base64Img = Base64.encodeBase64String(imageFile.getBytes());
+
+            Image image = ImageFactory.getInstance().fromInputStream(inputStream);
+            List<DataBean> dataList = ocrService.getGeneralInfo(image);
+            return Response.success(dataList);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            e.printStackTrace();
+            return Response.failure(e.getMessage());
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (Exception e) {
+                    log.error(e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

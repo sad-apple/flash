@@ -1,7 +1,6 @@
-package com.aias.models.ocr;
+package com.ocr.models.ocr;
 
 import ai.djl.MalformedModelException;
-import ai.djl.inference.Predictor;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
@@ -9,7 +8,7 @@ import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import com.aias.models.OcrModel;
+import com.ocr.models.OcrModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StopWatch;
 

@@ -1,4 +1,4 @@
-package com.aias.models.ocr;
+package com.ocr.models.ocr;
 
 import ai.djl.MalformedModelException;
 import ai.djl.inference.Predictor;
@@ -9,8 +9,8 @@ import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
-import com.aias.domain.RecognizerInfo;
-import com.aias.models.OcrModel;
+import com.ocr.domain.RecognizerInfo;
+import com.ocr.models.OcrModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,18 +35,17 @@ public class MultiRecognitionModel extends OcrModel {
 
     private ZooModel<Image, DetectedObjects> detectionModel;
     private ZooModel<Image, String> recognitionModel;
-    private Predictor<Image, String> recognizer;
-    private Predictor<Image, DetectedObjects> detector;
 
-    @Autowired
     private ThreadPoolTaskExecutor taskExecutor;
+
+    public MultiRecognitionModel(ThreadPoolTaskExecutor taskExecutor) {
+        this.taskExecutor = taskExecutor;
+    }
 
     @Override
     public void init(String detUri, String recUri) throws MalformedModelException, ModelNotFoundException, IOException {
         this.detectionModel = ModelZoo.loadModel(detectCriteria(detUri));
         this.recognitionModel = ModelZoo.loadModel(recognizeCriteria(recUri));
-        this.recognizer = recognitionModel.newPredictor();
-        this.detector = detectionModel.newPredictor();
     }
 
     @Override
@@ -54,7 +53,10 @@ public class MultiRecognitionModel extends OcrModel {
         StopWatch detectWatch = new StopWatch();
         StopWatch recognizeWatch = new StopWatch();
         detectWatch.start();
-        DetectedObjects detections = detector.predict(image);
+        DetectedObjects detections;
+        try (var detector = detectionModel.newPredictor()) {
+            detections = detector.predict(image);
+        }
         detectWatch.stop();
         log.info("detect time:{}mm", detectWatch.getTotalTimeMillis());
 
@@ -85,21 +87,25 @@ public class MultiRecognitionModel extends OcrModel {
             futures.add(submit);
         }
 
+        List<RecognizerInfo> recognizerInfos = new ArrayList<>();
         for (Future<List<RecognizerInfo>> future : futures) {
             try {
-                List<RecognizerInfo> recognizerInfos = future.get();
-                recognizerInfos.sort(Comparator.comparing(RecognizerInfo::getSort));
-                for (RecognizerInfo recognizerInfo : recognizerInfos) {
-                    // todo 待删除
-                    System.out.println(recognizerInfo.getTxt());
-                    names.add(recognizerInfo.getTxt());
-                    prob.add(recognizerInfo.getProb());
-                    rect.add(recognizerInfo.getBox());
-                }
+                List<RecognizerInfo> subInfo = future.get();
+                recognizerInfos.addAll(subInfo);
             } catch (InterruptedException | ExecutionException e) {
                 log.error(e.getMessage(), e);
-                e.printStackTrace();
+                throw new TranslateException("multi recognition failed!");
             }
+        }
+        // TODO: 2023/6/15
+        recognizerInfos.sort(Comparator.comparing(RecognizerInfo::getSort));
+        recognizerInfos.sort(Comparator.comparing(recognizerInfo -> recognizerInfo.getSort()));
+        for (RecognizerInfo recognizerInfo : recognizerInfos) {
+            // todo 待删除
+            System.out.println(recognizerInfo.getTxt());
+            names.add(recognizerInfo.getTxt());
+            prob.add(recognizerInfo.getProb());
+            rect.add(recognizerInfo.getBox());
         }
 
 

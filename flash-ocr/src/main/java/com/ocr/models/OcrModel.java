@@ -1,4 +1,4 @@
-package com.aias.models;
+package com.ocr.models;
 
 import ai.djl.MalformedModelException;
 import ai.djl.modality.cv.Image;
@@ -14,7 +14,7 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
-import com.aias.models.ocr.PpWordRecognitionTranslator;
+import com.ocr.models.ocr.PpWordRecognitionTranslator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 

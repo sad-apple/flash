@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  ra-producer:
+    container_name: flash-smartdoc
+    image: flash-smartdoc
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./models:/opt
+    ports:
+      - 8080:8080
+    networks:
+      - ra-demo
+
+networks:
+  ra-demo:
+    external: true

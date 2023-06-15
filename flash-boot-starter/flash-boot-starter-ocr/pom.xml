@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>com.flash</groupId>
-            <artifactId>flash-aias-ocr</artifactId>
+            <artifactId>flash-ocr</artifactId>
         </dependency>
     </dependencies>
 

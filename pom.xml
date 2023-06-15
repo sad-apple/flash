@@ -31,7 +31,7 @@
         <module>flash-common</module>
         <module>flash-framework</module>
         <module>flash-boot</module>
-        <module>flash-aias-ocr</module>
+        <module>flash-ocr</module>
 
         <module>examples</module>
     </modules>

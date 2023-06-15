@@ -1,0 +1,31 @@
+
+
+knife4j:
+  enable: true
+
+springdoc:
+  swagger-ui:
+    url: /doc/openapi.json
+
+
+# Model type: mobile, light, server
+model:
+  enable-multi: false
+  # OCR
+  type: server
+  mobile:
+    # mobile detection model URI
+    det: examples/flash-aias-ocr-demo/models/ch_ppocr_mobile_v2.0_det_infer.zip
+    # mobile recognition model URI
+    rec: examples/flash-aias-ocr-demo/models/ch_ppocr_mobile_v2.0_rec_infer.zip
+  light:
+    # light detection model URI
+    det: examples/flash-aias-ocr-demo/models/ch_PP-OCRv2_det_infer.zip
+    # light recognition model URI
+    rec: examples/flash-aias-ocr-demo/models/ch_PP-OCRv2_rec_infer.zip
+  server:
+    # server detection model URI
+    det: examples/flash-aias-ocr-demo/models/ch_ppocr_server_v2.0_det_infer.zip
+    # server recognition model URI
+    rec: examples/flash-aias-ocr-demo/models/ch_ppocr_server_v2.0_rec_infer.zip
+#    rec: models/rec_crnn.zip

@@ -1,7 +1,7 @@
-package com.aias.service;
+package com.ocr.service;
 
 import ai.djl.modality.cv.Image;
-import com.aias.domain.DataBean;
+import com.ocr.domain.DataBean;
 
 import java.util.List;
 

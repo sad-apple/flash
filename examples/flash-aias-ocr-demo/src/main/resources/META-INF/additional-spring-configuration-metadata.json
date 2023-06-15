@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "model.enable-multi",
+      "type": "java.lang.String",
+      "description": "Description for model.enable-multi."
+    },
+    {
+      "name": "model.type",
+      "type": "java.lang.String",
+      "description": "Description for model.type."
+    }
+  ] }

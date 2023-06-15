@@ -113,7 +113,7 @@
             </dependency>
             <dependency>
                 <groupId>com.flash</groupId>
-                <artifactId>flash-aias-ocr</artifactId>
+                <artifactId>flash-ocr</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>

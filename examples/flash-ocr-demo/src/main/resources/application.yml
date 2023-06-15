@@ -1,9 +1,3 @@
-server:
-  port: 8080
-
-#ocr:
-#  det:
-#    model-urls: /models/det_db.zip
-#  rec:
-#    model-urls: jar:///models/ch_PP-OCRv2_rec_infer_onnx.zip
-#    model-urls: /models/ch_PP-OCRv2_rec_infer.onnx
+spring:
+  profiles:
+    active: dev

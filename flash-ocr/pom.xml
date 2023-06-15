@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>flash-parent</artifactId>
+        <groupId>com.flash</groupId>
+        <version>${revision}</version>
+        <relativePath>../flash-parent</relativePath>
+    </parent>
+
+    <artifactId>flash-ocr</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>ai.djl.spring</groupId>
+            <artifactId>djl-spring-boot-starter-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl.spring</groupId>
+            <artifactId>djl-spring-boot-starter-pytorch-auto</artifactId>
+        </dependency>
+
+        <!-- ONNX -->
+        <dependency>
+            <groupId>ai.djl.onnxruntime</groupId>
+            <artifactId>onnxruntime-engine</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ai.djl.opencv</groupId>
+            <artifactId>opencv</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl.paddlepaddle</groupId>
+            <artifactId>paddlepaddle-model-zoo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.flash</groupId>
+            <artifactId>flash-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+</project>

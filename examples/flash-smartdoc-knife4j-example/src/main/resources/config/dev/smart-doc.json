@@ -1,5 +1,4 @@
 {
-//  "outPath": "target/doc",
   "outPath": "src/main/resources/static/doc",
   "projectName": "测试项目",
   "packageFilters": "com.example.smartdoc.controller.user.*",

@@ -1,13 +1,17 @@
-package com.aias.config;
+package com.ocr;
 
 import ai.djl.MalformedModelException;
 import ai.djl.repository.zoo.ModelNotFoundException;
-import com.aias.models.OcrModel;
-import com.aias.models.ocr.MultiRecognitionModel;
-import com.aias.models.ocr.RecognitionModel;
+import com.ocr.models.OcrModel;
+import com.ocr.models.ocr.MultiRecognitionModel;
+import com.ocr.models.ocr.RecognitionModel;
+import com.ocr.service.OcrService;
+import com.ocr.service.impl.OcrServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
@@ -16,7 +20,7 @@ import java.io.IOException;
  * @author zsp
  */
 @Configuration
-public class ModelConfiguration {
+public class OcrModelConfiguration {
     // Model
     @Value("${model.type}")
     private String type;
@@ -38,11 +42,17 @@ public class ModelConfiguration {
     @Value("${model.enable-multi}")
     private Boolean enbaleMulti;
 
+    @Autowired(required = false)
+    private ThreadPoolTaskExecutor taskExecutor;
+
     @Bean
     public OcrModel recognitionModel() throws IOException, ModelNotFoundException, MalformedModelException {
         OcrModel ocrModel = new RecognitionModel();
         if (enbaleMulti) {
-            ocrModel = new MultiRecognitionModel();
+            if (taskExecutor == null) {
+                throw new RuntimeException("no thread pool for multi recognition model !");
+            }
+            ocrModel = new MultiRecognitionModel(taskExecutor);
         }
         if (!StringUtils.hasLength(type) || "mobile".equalsIgnoreCase(type)) {
             ocrModel.init(mobileDet, mobileRec);
@@ -54,5 +64,10 @@ public class ModelConfiguration {
             ocrModel.init(mobileDet, mobileRec);
         }
         return ocrModel;
+    }
+
+    @Bean
+    public OcrService ocrService() throws ModelNotFoundException, MalformedModelException, IOException {
+        return new OcrServiceImpl(recognitionModel());
     }
 }
