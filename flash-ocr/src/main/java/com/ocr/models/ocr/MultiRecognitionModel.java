@@ -34,7 +34,7 @@ public class MultiRecognitionModel extends OcrModel {
     private ZooModel<Image, DetectedObjects> detectionModel;
     private ZooModel<Image, String> recognitionModel;
 
-    private ThreadPoolTaskExecutor taskExecutor;
+    private final ThreadPoolTaskExecutor taskExecutor;
 
     public MultiRecognitionModel(ThreadPoolTaskExecutor taskExecutor) {
         this.taskExecutor = taskExecutor;

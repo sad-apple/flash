@@ -53,53 +53,17 @@
             <artifactId>model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-engine</artifactId>
-            <version>${djl.version}</version>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-native-auto</artifactId>
-            <version>1.8.0</version>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-engine</artifactId>
-            <version>${djl.version}</version>
-        </dependency>-->
-
-        <!--<dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-native-cu110</artifactId>
-            <classifier>win-x86_64</classifier>
-            <version>2.2.2</version>
-            <scope>runtime</scope>
-        </dependency>-->
 
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
-            <!--<exclusions>
-                <exclusion>
-                    <groupId>ai.djl.paddlepaddle</groupId>
-                    <artifactId>paddlepaddle-engine</artifactId>
-                </exclusion>
-            </exclusions>-->
         </dependency>
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>ai.djl.pytorch</groupId>
-            <artifactId>pytorch-native-cu117</artifactId>
-            <classifier>win-x86_64</classifier>
-            <version>1.13.1</version>
-            <scope>runtime</scope>
-        </dependency>-->
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-jni</artifactId>

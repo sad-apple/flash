@@ -24,15 +24,11 @@ public class RecognitionModel extends OcrModel {
 
     private ZooModel<Image, DetectedObjects> detectionModel;
     private ZooModel<Image, String> recognitionModel;
-//    private Predictor<Image, String> recognizer;
-//    private Predictor<Image, DetectedObjects> detector;
 
     @Override
     public void init(String detUri, String recUri) throws MalformedModelException, ModelNotFoundException, IOException {
         this.detectionModel = ModelZoo.loadModel(detectCriteria(detUri));
         this.recognitionModel = ModelZoo.loadModel(recognizeCriteria(recUri));
-//        this.recognizer = recognitionModel.newPredictor();
-//        this.detector = detectionModel.newPredictor();
     }
 
     @Override

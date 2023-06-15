@@ -22,25 +22,10 @@
     <dependencies>
 
         <dependency>
-            <groupId>ai.djl.spring</groupId>
-            <artifactId>djl-spring-boot-starter-autoconfigure</artifactId>
+            <groupId>ai.djl.pytorch</groupId>
+            <artifactId>pytorch-engine</artifactId>
+            <version>${djl.version}</version>
         </dependency>
-        <dependency>
-            <groupId>ai.djl.spring</groupId>
-            <artifactId>djl-spring-boot-starter-pytorch-auto</artifactId>
-        </dependency>
-
-        <!-- ONNX -->
-        <dependency>
-            <groupId>ai.djl.onnxruntime</groupId>
-            <artifactId>onnxruntime-engine</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bytedeco</groupId>
-            <artifactId>javacv-platform</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>ai.djl.opencv</groupId>
             <artifactId>opencv</artifactId>
@@ -48,6 +33,21 @@
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-model-zoo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl</groupId>
+            <artifactId>api</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl</groupId>
+            <artifactId>basicdataset</artifactId>
+            <version>${djl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.djl</groupId>
+            <artifactId>model-zoo</artifactId>
+            <version>${djl.version}</version>
         </dependency>
         <dependency>
             <groupId>com.flash</groupId>
