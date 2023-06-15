@@ -14,12 +14,21 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <djl.version>0.22.1</djl.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>com.flash</groupId>
             <artifactId>flash-boot-starter-web</artifactId>
@@ -44,53 +53,17 @@
             <artifactId>model-zoo</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-engine</artifactId>
-            <version>${djl.version}</version>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>ai.djl.mxnet</groupId>
-            <artifactId>mxnet-native-auto</artifactId>
-            <version>1.8.0</version>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-engine</artifactId>
-            <version>${djl.version}</version>
-        </dependency>-->
-
-        <!--<dependency>
-            <groupId>ai.djl.paddlepaddle</groupId>
-            <artifactId>paddlepaddle-native-cu110</artifactId>
-            <classifier>win-x86_64</classifier>
-            <version>2.2.2</version>
-            <scope>runtime</scope>
-        </dependency>-->
 
         <dependency>
             <groupId>ai.djl.paddlepaddle</groupId>
             <artifactId>paddlepaddle-model-zoo</artifactId>
             <version>${djl.version}</version>
-            <!--<exclusions>
-                <exclusion>
-                    <groupId>ai.djl.paddlepaddle</groupId>
-                    <artifactId>paddlepaddle-engine</artifactId>
-                </exclusion>
-            </exclusions>-->
         </dependency>
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-engine</artifactId>
             <version>${djl.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>ai.djl.pytorch</groupId>
-            <artifactId>pytorch-native-cu117</artifactId>
-            <classifier>win-x86_64</classifier>
-            <version>1.13.1</version>
-            <scope>runtime</scope>
-        </dependency>-->
         <dependency>
             <groupId>ai.djl.pytorch</groupId>
             <artifactId>pytorch-jni</artifactId>
@@ -144,12 +117,12 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
+        <!--<resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <!--开启过滤，用指定的参数替换directory下的文件中的参数-->
+                &lt;!&ndash;开启过滤，用指定的参数替换directory下的文件中的参数&ndash;&gt;
                 <filtering>true</filtering>
             </resource>
-        </resources>
+        </resources>-->
     </build>
 </project>
