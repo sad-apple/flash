@@ -20,7 +20,6 @@
         <module>flash-mybatis-plus-example</module>
         <module>flash-sensitive-demo</module>
         <module>flash-ocr-demo</module>
-        <module>flash-aias-ocr-demo</module>
     </modules>
 
 

@@ -1,9 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "ocr.det.model-urls",
-      "type": "java.lang.String",
-      "description": "Description for ocr.det.model-urls."
-    }
-  ]
-}
