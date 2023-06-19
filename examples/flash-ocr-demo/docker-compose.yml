@@ -1,8 +1,8 @@
 version: '3.7'
 services:
   ra-producer:
-    container_name: flash-aias
-    image: flash-aias
+    container_name: flash-ocr
+    image: flash-ocr
     build:
       context: .
       dockerfile: ./Dockerfile
