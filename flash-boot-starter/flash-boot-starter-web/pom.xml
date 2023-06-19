@@ -18,7 +18,6 @@
             <groupId>com.flash</groupId>
             <artifactId>flash-boot</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>

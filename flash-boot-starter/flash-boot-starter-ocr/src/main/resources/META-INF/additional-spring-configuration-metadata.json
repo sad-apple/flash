@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "ocr.enable-multi",
+      "type": "java.lang.String",
+      "description": "Description for ocr.enable-multi."
+    },
+    {
+      "name": "ocr.enable-model",
+      "type": "java.lang.String",
+      "description": "Description for ocr.enable-model."
+    }
+  ]
+}
