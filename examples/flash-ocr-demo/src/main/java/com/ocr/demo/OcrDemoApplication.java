@@ -1,10 +1,13 @@
 package com.ocr.demo;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -17,7 +20,11 @@ import java.nio.file.Paths;
  */
 @SpringBootApplication
 @Slf4j
-public class OcrDemoApplication {
+public class OcrDemoApplication implements CommandLineRunner {
+
+    @Autowired
+    private ThreadPoolTaskExecutor taskExecutor;
+
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext application = SpringApplication.run(OcrDemoApplication.class, args);
         Environment env = application.getEnvironment();
@@ -32,4 +39,11 @@ public class OcrDemoApplication {
                  "Swagger doc url: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
                  "----------------------------------------------------------");
     }
+
+    @Override
+    public void run(String... args) throws Exception {
+        String threadNamePrefix = taskExecutor.getThreadNamePrefix();
+        System.out.println("thread prefix: " + threadNamePrefix);
+    }
+
 }

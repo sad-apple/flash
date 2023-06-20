@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2023/5/29 11:30
  */
 @Configuration
-@ComponentScan(basePackageClasses = FlashMybatisPlusAutoConfiguration.class)
+//@ComponentScan(basePackageClasses = FlashMybatisPlusAutoConfiguration.class)
 public class FlashMybatisPlusAutoConfiguration {
     /**
      * 自动填充数据

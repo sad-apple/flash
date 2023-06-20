@@ -1,6 +1,7 @@
 package com.ocr.service.impl;
 
 import ai.djl.modality.cv.Image;
+import ai.djl.modality.cv.ImageFactory;
 import ai.djl.modality.cv.output.BoundingBox;
 import ai.djl.modality.cv.output.DetectedObjects;
 import ai.djl.modality.cv.output.Rectangle;
@@ -11,6 +12,8 @@ import com.ocr.service.OcrService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +60,12 @@ public class OcrServiceImpl implements OcrService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public List<DataBean> getGeneralInfo(InputStream inputStream) throws IOException {
+        Image image = ImageFactory.getInstance().fromInputStream(inputStream);
+        return getGeneralInfo(image);
     }
 
 }

@@ -1,6 +1,8 @@
 package com.example.mybatisplus.controller.student;
 
 import com.example.mybatisplus.entity.Student;
+import com.example.mybatisplus.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/students")
 public class StudentControler {
 
+    @Autowired
+    private StudentService studentService;
+
     /**
      * 学生新增
      * @param student 学生信息
@@ -26,7 +31,8 @@ public class StudentControler {
      */
     @PostMapping("/")
     public void create(@RequestBody Student student) {
-        System.out.println(student);
+        student.setCreateBy("测试");
+        studentService.save(student);
     }
 
     /**
@@ -45,9 +51,10 @@ public class StudentControler {
      * @param id 主键
      */
     @GetMapping("/{id}")
-    public Student update(@PathVariable String id) {
-        System.out.println(id);
-        return new Student();
+    public Student get(@PathVariable String id) {
+//        Student byId = studentService.getById(id);
+        Student byId = studentService.findById(id);
+        return byId;
     }
 
     /**
@@ -56,6 +63,10 @@ public class StudentControler {
      */
     @DeleteMapping("/{id}")
     public void delete(@PathVariable String id) {
+        Student byId = studentService.getById(id);
+        byId.deleteById();
+
+//        boolean b = studentService.removeById(id);
         System.out.println(id);
     }
 }
