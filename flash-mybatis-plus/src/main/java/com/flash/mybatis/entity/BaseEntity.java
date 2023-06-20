@@ -22,8 +22,8 @@ public class BaseEntity <T extends Model<?>> extends Model<T> implements Seriali
     /**
      * 设置逻辑删除
      */
-    @TableLogic(value = "true", delval = "false")
-    private String isDel = "true";
+    @TableLogic(value = "0", delval = "1")
+    private int isDel = 1;
 
     @TableField(fill = FieldFill.INSERT)
     private String createBy;
