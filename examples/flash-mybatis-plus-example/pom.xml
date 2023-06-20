@@ -54,10 +54,6 @@
             <artifactId>flash-boot-starter-mybatis-plus</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.flash</groupId>
             <artifactId>flash-boot-starter-openapi3</artifactId>
         </dependency>

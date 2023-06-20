@@ -25,32 +25,6 @@ import java.util.Map;
 @EnableConfigurationProperties(ModelsProperties.class)
 public class OcrModelConfiguration {
 
-    // Model
-//    @Value("${ocr.enable-model}")
-//    private String type;
-
-//    @Value("${ocr.models}")
-//    private Map<String, Map<String, String>> models;
-
-    // mobile model
-//    @Value("${ocr.models.mobile.det}")
-//    private String mobileDet;
-//    @Value("${ocr.models.mobile.rec}")
-//    private String mobileRec;
-//    // light model
-//    @Value("${ocr.models.light.det}")
-//    private String lightDet;
-//    @Value("${ocr.models.light.rec}")
-//    private String lightRec;
-//    // server model
-//    @Value("${ocr.models.server.det}")
-//    private String serverDet;
-//    @Value("${ocr.models.server.rec}")
-//    private String serverRec;
-//
-//    @Value("${ocr.enable-multi}")
-//    private Boolean enbaleMulti;
-
     @Autowired(required = false)
     private ThreadPoolTaskExecutor taskExecutor;
     @Autowired
