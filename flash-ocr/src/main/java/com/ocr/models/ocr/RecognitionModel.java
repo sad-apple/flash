@@ -8,12 +8,16 @@ import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.repository.zoo.ModelZoo;
 import ai.djl.repository.zoo.ZooModel;
 import ai.djl.translate.TranslateException;
+import com.ocr.domain.RecognizerInfo;
 import com.ocr.models.OcrModel;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StopWatch;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -47,6 +51,8 @@ public class RecognitionModel extends OcrModel {
             detectWatch.stop();
             log.info("detect time：{}mm", detectWatch.getTotalTimeMillis());
             List<DetectedObjects.DetectedObject> boxes = detections.items();
+
+//            Collections.reverse(boxes);
             recognizeWatch.start();
             for (DetectedObjects.DetectedObject box : boxes) {
                 Image subImg = getSubImage(image, box.getBoundingBox());

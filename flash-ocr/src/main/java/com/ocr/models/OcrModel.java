@@ -14,6 +14,7 @@ import ai.djl.repository.zoo.Criteria;
 import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.training.util.ProgressBar;
 import ai.djl.translate.TranslateException;
+//import com.ocr.models.ocr.PpWordDetectionTranslator;
 import com.ocr.models.ocr.PpWordRecognitionTranslator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
@@ -58,12 +59,14 @@ public abstract class OcrModel {
 
     protected Criteria<Image, DetectedObjects> detectCriteria(String detUri) throws IOException {
 //        URI uri = getUri(detUri);
+        ConcurrentHashMap<String, String> param = new ConcurrentHashMap<>();
+//        param.put("maxLength", "2000");
         Criteria<Image, DetectedObjects> criteria =
                 Criteria.builder()
                         .optEngine("PaddlePaddle")
                         .setTypes(Image.class, DetectedObjects.class)
                         .optModelPath(Paths.get(detUri))
-                        .optTranslator(new PpWordDetectionTranslator(new ConcurrentHashMap<String, String>()))
+                        .optTranslator(new PpWordDetectionTranslator(param))
                         .optProgress(new ProgressBar())
                         .build();
 
