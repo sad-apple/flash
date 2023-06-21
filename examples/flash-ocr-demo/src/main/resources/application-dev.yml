@@ -27,3 +27,7 @@ ocr:
       # server recognition model URI
       rec: examples/flash-ocr-demo/models/ch_ppocr_server_v2.0_rec_infer.zip
   #    rec: models/rec_crnn.zip
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
