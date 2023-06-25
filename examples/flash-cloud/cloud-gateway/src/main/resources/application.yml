@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      password: nacos
+      username: nacos
+      discovery:
+        namespace: 36b5a6d6-37ac-4cfd-aa3a-4d308d954539
+        group: cloud-demo
+    gateway:
+      routes:
+        - id: consumer
+          uri: lb://cloud-consumer
+          predicates:
+            - Path=/test/**
+
+server:
+  port: 8072
