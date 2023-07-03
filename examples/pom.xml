@@ -21,6 +21,7 @@
         <module>flash-sensitive-demo</module>
         <module>flash-ocr-demo</module>
         <module>flash-cloud</module>
+        <module>flash-logback-mysql</module>
     </modules>
 
 

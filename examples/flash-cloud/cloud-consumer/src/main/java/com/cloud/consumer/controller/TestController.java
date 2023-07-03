@@ -2,6 +2,7 @@ package com.cloud.consumer.controller;
 
 import com.cloud.consumer.config.TestProperties;
 import com.cloud.consumer.feign.CloudProviderClient;
+import com.cloud.consumer.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +23,15 @@ public class TestController {
     private RestTemplate restTemplate;
     @Autowired
     private TestProperties testProperties;
+    @Autowired
+    private TestService service;
 
     @GetMapping("/demo")
     public void demo() {
         String echo = cloudProviderClient.echo("hello world !");
         System.out.println(echo);
         System.out.println(testProperties.getName());
+        service.echo();
     }
 
     @GetMapping("/demo1")
