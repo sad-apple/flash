@@ -1,0 +1,11 @@
+{
+  "outPath": "src/main/resources/static/doc",
+  "projectName": "测试项目",
+  "packageFilters": "com.aias.controller.*",
+  "openUrl": "http://localhost:7700/api",
+  "appToken": "6e066bdeb4ef43e98b9a01ec511c696c",
+  "debugEnvName": "开发环境",
+  "debugEnvUrl": "http://172.25.160.1:8080",
+  "tornaDebug": true,
+  "replace": true
+}
