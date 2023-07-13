@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.flash</groupId>
+        <artifactId>flash-ddd-demo</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ddd-main</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.flash</groupId>
+            <artifactId>ddd-controller</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.github.shalousun</groupId>
+                <artifactId>smart-doc-maven-plugin</artifactId>
+                <!--                <version>2.6.9</version>-->
+                <configuration>
+                    <includes>
+                        <!--格式为：groupId:artifactId;参考如下-->
+                        <!--也可以支持正则式如：com.alibaba:.* -->
+                        <include>com.power.doc:.*</include>
+                        <include>com.baomidou:mybatis-plus-extension</include>
+                        <include>com.github.shalousun:.*</include>
+                        <include>org.springframework:spring-web</include>
+                    </includes>
+                    <!--指定生成文档的使用的配置文件-->
+                    <configFile>src/main/resources/smart-doc.json</configFile>
+                    <!--                    <configFile>./docs/smart-doc.json</configFile>-->
+                    <!--指定项目名称-->
+                    <projectName>测试</projectName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <!--                        <phase>compile</phase>-->
+                        <goals>
+                            <goal>openapi</goal>
+                            <!--                            <goal>html</goal>-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

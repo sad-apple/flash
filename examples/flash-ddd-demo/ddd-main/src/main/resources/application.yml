@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    include: repository
+
+server:
+  port: 8081
