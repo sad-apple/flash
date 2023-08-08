@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+ProviderManager -> DaoAuthenticationProvider: authenticate
+DaoAuthenticationProvider -> UserDetailsService: loadUserByUsername
+UserDetailsService --> DaoAuthenticationProvider: UserDetails
+DaoAuthenticationProvider -> PasswordEncoder: matches
+PasswordEncoder -> DaoAuthenticationProvider: boolean
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml

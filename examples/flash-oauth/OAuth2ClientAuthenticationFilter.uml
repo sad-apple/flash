@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.security.oauth2.server.authorization.web.OAuth2ClientAuthenticationFilter</OriginalElement>
+  <nodes>
+    <node x="757.0065359477125" y="220.0">org.springframework.security.web.access.intercept.AuthorizationFilter</node>
+    <node x="761.5228758169935" y="348.0">org.springframework.security.oauth2.server.authorization.authentication.OAuth2ClientCredentialsAuthenticationProvider</node>
+    <node x="1854.1315359477126" y="220.0">org.springframework.security.crypto.password.PasswordEncoder</node>
+    <node x="1313.0065359477126" y="220.0">org.springframework.security.authorization.AuthenticatedAuthorizationManager</node>
+    <node x="970.0065359477126" y="220.0">org.springframework.security.oauth2.server.authorization.web.authentication.DelegatingAuthenticationConverter</node>
+    <node x="2513.1315359477126" y="220.0">org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository</node>
+    <node x="2499.1315359477126" y="348.0">org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository</node>
+    <node x="1797.7794117647059" y="348.0">org.springframework.security.oauth2.server.authorization.authentication.ClientSecretAuthenticationProvider</node>
+    <node x="-215.0" y="220.0">org.springframework.security.authentication.AuthenticationManager</node>
+    <node x="-201.70343137254895" y="348.0">org.springframework.security.authentication.ProviderManager</node>
+    <node x="1436.7728758169935" y="142.0">org.springframework.security.authorization.AuthorizationManager</node>
+    <node x="466.6062091503269" y="348.0">org.springframework.security.oauth2.server.authorization.web.OAuth2TokenEndpointFilter</node>
+    <node x="351.65441176470597" y="64.0">jakarta.servlet.Filter</node>
+    <node x="97.79656862745094" y="348.0">org.springframework.security.oauth2.server.authorization.web.OAuth2ClientAuthenticationFilter</node>
+    <node x="35.0" y="220.0">org.springframework.web.filter.OncePerRequestFilter</node>
+    <node x="1199.5228758169935" y="348.0">org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider</node>
+    <node x="302.65441176470597" y="142.0">org.springframework.web.filter.GenericFilterBean</node>
+    <node x="510.00653594771245" y="220.0">org.springframework.security.authentication.AuthenticationProvider</node>
+    <node x="2064.1315359477126" y="220.0">org.springframework.security.web.access.intercept.RequestMatcherDelegatingAuthorizationManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.web.filter.GenericFilterBean" target="jakarta.servlet.Filter" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.authentication.ClientSecretAuthenticationProvider" target="org.springframework.security.crypto.password.PasswordEncoder" relationship="TO_ONE">
+      <point x="80.25" y="-14.0" />
+      <point x="2038.5294117647059" y="328.0" />
+      <point x="2142.2728758169933" y="328.0" />
+      <point x="2142.2728758169933" y="318.0" />
+      <point x="1949.1315359477126" y="318.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.authentication.ProviderManager" target="org.springframework.security.authentication.AuthenticationProvider" relationship="TO_MANY">
+      <point x="45.25" y="-14.0" />
+      <point x="-65.95343137254895" y="328.0" />
+      <point x="36.106209150327004" y="328.0" />
+      <point x="36.106209150327004" y="298.0" />
+      <point x="566.7565359477125" y="298.0" />
+      <point x="-56.75" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.authentication.ClientSecretAuthenticationProvider" target="org.springframework.security.authentication.AuthenticationProvider" relationship="REALIZATION">
+      <point x="-80.25" y="-14.0" />
+      <point x="1878.0294117647059" y="328.0" />
+      <point x="1224.921568627451" y="328.0" />
+      <point x="1224.921568627451" y="298.0" />
+      <point x="680.2565359477125" y="298.0" />
+      <point x="56.75" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.web.OAuth2ClientAuthenticationFilter" target="org.springframework.security.authentication.AuthenticationManager" relationship="TO_ONE">
+      <point x="-101.66666666666669" y="-14.0" />
+      <point x="148.6299019607843" y="328.0" />
+      <point x="194.46323529411757" y="328.0" />
+      <point x="194.46323529411757" y="278.0" />
+      <point x="-42.5" y="278.0" />
+      <point x="57.5" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider" target="org.springframework.security.authentication.AuthenticationProvider" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1327.0228758169935" y="328.0" />
+      <point x="1224.921568627451" y="328.0" />
+      <point x="1224.921568627451" y="298.0" />
+      <point x="680.2565359477125" y="298.0" />
+      <point x="56.75" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository" target="org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="2648.1315359477126" y="328.0" />
+      <point x="2708.1315359477126" y="328.0" />
+      <point x="65.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.authentication.OAuth2ClientCredentialsAuthenticationProvider" target="org.springframework.security.authentication.AuthenticationProvider" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="970.5228758169935" y="328.0" />
+      <point x="1224.921568627451" y="328.0" />
+      <point x="1224.921568627451" y="298.0" />
+      <point x="680.2565359477125" y="298.0" />
+      <point x="56.75" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.web.OAuth2ClientAuthenticationFilter" target="org.springframework.security.oauth2.server.authorization.web.authentication.DelegatingAuthenticationConverter" relationship="CREATE">
+      <point x="101.66666666666669" y="-14.0" />
+      <point x="351.96323529411757" y="308.0" />
+      <point x="690.732843137255" y="308.0" />
+      <point x="690.732843137255" y="288.0" />
+      <point x="1131.5065359477126" y="288.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.web.access.intercept.AuthorizationFilter" target="org.springframework.security.authorization.AuthorizationManager" relationship="TO_ONE">
+      <point x="48.25" y="-14.0" />
+      <point x="901.7565359477126" y="190.0" />
+      <point x="1500.5228758169935" y="190.0" />
+      <point x="-63.75" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.web.OAuth2TokenEndpointFilter" target="org.springframework.security.authentication.AuthenticationManager" relationship="TO_ONE">
+      <point x="-88.33333333333326" y="-14.0" />
+      <point x="510.77287581699363" y="328.0" />
+      <point x="194.46323529411757" y="328.0" />
+      <point x="194.46323529411757" y="278.0" />
+      <point x="-42.5" y="278.0" />
+      <point x="57.5" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.web.access.intercept.RequestMatcherDelegatingAuthorizationManager" target="org.springframework.security.authorization.AuthorizationManager" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="2278.6315359477126" y="200.0" />
+      <point x="1903.8978758169933" y="200.0" />
+      <point x="1903.8978758169933" y="190.0" />
+      <point x="1628.0228758169935" y="190.0" />
+      <point x="63.75" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.web.OAuth2TokenEndpointFilter" target="org.springframework.security.oauth2.server.authorization.web.authentication.DelegatingAuthenticationConverter" relationship="CREATE">
+      <point x="88.33333333333326" y="-14.0" />
+      <point x="687.4395424836601" y="308.0" />
+      <point x="690.732843137255" y="308.0" />
+      <point x="690.732843137255" y="288.0" />
+      <point x="1131.5065359477126" y="288.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.web.filter.OncePerRequestFilter" target="org.springframework.web.filter.GenericFilterBean" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="143.0" y="200.0" />
+      <point x="396.15441176470597" y="200.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.web.OAuth2TokenEndpointFilter" target="org.springframework.web.filter.OncePerRequestFilter" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="599.1062091503269" y="318.0" />
+      <point x="274.50653594771245" y="318.0" />
+      <point x="274.50653594771245" y="268.0" />
+      <point x="143.0" y="268.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.web.access.intercept.AuthorizationFilter" target="org.springframework.web.filter.GenericFilterBean" relationship="GENERALIZATION">
+      <point x="-48.25" y="-14.0" />
+      <point x="805.2565359477125" y="200.0" />
+      <point x="396.15441176470597" y="200.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.authentication.ProviderManager" target="org.springframework.security.authentication.AuthenticationManager" relationship="TO_ONE">
+      <point x="45.25" y="-14.0" />
+      <point x="-65.95343137254895" y="328.0" />
+      <point x="36.106209150327004" y="328.0" />
+      <point x="36.106209150327004" y="288.0" />
+      <point x="194.46323529411757" y="288.0" />
+      <point x="194.46323529411757" y="278.0" />
+      <point x="-42.5" y="278.0" />
+      <point x="57.5" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.authorization.AuthenticatedAuthorizationManager" target="org.springframework.security.authorization.AuthorizationManager" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1494.5065359477126" y="200.0" />
+      <point x="1903.8978758169933" y="200.0" />
+      <point x="1903.8978758169933" y="190.0" />
+      <point x="1628.0228758169935" y="190.0" />
+      <point x="63.75" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.authentication.ClientSecretAuthenticationProvider" target="org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository" relationship="TO_ONE">
+      <point x="80.25" y="-14.0" />
+      <point x="2038.5294117647059" y="328.0" />
+      <point x="2142.2728758169933" y="328.0" />
+      <point x="2142.2728758169933" y="318.0" />
+      <point x="2578.1315359477126" y="318.0" />
+      <point x="-65.0" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.authentication.ProviderManager" target="org.springframework.security.authentication.AuthenticationManager" relationship="REALIZATION">
+      <point x="-45.25" y="-14.0" />
+      <point x="-156.45343137254895" y="328.0" />
+      <point x="-157.5" y="328.0" />
+      <point x="-57.5" y="14.0" />
+    </edge>
+    <edge source="org.springframework.security.oauth2.server.authorization.web.OAuth2ClientAuthenticationFilter" target="org.springframework.web.filter.OncePerRequestFilter" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="250.29656862745094" y="318.0" />
+      <point x="274.50653594771245" y="318.0" />
+      <point x="274.50653594771245" y="268.0" />
+      <point x="143.0" y="268.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.45103857566765576" showDependencies="true" x="1305.5855263157896" y="362.61184210526324" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

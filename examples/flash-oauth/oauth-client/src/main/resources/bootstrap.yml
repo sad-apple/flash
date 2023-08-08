@@ -1,0 +1,27 @@
+namespace: oauth
+group: DEFAULT_GROUP
+
+spring:
+  application:
+    name: oauth-client
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      password: nacos
+      username: nacos
+      discovery:
+        namespace: ${namespace}
+        group: ${group}
+      config:
+        namespace: ${namespace}
+        group: ${group}
+        file-extension: yaml
+        refresh-enabled: true
+        enabled: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include=*
+server:
+  port: 8271

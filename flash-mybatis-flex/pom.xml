@@ -6,19 +6,13 @@
 
     <parent>
         <groupId>com.flash</groupId>
-        <artifactId>flash-cloud</artifactId>
+        <artifactId>flash</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cloud-auth</artifactId>
+    <groupId>com.flash</groupId>
+    <artifactId>flash-mybatis-flex</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <dependencies>
-        <!--<dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-security-dependencies</artifactId>
-            <version>2.2.4.RELEASE</version>
-        </dependency>-->
-    </dependencies>
 
 </project>
