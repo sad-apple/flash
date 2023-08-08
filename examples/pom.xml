@@ -23,6 +23,8 @@
         <module>flash-cloud</module>
         <module>flash-logback-mysql</module>
         <module>flash-ddd-demo</module>
+        <module>flash-security</module>
+        <module>flash-oauth</module>
     </modules>
 
 

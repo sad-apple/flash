@@ -28,6 +28,7 @@
         <module>flash-parent</module>
         <module>flash-boot-starter</module>
         <module>flash-mybatis-plus</module>
+        <module>flash-mybatis-flex</module>
         <module>flash-common</module>
         <module>flash-framework</module>
         <module>flash-boot</module>
