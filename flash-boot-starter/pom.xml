@@ -25,6 +25,7 @@
         <module>flash-boot-starter-web</module>
         <module>flash-boot-starter-openapi3</module>
         <module>flash-boot-starter-rest</module>
+        <module>flash-boot-starter-ocr</module>
     </modules>
 
     <build>

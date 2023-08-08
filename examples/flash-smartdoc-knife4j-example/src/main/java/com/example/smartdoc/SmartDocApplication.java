@@ -1,13 +1,18 @@
 package com.example.smartdoc;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.ResourceUtils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author zsp
@@ -15,7 +20,7 @@ import java.net.UnknownHostException;
  */
 @Slf4j
 @SpringBootApplication
-public class SmartDocApplication {
+public class SmartDocApplication implements CommandLineRunner {
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext application = SpringApplication.run(SmartDocApplication.class, args);
         Environment env = application.getEnvironment();
@@ -30,4 +35,12 @@ public class SmartDocApplication {
                  "Swagger文档中文测试: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
                  "----------------------------------------------------------");
     }
+
+    @Override
+    public void run(String... args) throws Exception {
+        Path path = Paths.get("models/ch_ppocr_server_v2.0_det_infer.zip");
+        String s = path.toUri().toURL().toString();
+        log.info("test path:{}", s);
+    }
+
 }
