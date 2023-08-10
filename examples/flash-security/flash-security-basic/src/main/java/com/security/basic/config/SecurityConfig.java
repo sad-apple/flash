@@ -75,6 +75,7 @@ public class SecurityConfig {
         http.exceptionHandling(
                 (exceptions) -> exceptions.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
                                           .accessDeniedHandler(new BearerTokenAccessDeniedHandler()));
+        http.logout(withDefaults());
 
         return http.build();
     }
