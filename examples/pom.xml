@@ -25,6 +25,7 @@
         <module>flash-ddd-demo</module>
         <module>flash-security</module>
         <module>flash-oauth</module>
+        <module>flash-onlyoffice-demo</module>
     </modules>
 
 

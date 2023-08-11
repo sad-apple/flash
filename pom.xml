@@ -33,6 +33,7 @@
         <module>flash-framework</module>
         <module>flash-boot</module>
         <module>flash-ocr</module>
+        <module>flash-onlyoffice</module>
 
         <module>examples</module>
     </modules>
