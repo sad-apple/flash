@@ -34,6 +34,7 @@
         <djl.version>0.22.1</djl.version>
         <javacv.version>1.5.9</javacv.version>
         <djl-springboot.version>0.20</djl-springboot.version>
+        <poi-tl.version>1.12.1</poi-tl.version>
     </properties>
 
     <dependencyManagement>
@@ -217,6 +218,11 @@
                 <groupId>ai.djl.spring</groupId>
                 <artifactId>djl-spring-boot-starter-pytorch-auto</artifactId>
                 <version>${djl-springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.deepoove</groupId>
+                <artifactId>poi-tl</artifactId>
+                <version>${poi-tl.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -34,6 +34,7 @@
         <module>flash-boot</module>
         <module>flash-ocr</module>
         <module>flash-onlyoffice</module>
+        <module>flash-poi-tl</module>
 
         <module>examples</module>
     </modules>

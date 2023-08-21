@@ -26,6 +26,7 @@
         <module>flash-security</module>
         <module>flash-oauth</module>
         <module>flash-onlyoffice-demo</module>
+        <module>flash-poitl-demo</module>
     </modules>
 
 

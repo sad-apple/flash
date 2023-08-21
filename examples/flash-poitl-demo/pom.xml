@@ -10,14 +10,19 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.flash</groupId>
-    <artifactId>flash-onlyoffice-demo</artifactId>
+    <artifactId>flash-poitl-demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>com.flash</groupId>
-            <artifactId>flash-boot-starter-web</artifactId>
+            <artifactId>flash-boot</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.deepoove</groupId>
+            <artifactId>poi-tl</artifactId>
+            <version>1.12.1</version>
         </dependency>
     </dependencies>
+
 </project>
