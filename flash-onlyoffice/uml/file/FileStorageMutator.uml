@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.onlyoffice.integration.documentserver.storage.FileStorageMutator</OriginalElement>
+  <nodes>
+    <node x="502.25" y="-30.0">com.onlyoffice.integration.documentserver.managers.document.DocumentManager</node>
+    <node x="-156.875" y="-30.0">com.onlyoffice.integration.documentserver.util.file.FileUtility</node>
+    <node x="-2.5" y="-30.0">com.onlyoffice.integration.documentserver.storage.FileStoragePathBuilder</node>
+    <node x="242.5" y="-30.0">com.onlyoffice.integration.documentserver.storage.FileStorageMutator</node>
+    <node x="17.875" y="78.0">com.onlyoffice.integration.documentserver.storage.LocalFileStorage</node>
+    <node x="215.875" y="78.0">com.onlyoffice.integration.documentserver.managers.document.DefaultDocumentManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.onlyoffice.integration.documentserver.storage.LocalFileStorage" target="com.onlyoffice.integration.documentserver.storage.FileStoragePathBuilder" relationship="REALIZATION">
+      <point x="44.5" y="-14.0" />
+      <point x="151.375" y="58.0" />
+      <point x="220.0" y="58.0" />
+      <point x="220.0" y="18.0" />
+      <point x="166.25" y="18.0" />
+      <point x="56.25" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.storage.LocalFileStorage" target="com.onlyoffice.integration.documentserver.storage.FileStorageMutator" relationship="REALIZATION">
+      <point x="44.5" y="-14.0" />
+      <point x="151.375" y="58.0" />
+      <point x="220.0" y="58.0" />
+      <point x="220.0" y="18.0" />
+      <point x="390.25" y="18.0" />
+      <point x="49.25" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.managers.document.DefaultDocumentManager" target="com.onlyoffice.integration.documentserver.storage.FileStoragePathBuilder" relationship="TO_ONE">
+      <point x="-62.75" y="-14.0" />
+      <point x="278.625" y="48.0" />
+      <point x="123.5" y="48.0" />
+      <point x="123.5" y="28.0" />
+      <point x="53.75" y="28.0" />
+      <point x="-56.25" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.storage.LocalFileStorage" target="com.onlyoffice.integration.documentserver.util.file.FileUtility" relationship="TO_ONE">
+      <point x="-6.375" y="-14.0" />
+      <point x="100.5" y="53.0" />
+      <point x="-95.875" y="53.0" />
+      <point x="-0.0" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.managers.document.DefaultDocumentManager" target="com.onlyoffice.integration.documentserver.managers.document.DocumentManager" relationship="REALIZATION">
+      <point x="62.75" y="-14.0" />
+      <point x="404.125" y="58.0" />
+      <point x="600.25" y="58.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.managers.document.DefaultDocumentManager" target="com.onlyoffice.integration.documentserver.util.file.FileUtility" relationship="TO_ONE">
+      <point x="-0.0" y="14.0" />
+      <point x="341.375" y="123.5" />
+      <point x="-39.5" y="123.5" />
+      <point x="-39.5" y="53.0" />
+      <point x="-95.875" y="53.0" />
+      <point x="-0.0" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.managers.document.DefaultDocumentManager" target="com.onlyoffice.integration.documentserver.storage.FileStorageMutator" relationship="TO_ONE">
+      <point x="-62.75" y="-14.0" />
+      <point x="278.625" y="48.0" />
+      <point x="123.5" y="48.0" />
+      <point x="123.5" y="28.0" />
+      <point x="291.75" y="28.0" />
+      <point x="-49.25" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.5" showDependencies="true" x="294.5" y="45.333333333333314" />
+  <SelectedNodes>
+    <node>com.onlyoffice.integration.documentserver.util.file.FileUtility</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="837.6204545454545" y="-35.0">com.flash.onlyoffice.domain.managers.document.DocumentManager</node>
+    <node x="139.0" y="-35.0">com.flash.onlyoffice.configurers.CustomizationConfigurer</node>
+    <node x="1389.75" y="-35.0">com.flash.onlyoffice.configurers.FileConfigurer</node>
+    <node x="1119.75" y="-35.0">com.flash.onlyoffice.configurers.DocumentConfigurer</node>
+    <node x="582.8886363636364" y="-113.0">com.flash.onlyoffice.configurers.Configurer</node>
+    <node x="-150.0" y="-35.0">com.flash.onlyoffice.configurers.EditorConfigConfigurer</node>
+    <node x="452.51363636363635" y="45.0">com.flash.onlyoffice.domain.managers.document.DefaultDocumentManager</node>
+    <node x="723.5136363636364" y="45.0">com.flash.onlyoffice.configurers.implementations.DefaultEmbeddedConfigurer</node>
+    <node x="442.0" y="-35.0">com.flash.onlyoffice.configurers.EmbeddedConfigurer</node>
+    <node x="1013.5136363636364" y="45.0">com.flash.onlyoffice.configurers.implementations.DefaultDocumentConfigurer</node>
+    <node x="269.1863636363636" y="127.0">com.flash.onlyoffice.configurers.implementations.DefaultEditorConfigConfigurer</node>
+    <node x="131.0" y="45.0">com.flash.onlyoffice.configurers.implementations.DefaultCustomizationConfigurer</node>
+    <node x="639.8113636363636" y="207.0">com.flash.onlyoffice.configurers.implementations.DefaultFileConfigurer</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.flash.onlyoffice.configurers.FileConfigurer" target="com.flash.onlyoffice.configurers.Configurer" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1488.75" y="-60.0" />
+      <point x="679.3886363636364" y="-60.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.EditorConfigConfigurer" target="com.flash.onlyoffice.configurers.Configurer" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="-15.5" y="-60.0" />
+      <point x="679.3886363636364" y="-60.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultFileConfigurer" target="com.flash.onlyoffice.configurers.implementations.DefaultEditorConfigConfigurer" relationship="TO_ONE">
+      <point x="-53.5" y="-14.0" />
+      <point x="693.3113636363636" y="186.0" />
+      <point x="591.5613636363636" y="186.0" />
+      <point x="591.5613636363636" y="176.0" />
+      <point x="411.6863636363636" y="176.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.CustomizationConfigurer" target="com.flash.onlyoffice.configurers.Configurer" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="280.5" y="-60.0" />
+      <point x="679.3886363636364" y="-60.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultDocumentConfigurer" target="com.flash.onlyoffice.configurers.DocumentConfigurer" relationship="REALIZATION">
+      <point x="66.5" y="-14.0" />
+      <point x="1213.0136363636364" y="24.0" />
+      <point x="1244.75" y="24.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultEditorConfigConfigurer" target="com.flash.onlyoffice.configurers.EditorConfigConfigurer" relationship="REALIZATION">
+      <point x="-71.25" y="-14.0" />
+      <point x="340.4363636363636" y="105.0" />
+      <point x="-15.5" y="105.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultDocumentConfigurer" target="com.flash.onlyoffice.domain.managers.document.DocumentManager" relationship="TO_ONE">
+      <point x="-66.5" y="-14.0" />
+      <point x="1080.0136363636364" y="24.0" />
+      <point x="1003.0136363636364" y="24.0" />
+      <point x="1003.0136363636364" y="14.0" />
+      <point x="984.6204545454545" y="14.0" />
+      <point x="49.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultEditorConfigConfigurer" target="com.flash.onlyoffice.domain.managers.document.DocumentManager" relationship="TO_ONE">
+      <point x="71.25" y="-14.0" />
+      <point x="482.9363636363636" y="105.0" />
+      <point x="904.1204545454545" y="105.0" />
+      <point x="904.1204545454545" y="95.0" />
+      <point x="1003.0136363636364" y="95.0" />
+      <point x="1003.0136363636364" y="14.0" />
+      <point x="984.6204545454545" y="14.0" />
+      <point x="49.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultEmbeddedConfigurer" target="com.flash.onlyoffice.configurers.EmbeddedConfigurer" relationship="REALIZATION">
+      <point x="-67.25" y="-14.0" />
+      <point x="790.7636363636364" y="14.0" />
+      <point x="568.5" y="14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultFileConfigurer" target="com.flash.onlyoffice.configurers.implementations.DefaultDocumentConfigurer" relationship="TO_ONE">
+      <point x="-53.5" y="-14.0" />
+      <point x="693.3113636363636" y="186.0" />
+      <point x="591.5613636363636" y="186.0" />
+      <point x="591.5613636363636" y="176.0" />
+      <point x="1146.5136363636361" y="176.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.DocumentConfigurer" target="com.flash.onlyoffice.configurers.Configurer" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="1244.75" y="-60.0" />
+      <point x="679.3886363636364" y="-60.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultCustomizationConfigurer" target="com.flash.onlyoffice.configurers.CustomizationConfigurer" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultFileConfigurer" target="com.flash.onlyoffice.configurers.FileConfigurer" relationship="REALIZATION">
+      <point x="53.5" y="-14.0" />
+      <point x="800.3113636363636" y="186.0" />
+      <point x="1488.75" y="186.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultEditorConfigConfigurer" target="com.flash.onlyoffice.configurers.implementations.DefaultEmbeddedConfigurer" relationship="TO_ONE">
+      <point x="71.25" y="-14.0" />
+      <point x="482.9363636363636" y="105.0" />
+      <point x="904.1204545454545" y="105.0" />
+      <point x="904.1204545454545" y="95.0" />
+      <point x="858.0136363636364" y="95.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.domain.managers.document.DefaultDocumentManager" target="com.flash.onlyoffice.domain.managers.document.DocumentManager" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="578.0136363636364" y="24.0" />
+      <point x="886.6204545454545" y="24.0" />
+      <point x="-49.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultEmbeddedConfigurer" target="com.flash.onlyoffice.domain.managers.document.DocumentManager" relationship="TO_ONE">
+      <point x="67.25" y="-14.0" />
+      <point x="925.2636363636364" y="24.0" />
+      <point x="1003.0136363636364" y="24.0" />
+      <point x="1003.0136363636364" y="14.0" />
+      <point x="984.6204545454545" y="14.0" />
+      <point x="49.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.implementations.DefaultEditorConfigConfigurer" target="com.flash.onlyoffice.configurers.implementations.DefaultCustomizationConfigurer" relationship="TO_ONE">
+      <point x="71.25" y="-14.0" />
+      <point x="482.9363636363636" y="105.0" />
+      <point x="904.1204545454545" y="105.0" />
+      <point x="904.1204545454545" y="95.0" />
+      <point x="280.5" y="95.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.flash.onlyoffice.configurers.EmbeddedConfigurer" target="com.flash.onlyoffice.configurers.Configurer" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="568.5" y="-60.0" />
+      <point x="679.3886363636364" y="-60.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8031854379977247" showDependencies="true" x="729.0" y="71.0" />
+  <SelectedNodes>
+    <node>com.flash.onlyoffice.domain.managers.document.DefaultDocumentManager</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

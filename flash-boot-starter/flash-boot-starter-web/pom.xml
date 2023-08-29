@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.flash</groupId>
-            <artifactId>flash-boot</artifactId>
+            <artifactId>flash-web</artifactId>
         </dependency>
     </dependencies>
 

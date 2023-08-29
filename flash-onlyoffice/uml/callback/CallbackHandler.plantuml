@@ -1,0 +1,30 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+interface Callback << interface >>
+class CallbackHandler {
+  - logger: Logger
+  - callbackHandlers: Map<Integer, Callback>
+}
+interface CallbackManager << interface >>
+class EditCallback {
+  - callbackManager: CallbackManager
+}
+class ForcesaveCallback {
+  - callbackManager: CallbackManager
+}
+class SaveCallback {
+  - callbackManager: CallbackManager
+}
+
+CallbackHandler   "1" *-[#595959,plain]-> "callbackHandlers\n*" Callback          
+EditCallback       -[#008200,dashed]-^  Callback          
+EditCallback      "1" *-[#595959,plain]-> "callbackManager\n1" CallbackManager   
+ForcesaveCallback  -[#008200,dashed]-^  Callback          
+ForcesaveCallback "1" *-[#595959,plain]-> "callbackManager\n1" CallbackManager   
+SaveCallback       -[#008200,dashed]-^  Callback          
+SaveCallback      "1" *-[#595959,plain]-> "callbackManager\n1" CallbackManager   
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+interface Configurer<O, W> << interface >>
+interface CustomizationConfigurer<W> << interface >>
+class DefaultCustomizationConfigurer
+class DefaultDocumentConfigurer
+class DefaultEditorConfigConfigurer
+class DefaultEmbeddedConfigurer
+class DefaultFileConfigurer
+interface DocumentConfigurer<W> << interface >>
+interface EditorConfigConfigurer<W> << interface >>
+class EditorController
+interface EmbeddedConfigurer<W> << interface >>
+interface FileConfigurer<W> << interface >>
+
+CustomizationConfigurer         -[#008200,plain]-^  Configurer                     
+DefaultCustomizationConfigurer  -[#008200,dashed]-^  CustomizationConfigurer        
+DefaultDocumentConfigurer       -[#008200,dashed]-^  DocumentConfigurer             
+DefaultEditorConfigConfigurer  "1" *-[#595959,plain]-> "defaultCustomizationConfigurer\n1" DefaultCustomizationConfigurer 
+DefaultEditorConfigConfigurer  "1" *-[#595959,plain]-> "defaultEmbeddedConfigurer\n1" DefaultEmbeddedConfigurer      
+DefaultEditorConfigConfigurer   -[#008200,dashed]-^  EditorConfigConfigurer         
+DefaultEmbeddedConfigurer       -[#008200,dashed]-^  EmbeddedConfigurer             
+DefaultFileConfigurer          "1" *-[#595959,plain]-> "defaultDocumentConfigurer\n1" DefaultDocumentConfigurer      
+DefaultFileConfigurer          "1" *-[#595959,plain]-> "defaultEditorConfigConfigurer\n1" DefaultEditorConfigConfigurer  
+DefaultFileConfigurer           -[#008200,dashed]-^  FileConfigurer                 
+DocumentConfigurer              -[#008200,plain]-^  Configurer                     
+EditorConfigConfigurer          -[#008200,plain]-^  Configurer                     
+EditorController               "1" *-[#595959,plain]-> "fileConfigurer\n1" FileConfigurer                 
+EmbeddedConfigurer              -[#008200,plain]-^  Configurer                     
+FileConfigurer                  -[#008200,plain]-^  Configurer                     
+@enduml

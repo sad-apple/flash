@@ -26,6 +26,7 @@
         <module>flash-boot-starter-openapi3</module>
         <module>flash-boot-starter-rest</module>
         <module>flash-boot-starter-ocr</module>
+        <module>flash-boot-starter-onlyoffice</module>
     </modules>
 
     <build>

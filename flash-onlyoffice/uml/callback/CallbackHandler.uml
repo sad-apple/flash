@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.onlyoffice.integration.documentserver.callbacks.CallbackHandler</OriginalElement>
+  <nodes>
+    <node x="441.0" y="-94.5">com.onlyoffice.integration.documentserver.callbacks.implementations.SaveCallback</node>
+    <node x="159.0" y="-94.5">com.onlyoffice.integration.documentserver.callbacks.implementations.ForcesaveCallback</node>
+    <node x="638.25" y="-194.0">com.onlyoffice.integration.documentserver.callbacks.Callback</node>
+    <node x="723.0" y="-106.0">com.onlyoffice.integration.documentserver.callbacks.CallbackHandler</node>
+    <node x="-123.0" y="-94.5">com.onlyoffice.integration.documentserver.callbacks.implementations.EditCallback</node>
+    <node x="-9.765625" y="-194.0">com.onlyoffice.integration.documentserver.managers.callback.CallbackManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.onlyoffice.integration.documentserver.callbacks.implementations.ForcesaveCallback" target="com.onlyoffice.integration.documentserver.managers.callback.CallbackManager" relationship="TO_ONE">
+      <point x="-65.5" y="-27.0" />
+      <point x="224.5" y="-126.0" />
+      <point x="81.734375" y="-126.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.callbacks.implementations.EditCallback" target="com.onlyoffice.integration.documentserver.managers.callback.CallbackManager" relationship="TO_ONE">
+      <point x="-65.5" y="-27.0" />
+      <point x="-57.5" y="-126.0" />
+      <point x="81.734375" y="-126.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.callbacks.implementations.EditCallback" target="com.onlyoffice.integration.documentserver.callbacks.Callback" relationship="REALIZATION">
+      <point x="65.5" y="-27.0" />
+      <point x="73.5" y="-136.0" />
+      <point x="489.453125" y="-136.0" />
+      <point x="489.453125" y="-146.0" />
+      <point x="667.25" y="-146.0" />
+      <point x="-29.0" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.callbacks.implementations.ForcesaveCallback" target="com.onlyoffice.integration.documentserver.callbacks.Callback" relationship="REALIZATION">
+      <point x="65.5" y="-27.0" />
+      <point x="355.5" y="-136.0" />
+      <point x="489.453125" y="-136.0" />
+      <point x="489.453125" y="-146.0" />
+      <point x="667.25" y="-146.0" />
+      <point x="-29.0" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.callbacks.implementations.SaveCallback" target="com.onlyoffice.integration.documentserver.managers.callback.CallbackManager" relationship="TO_ONE">
+      <point x="-65.5" y="-27.0" />
+      <point x="506.5" y="-126.0" />
+      <point x="81.734375" y="-126.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.callbacks.implementations.SaveCallback" target="com.onlyoffice.integration.documentserver.callbacks.Callback" relationship="REALIZATION">
+      <point x="65.5" y="-27.0" />
+      <point x="637.5" y="-136.0" />
+      <point x="489.453125" y="-136.0" />
+      <point x="489.453125" y="-146.0" />
+      <point x="667.25" y="-146.0" />
+      <point x="-29.0" y="14.0" />
+    </edge>
+    <edge source="com.onlyoffice.integration.documentserver.callbacks.CallbackHandler" target="com.onlyoffice.integration.documentserver.callbacks.Callback" relationship="TO_MANY">
+      <point x="0.0" y="-38.5" />
+      <point x="876.0" y="-126.0" />
+      <point x="725.25" y="-126.0" />
+      <point x="29.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.1962457337883958" showDependencies="true" x="463.0" y="-101.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

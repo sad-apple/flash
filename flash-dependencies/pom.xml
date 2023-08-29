@@ -21,9 +21,9 @@
         <mysql-connector.version>8.0.33</mysql-connector.version>
         <dynamic-datasource-spring-boot-starter.version>3.6.1</dynamic-datasource-spring-boot-starter.version>
         <knife4f.version>4.0.0</knife4f.version>
-        <com.njusc.util.version>1.0.1</com.njusc.util.version>
+        <com.njusc.util.version>2.0.0</com.njusc.util.version>
         <logback-classic-db.version>1.2.11.1</logback-classic-db.version>
-        <spring-boot.version>3.1.0</spring-boot.version>
+        <spring-boot.version>3.1.3</spring-boot.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
@@ -114,6 +114,16 @@
             </dependency>
             <dependency>
                 <groupId>com.flash</groupId>
+                <artifactId>flash-onlyoffice</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-boot-starter-onlyoffice</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
                 <artifactId>flash-ocr</artifactId>
                 <version>${revision}</version>
             </dependency>
@@ -140,6 +150,11 @@
             <dependency>
                 <groupId>com.flash</groupId>
                 <artifactId>flash-framework</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flash</groupId>
+                <artifactId>flash-web</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
