@@ -1,6 +1,7 @@
 package com.example.smartdoc.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 学生信息
@@ -8,6 +9,7 @@ import lombok.Data;
  * @date 2023/6/1 15:17
  */
 @Data
+@NoArgsConstructor
 public class Student {
 
     private String id;

@@ -27,6 +27,7 @@
         <module>flash-oauth</module>
         <module>flash-onlyoffice-demo</module>
         <module>flash-poitl-demo</module>
+        <module>flash-spring-event-demo</module>
     </modules>
 
 

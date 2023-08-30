@@ -2,6 +2,14 @@ package com.example.smartdoc.controller.student;
 
 import com.example.smartdoc.dto.Student;
 import com.example.smartdoc.dto.User;
+import com.example.smartdoc.service.StudentService;
+import com.example.smartdoc.service.StudentServiceFactoryBean;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/students")
-public class StudentControler {
+public class StudentControler implements ApplicationContextAware {
+
+    private ApplicationContext applicationContext;
 
     /**
      * 学生新增
@@ -28,6 +38,17 @@ public class StudentControler {
     @PostMapping("/")
     public void create(@RequestBody Student student) {
         System.out.println(student);
+
+        System.out.println(applicationContext.getBean(StudentService.class));
+        System.out.println(applicationContext.getBean(StudentService.class));
+
+//        studentServiceFactoryBean.setType("ls");
+//        studentServiceFactoryBean1.setType("hs");
+//        System.out.println(studentServiceFactoryBean1);
+//        System.out.println(studentServiceFactoryBean);
+//        System.out.println(studentServiceFactoryBean1.getObject());
+//        System.out.println(studentServiceFactoryBean.getObject());
+
     }
 
     /**
@@ -59,4 +80,10 @@ public class StudentControler {
     public void delete(@PathVariable String id) {
         System.out.println(id);
     }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
 }
