@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.flash</groupId>
+        <artifactId>examples</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <artifactId>flash-minio-demo</artifactId>
+
+    <properties>
+        <minio.version>8.2.2</minio.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.flash</groupId>
+            <artifactId>flash-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Minio -->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>${minio.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

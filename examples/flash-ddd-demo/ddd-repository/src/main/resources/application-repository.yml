@@ -1,5 +1,0 @@
-spring:
-  data:
-    mongodb:
-#      uri: mongodb://ncgq_test:njusc001@172.168.1.13,172.168.1.14,172.168.1.15:27017/ncgq_test?minPoolSize=2&maxPoolSize=10&maxIdleTimeMS=86400000
-      uri: mongodb://root:root@localhost:27017/collect_text?authSource=admin

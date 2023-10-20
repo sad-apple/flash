@@ -12,7 +12,7 @@ springdoc:
 
 spring:
   profiles:
-    active: @profile.active@
+    active: dev
   config:
     import:
       - classpath:/config/${spring.profiles.active}/biz.yml

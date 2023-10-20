@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.flash</groupId>
         <artifactId>flash-parent</artifactId>
-        <version>${revision}</version>
+        <version>1.0.1</version>
         <relativePath>../flash-parent</relativePath>
     </parent>
 
@@ -16,18 +16,8 @@
 
 
     <modules>
-        <module>flash-smartdoc-knife4j-example</module>
         <module>flash-mybatis-plus-example</module>
-        <module>flash-sensitive-demo</module>
-        <module>flash-ocr-demo</module>
-        <module>flash-cloud</module>
-        <module>flash-logback-mysql</module>
-        <module>flash-ddd-demo</module>
-        <module>flash-security</module>
-        <module>flash-oauth</module>
-        <module>flash-onlyoffice-demo</module>
-        <module>flash-poitl-demo</module>
-        <module>flash-spring-event-demo</module>
+        <module>flash-minio-demo</module>
     </modules>
 
 
@@ -43,6 +33,14 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>

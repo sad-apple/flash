@@ -17,7 +17,7 @@
     <description>flash</description>
     <packaging>pom</packaging>
     <properties>
-        <revision>1.0.0-SNAPSHOT</revision>
+        <revision>1.0.1</revision>
     </properties>
 
     <modules>
@@ -28,7 +28,6 @@
         <module>flash-parent</module>
         <module>flash-boot-starter</module>
         <module>flash-mybatis-plus</module>
-        <module>flash-mybatis-flex</module>
         <module>flash-common</module>
         <module>flash-framework</module>
         <module>flash-boot</module>
@@ -37,7 +36,7 @@
         <module>flash-onlyoffice</module>
         <module>flash-poi-tl</module>
 
-        <module>examples</module>
+<!--        <module>examples</module>-->
     </modules>
 
 <!--    <dependencies>-->
