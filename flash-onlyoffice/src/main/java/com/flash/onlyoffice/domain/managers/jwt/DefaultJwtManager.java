@@ -1,27 +1,26 @@
 /**
- *
  * (c) Copyright Ascensio System SIA 2023
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 package com.flash.onlyoffice.domain.managers.jwt;
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flash.onlyoffice.properties.DocServiceProperties;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import lombok.extern.slf4j.Slf4j;
 import org.primeframework.jwt.Signer;
 import org.primeframework.jwt.Verifier;
 import org.primeframework.jwt.domain.JWT;
@@ -33,69 +32,79 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * @author zsp
+ */
+@Slf4j
 @Component
 public class DefaultJwtManager implements JwtManager {
+    public static final String PAY_LOAD= "payload";
+
+    private final String tokenSecret;
     @Autowired
     private ObjectMapper objectMapper;
-    @Autowired
-    private JSONParser parser;
-    private final String tokenSecret;
+
     public DefaultJwtManager(DocServiceProperties docServiceProperties) {
         this.tokenSecret = docServiceProperties.getSecret();
     }
 
-    // create document token
+    /**
+     * create document token
+     * @param payloadClaims claims
+     * @return token
+     */
     @Override
     public String createToken(final Map<String, Object> payloadClaims) {
         try {
-            // build a HMAC signer using a SHA-256 hash
+            // 使用 SHA-256 哈希构建 HMAC 签名
             Signer signer = HMACSigner.newSHA256Signer(tokenSecret);
             JWT jwt = new JWT();
-            for (String key : payloadClaims.keySet()) {  // run through all the keys from the payload
-                jwt.addClaim(key, payloadClaims.get(key));  // and write each claim to the jwt
+            for (String key : payloadClaims.keySet()) {
+                jwt.addClaim(key, payloadClaims.get(key));
             }
-            return JWT.getEncoder().encode(jwt, signer);  // sign and encode the JWT to a JSON string representation
+            return JWT.getEncoder().encode(jwt, signer);
         } catch (Exception e) {
             return "";
         }
     }
 
-    // check if the token is enabled
     @Override
     public boolean tokenEnabled() {
         return tokenSecret != null && !tokenSecret.isEmpty();
     }
 
-    // read document token
     @Override
     public JWT readToken(final String token) {
         try {
+            log.info("token={}, secret={}", token, tokenSecret);
             // build a HMAC verifier using the token secret
             Verifier verifier = HMACVerifier.newVerifier(tokenSecret);
 
             // verify and decode the encoded string JWT to a rich object
             return JWT.getDecoder().decode(token, verifier);
-        } catch (Exception exception) {
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             return null;
         }
     }
 
-    // parse the body
     @Override
     public JSONObject parseBody(final String payload, final String header) {
         JSONObject body;
         try {
-            Object obj = parser.parse(payload);  // get body parameters by parsing the payload
-            body = (JSONObject) obj;
+            body = JSON.parseObject(payload);
         } catch (Exception ex) {
             throw new RuntimeException("{\"error\":1,\"message\":\"JSON Parsing error\"}");
         }
-        if (tokenEnabled()) {  // check if the token is enabled
-            String token = (String) body.get("token");  // get token from the body
-            if (token == null) {  // if token is empty
-                if (header != null && !header.isBlank()) {  // and the header is defined
+        // 检查令牌是否已启用
+        if (tokenEnabled()) {
+            // 从 body 获取 token
+            String token = (String) body.get("token");
+            if (token == null) {
+                // 并定义了标头
+                if (header != null && !header.isBlank()) {
 
-                    // get token from the header (it is placed after the Bearer prefix if it exists)
+                    // 从标头获取令牌（如果存在，则将其放置在 Bearer 前缀之后）
                     token = header.startsWith("Bearer ") ? header.substring("Bearer ".length()) : header;
                 }
             }
@@ -103,11 +112,11 @@ public class DefaultJwtManager implements JwtManager {
                 throw new RuntimeException("{\"error\":1,\"message\":\"JWT expected\"}");
             }
 
-            JWT jwt = readToken(token);  // read token
+            JWT jwt = readToken(token);
             if (jwt == null) {
                 throw new RuntimeException("{\"error\":1,\"message\":\"JWT validation failed\"}");
             }
-            if (jwt.getObject("payload") != null) {  // get payload from the token and check if it is not empty
+            if (jwt.getObject(PAY_LOAD) != null) {
                 try {
                     @SuppressWarnings("unchecked") LinkedHashMap<String, Object> jwtPayload =
                             (LinkedHashMap<String, Object>) jwt.getObject("payload");
@@ -118,8 +127,7 @@ public class DefaultJwtManager implements JwtManager {
                 }
             }
             try {
-                Object obj = parser.parse(objectMapper.writeValueAsString(jwt.claims));
-                body = (JSONObject) obj;
+                body = JSON.parseObject(objectMapper.writeValueAsString(jwt.claims));
             } catch (Exception ex) {
                 throw new RuntimeException("{\"error\":1,\"message\":\"Parsing error\"}");
             }
@@ -127,4 +135,5 @@ public class DefaultJwtManager implements JwtManager {
 
         return body;
     }
+
 }

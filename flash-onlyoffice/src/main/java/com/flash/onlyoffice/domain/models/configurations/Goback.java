@@ -26,6 +26,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * @author zhangsp
+ */
 @Component
 @Scope("prototype")
 public class Goback {  // the settings for the Open file location menu button and upper right corner button
@@ -36,9 +40,9 @@ public class Goback {  // the settings for the Open file location menu button an
     @Value("${only.fileservice.index}")
     private String indexMapping;
 
+
     @Getter
-    private String url;  /* the absolute URL to the website address which will be opened
-    when clicking the Open file location menu button */
+    private String url;
 
     @PostConstruct
     private void init() {

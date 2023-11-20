@@ -18,14 +18,64 @@
 
 package com.flash.onlyoffice.domain.storage;
 
-// specify the file storage path builder functions
+/**
+ * @author zhangsp
+ */
 public interface FileStoragePathBuilder {
-    void configure(String address);  // create a new storage folder
-    String getStorageLocation();  // get the storage directory
-    String getFileLocation(String fileName);  // get the directory of the specified file
-    String getServerUrl(Boolean forDocumentServer);  // get the server URL
-    String getHistoryDir(String fileName);  // get the history directory
-    int getFileVersion(String historyPath, Boolean ifIndexPage);  // get the file version
-    String getForcesavePath(String fileName, Boolean create);  /* get the path where all the
-    forcely saved file versions are saved or create it */
+
+    /**
+     * 配置
+     *
+     * @param address 地址
+     */
+    void configure(String address);
+
+    /**
+     * 获取存储目录
+     *
+     * @return 地址
+     */
+    String getStorageLocation();
+
+    /**
+     * 获取指定文件的目录
+     * @param fileDir 文件地址
+     * @return 目录
+     */
+    String getFileLocation(String fileDir);
+
+    /**
+     * 获取服务器网址
+     *
+     * @param forDocumentServer 是否给服务端
+     * @return 地址
+     */
+    String getServerUrl(Boolean forDocumentServer);
+
+    /**
+     * 获取历史目录
+     *
+     * @param fileLocation 文件路径
+     * @return 地址
+     */
+    String getHistoryDir(String fileLocation);
+
+    /**
+     * get the file version
+     *
+     * @param historyPath 历史目录
+     * @param ifIndexPage ifIndexPage
+     * @return 版本号
+     */
+    int getFileVersion(String historyPath, Boolean ifIndexPage);
+
+    /**
+     * get the path where all the
+     *     forcely saved file versions are saved or create it
+     * @param fileLocation 文件地址
+     * @param create 是否创建
+     * @return 地址
+     */
+    String getForcesavePath(String fileLocation, Boolean create);
+
 }

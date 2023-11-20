@@ -20,7 +20,17 @@ package com.flash.onlyoffice.configurers;
 
 import com.flash.onlyoffice.domain.models.filemodel.EditorConfig;
 
+/**
+ * @author zhangsp
+ */
 public interface EditorConfigConfigurer<W> extends Configurer<EditorConfig, W> {
+
+    /**
+     * 配置
+     * @param editorConfig instance
+     * @param wrapper  wrapper
+     */
     @Override
     void configure(EditorConfig editorConfig, W wrapper);
+
 }

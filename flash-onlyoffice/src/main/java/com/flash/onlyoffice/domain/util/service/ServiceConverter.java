@@ -18,18 +18,56 @@
 
 package com.flash.onlyoffice.domain.util.service;
 
-import org.json.simple.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 
 import java.io.InputStream;
 
-
-// specify the converter service functions
+/**
+ * 转换服务
+ * @author zhangsp
+ */
 public interface ServiceConverter {
-    // get the URL to the converted file
-    String getConvertedUri(String documentUri, String fromExtension,
+    /**
+     * getConvertedUri
+     * @param documentUri
+     * @param title
+     * @param fromExtension
+     * @param toExtension
+     * @param documentRevisionId
+     * @param filePass
+     * @param isAsync
+     * @param lang
+     * @return
+     */
+    String getConvertedUri(String documentUri, String title, String fromExtension,
                                   String toExtension, String documentRevisionId,
                                   String filePass, Boolean isAsync, String lang);
-    String generateRevisionId(String expectedKey);  // generate document key
-    String convertStreamToString(InputStream stream);  // convert stream to string
-    JSONObject convertStringToJSON(String jsonString);  // convert string to json
+
+    /**
+     * generateRevisionId
+     * @param expectedKey
+     * @return
+     */
+    String generateRevisionId(String expectedKey);
+
+    /**
+     * generateRevisionIdByFileDir
+     * @param fileDir
+     * @return
+     */
+    String generateRevisionIdByFileDir(String fileDir);
+
+    /**
+     * convertStreamToString
+     * @param stream
+     * @return
+     */
+    String convertStreamToString(InputStream stream);
+
+    /**
+     * convertStringToJson
+     * @param jsonString
+     * @return
+     */
+    JSONObject convertStringToJson(String jsonString);
 }

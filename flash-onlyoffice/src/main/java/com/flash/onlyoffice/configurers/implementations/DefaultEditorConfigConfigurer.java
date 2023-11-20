@@ -1,28 +1,10 @@
-/**
- *
- * (c) Copyright Ascensio System SIA 2023
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
 
 package com.flash.onlyoffice.configurers.implementations;
 
-import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flash.onlyoffice.configurers.wrappers.DefaultCustomizationWrapper;
-import com.google.gson.reflect.TypeToken;
 import com.flash.onlyoffice.configurers.EditorConfigConfigurer;
+import com.flash.onlyoffice.configurers.wrappers.DefaultCustomizationWrapper;
 import com.flash.onlyoffice.configurers.wrappers.DefaultEmbeddedWrapper;
 import com.flash.onlyoffice.configurers.wrappers.DefaultFileWrapper;
 import com.flash.onlyoffice.domain.managers.document.DocumentManager;
@@ -30,19 +12,20 @@ import com.flash.onlyoffice.domain.managers.template.TemplateManager;
 import com.flash.onlyoffice.domain.models.enums.Action;
 import com.flash.onlyoffice.domain.models.enums.Mode;
 import com.flash.onlyoffice.domain.models.filemodel.EditorConfig;
-import com.flash.onlyoffice.domain.util.file.FileUtility;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * @author zsp
+ */
 @Service
 @Primary
 public class DefaultEditorConfigConfigurer implements EditorConfigConfigurer<DefaultFileWrapper> {
-
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -60,48 +43,57 @@ public class DefaultEditorConfigConfigurer implements EditorConfigConfigurer<Def
     @Autowired
     private DefaultEmbeddedConfigurer defaultEmbeddedConfigurer;
 
-    @Autowired
-    private FileUtility fileUtility;
-
+    /**
+     * 定义 editorConfig 配置器
+     *
+     * @param config  配置对象
+     * @param wrapper 包装类
+     */
     @Override
     @SneakyThrows
     public void configure(final EditorConfig config,
-                          final DefaultFileWrapper wrapper) {  // define the editorConfig configurer
-        if (wrapper.getActionData() != null) {  // check if the actionData is not empty in the editorConfig wrapper
+                          final DefaultFileWrapper wrapper) {
+        // 检查 editorConfig 包装器中的 actionData 是否不为空
+        if (wrapper.getActionData() != null) {
 
-            // set actionLink to the editorConfig
-            config.setActionLink(objectMapper.readValue(wrapper.getActionData(),
-                    (JavaType) new TypeToken<HashMap<String, Object>>() { }.getType()));
+            // 将 actionLink 设置为 editorConfig
+            config.setActionLink(objectMapper.readValue(wrapper.getActionData(), new TypeReference<>() {
+            }));
         }
-        String fileName = wrapper.getFileName();  // set the fileName parameter from the editorConfig wrapper
-        String fileExt = fileUtility.getFileExtension(fileName);
-        boolean userIsAnon = wrapper.getUser()
-                .getName().equals("Anonymous");  // check if the user from the editorConfig wrapper is anonymous or not
+        String fileDir = wrapper.getFileDir();
+        String bizId = wrapper.getBizId();
+        String bizType = wrapper.getBizType();
+        // 检查 editorConfig 包装器中的用户是否是匿名的
+        boolean userIsAnon = "Anonymous".equals(wrapper.getUser().getName());
 
-        // set a template to the editorConfig if the user is not anonymous
-        config.setTemplates(userIsAnon ? null : templateManager.createTemplates(fileName));
-        config.setCallbackUrl(documentManager.getCallback(fileName));  // set the callback URL to the editorConfig
+        // 如果用户不是匿名的，则将模板设置为 editorConfig
+        config.setTemplates(userIsAnon ? null : templateManager.createTemplates(fileDir));
+        config.setCallbackUrl(documentManager.getCallback(fileDir, bizId, bizType));
 
-        // set the document URL where it will be created to the editorConfig if the user is not anonymous
-        config.setCreateUrl(userIsAnon ? null : documentManager.getCreateUrl(fileName, false));
-        config.setLang(wrapper.getLang());  // set the language to the editorConfig
-        Boolean canEdit = wrapper.getCanEdit();  // check if the file of the specified type can be edited or not
-        Action action = wrapper.getAction();  // get the action parameter from the editorConfig wrapper
-        config.setCoEditing(action.equals(Action.view) && userIsAnon ? new HashMap<String, Object>() {{
-            put("mode", "strict");
-            put("change", false);
-        }} : null);
+        // todo 创建地址后期补充上去
+        config.setCreateUrl("");
+        config.setLang(wrapper.getLang());
+        Boolean canEdit = wrapper.getCanEdit();
+        Action action = wrapper.getAction();
+        config.setCoEditing(action.equals(Action.view) && userIsAnon ?
+                            Map.of("mode", "strict", "change", false) : null);
 
+        // define the customization configurer
         defaultCustomizationConfigurer.configure(config.getCustomization(),
-                                                 DefaultCustomizationWrapper.builder()  // define the customization configurer
+                                                 DefaultCustomizationWrapper.builder()
                                                                             .action(action)
                                                                             .user(userIsAnon ? null : wrapper.getUser())
                                                                             .build());
         config.setMode(canEdit && !action.equals(Action.view) ? Mode.edit : Mode.view);
-        config.setUser(wrapper.getUser());
+        EditorConfig.UserInfo userInfo = new EditorConfig.UserInfo();
+        userInfo.setId(wrapper.getUser().getId());
+        userInfo.setName(wrapper.getUser().getName());
+        userInfo.setGroup(wrapper.getUser().getGroup());
+        config.setUser(userInfo);
         defaultEmbeddedConfigurer.configure(config.getEmbedded(), DefaultEmbeddedWrapper.builder()
                                                                                         .type(wrapper.getType())
-                                                                                        .fileName(fileName)
+                                                                                        .fileDir(fileDir)
                                                                                         .build());
     }
+
 }

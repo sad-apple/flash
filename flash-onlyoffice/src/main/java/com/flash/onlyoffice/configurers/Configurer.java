@@ -18,6 +18,14 @@
 
 package com.flash.onlyoffice.configurers;
 
+/**
+ * @author zhangsp
+ */
 public interface Configurer<O, W> {
+    /**
+     *配置
+     * @param instance instance
+     * @param wrapper  wrapper
+     */
     void configure(O instance, W wrapper);
 }

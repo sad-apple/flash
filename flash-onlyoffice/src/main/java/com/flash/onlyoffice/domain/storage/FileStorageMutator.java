@@ -20,22 +20,89 @@ package com.flash.onlyoffice.domain.storage;
 
 import org.springframework.core.io.Resource;
 
-import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Path;
 
-// specify the file storage mutator functions
+/**
+ * 指定文件存储突变函数
+ * @author zhangsp
+ */
 public interface FileStorageMutator {
-    void createDirectory(Path path);  // create a new directory if it does not exist
-    boolean createFile(Path path, InputStream stream);  // create a new file if it does not exist
-    boolean deleteFile(String fileName);  // delete a file
-    boolean deleteFileHistory(String fileName);  // delete file history
-    String updateFile(String fileName, byte[] bytes);  // update a file
-    boolean writeToFile(String pathName, String payload);  // write the payload to the file
-    boolean moveFile(Path source, Path destination);  // move a file to the specified destination
-    Resource loadFileAsResource(String fileName);  // load file as a resource
-    Resource loadFileAsResourceHistory(String fileName, String version, String file);  // load file as a resource
-    File[] getStoredFiles();  // get a collection of all the stored files
-    void createMeta(String fileName, String uid, String uname);  // create the file meta information
-    boolean createOrUpdateFile(Path path, InputStream stream);  // create or update a file
+
+    /**
+     * 创建路径
+     * @param path 路径
+     */
+    void createDirectory(Path path);
+
+    /**
+     * 创建文件
+     * @param filePath 文件路径
+     * @param stream 输入流
+     * @return boolean
+     */
+    boolean createFile(Path filePath, InputStream stream);
+
+    /**
+     * 删除文件
+     * @param fileDir 文件地址
+     * @return boolean
+     */
+    boolean deleteFile(String fileDir);
+
+    /**
+     * 删除历史文件
+     *
+     * @param fileDir 文件地址
+     * @return b
+     */
+    boolean deleteFileHistory(String fileDir);
+
+    /**
+     * 写入内容
+     *
+     * @param fileDir 文件地址
+     * @param payload 内容
+     * @return b
+     */
+    boolean writeToFile(String fileDir, String payload);
+
+    /**
+     * 移动文件
+     * @param source 元文件
+     * @param destination 目的地
+     * @return b
+     */
+    boolean moveFile(Path source, Path destination);
+
+    /**
+     * 加载文件到资源中
+     * @param fileDir 文件地址
+     * @return 资源数据
+     */
+    Resource loadFileAsResource(String fileDir);
+
+    /**
+     * 加载历史文件到资源中
+     * @param fileDir 文件地址
+     * @param version 版本号
+     * @param file 文件名
+     * @return resource
+     */
+    Resource loadFileAsResourceHistory(String fileDir, String version, String file);
+    /**
+     * 创建文件元信息
+     * @param fileDir 文件路径
+     * @param uid 用户id
+     * @param uname 用户名
+     */
+    void createMeta(String fileDir, String uid, String uname);
+
+    /**
+     * 创建或者更新文件
+     * @param filePath 文件
+     * @param stream 输入流
+     * @return b
+     */
+    boolean createOrUpdateFile(Path filePath, InputStream stream);
 }

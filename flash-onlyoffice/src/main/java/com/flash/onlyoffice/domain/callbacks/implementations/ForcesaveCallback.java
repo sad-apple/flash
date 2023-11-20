@@ -19,42 +19,31 @@ package com.flash.onlyoffice.domain.callbacks.implementations;
 import com.flash.onlyoffice.domain.callbacks.Callback;
 import com.flash.onlyoffice.domain.callbacks.Status;
 import com.flash.onlyoffice.domain.managers.callback.CallbackManager;
-import com.flash.onlyoffice.domain.models.enums.Action;
 import com.flash.onlyoffice.dto.Track;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * 正在编辑，根据行为判断是建立连接还是断开连接
- * status=1
- * @author zhangsp
+ * 强制保存，连接还存在，status=6
+ * @author zsp
  */
+@Slf4j
 @Component
-public class EditCallback implements Callback {
+public class ForcesaveCallback implements Callback {
 
     @Autowired
     private CallbackManager callbackManager;
 
     @Override
     public int handle(final Track body, final String fileDir, String bizId, String bizType) {
-        int result = 0;
-        com.flash.onlyoffice.dto.Action action = body.getActions().get(0);
-        // 用户断开连接，如果断开连接的用户不在当前连接用户中，则强制保存
-        if (action.getType().equals(Action.edit)) {
-            String user = action.getUserid();
-            if (!body.getUsers().contains(user)) {
-                String key = body.getKey();
-                callbackManager.commandRequest("forcesave", key, null);
-
-            }
-        }
-        return result;
+        callbackManager.processForceSave(body, fileDir);
+        return 0;
     }
-
 
     @Override
     public int getStatus() {
-        return Status.EDITING.getCode();
+        return Status.MUST_FORCE_SAVE.getCode();
     }
 
     @Override

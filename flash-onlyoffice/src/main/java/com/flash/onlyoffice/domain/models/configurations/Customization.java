@@ -24,30 +24,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+/**
+ * The parameters which allow to customize the editor interface so that it looked like your
+ *  other products (if there are any) and change the presence or absence of the additional buttons,
+ *   links, change logos and editor owner details.
+ *   @author zhangsp
+ */
 @Component
 @Scope("prototype")
 @Getter
 @Setter
-/* The parameters which allow to customize the editor interface so that it looked like your
- other products (if there are any) and change the presence or absence of the additional buttons,
-  links, change logos and editor owner details. */
 public class Customization {
+    /** the image file at the top left corner of the Editor header*/
     @Autowired
-    private Logo logo;  // the image file at the top left corner of the Editor header
+    private Logo logo;
+    /** the settings for the Open file location menu button and upper right corner button*/
     @Autowired
-    private Goback goback;  // the settings for the Open file location menu button and upper right corner button
-    private Boolean autosave = true;  // if the Autosave menu option is enabled or disabled
-    private Boolean comments = true;  // if the Comments menu button is displayed or hidden
-    private Boolean compactHeader = false;  /* if the additional action buttons are displayed
+    private Goback goback;
+    /** if the Autosave menu option is enabled or disabled*/
+    private Boolean autosave = false;
+    /**if the Comments menu button is displayed or hidden*/
+    private Boolean comments = true;
+    /** if the additional action buttons are displayed
     in the upper part of the editor window header next to the logo (false) or in the toolbar (true) */
-    private Boolean compactToolbar = false;  // if the top toolbar type displayed is full (false) or compact (true)
-    private Boolean compatibleFeatures = false;  // the use of functionality only compatible with the OOXML format
-    private Boolean forcesave = false;  /* add the request for the forced file saving to the callback handler
-     when saving the document within the document editing service */
-    private Boolean help = true;  //  if the Help menu button is displayed or hidden
-    private Boolean hideRightMenu = false;  // if the right menu is displayed or hidden on first loading
-    private Boolean hideRulers = false;  // if the editor rulers are displayed or hidden
-    private Boolean submitForm = false;  // if the Submit form button is displayed or hidden
+    private Boolean compactHeader = false;
+    /** if the top toolbar type displayed is full (false) or compact (true)*/
+    private Boolean compactToolbar = false;
+     /** the use of functionality only compatible with the OOXML format*/
+    private Boolean compatibleFeatures = false;
+    /**
+     * add the request for the forced file saving to the callback handler
+     *      when saving the document within the document editing service
+     */
+    private Boolean forcesave = true;
+    /**  if the Help menu button is displayed or hidden*/
+    private Boolean help = true;
+    /** if the right menu is displayed or hidden on first loading*/
+    private Boolean hideRightMenu = false;
+    /** if the editor rulers are displayed or hidden*/
+    private Boolean hideRulers = false;
+    /** if the Submit form button is displayed or hidden*/
+    private Boolean submitForm = false;
     private Boolean about = true;
     private Boolean feedback = true;
 }

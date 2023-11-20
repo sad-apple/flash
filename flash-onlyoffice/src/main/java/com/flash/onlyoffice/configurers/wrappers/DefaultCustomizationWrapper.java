@@ -23,6 +23,9 @@ import com.flash.onlyoffice.domain.models.filemodel.User;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * @author zhangsp
+ */
 @Getter
 @Builder
 public class DefaultCustomizationWrapper {

@@ -27,19 +27,34 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * 文档的附加参数（文档所有者、存储文档的文件夹、
+ * 上传日期、共享设置）
+ *
+ * @author zsp
+ */
 @Component
 @Scope("prototype")
 @Getter
 @Setter
-/* The additional parameters for the document (document owner, folder where the document is stored,
- uploading date, sharing settings) */
 public class Info {
-    private String owner = "Me";  // the name of the document owner/creator
-    private Boolean favorite = null;  // the highlighting state of the Favorite icon
-    private String uploaded = getDate();  // the document uploading date
+
+    /**
+     * 文档所有者/创建者的姓名
+     */
+    private String owner = "Me";
+    /**
+     * 收藏夹图标的突出显示状态
+     */
+    private Boolean favorite = null;
+    /**
+     * 文件上传日期
+     */
+    private String uploaded = getDate();
 
     private String getDate() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM dd yyyy", Locale.US);
         return simpleDateFormat.format(new Date());
     }
+
 }

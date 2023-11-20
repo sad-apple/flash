@@ -19,13 +19,21 @@ package com.flash.onlyoffice.domain.callbacks;
 import com.flash.onlyoffice.dto.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 
-// specify the callback handler functions
+/**
+ * @author zhangsp
+ */
 public interface Callback {
 
     /**
      * handle the callback
+     * @param body vo对象
+     * @param fileDir 文件路径
+     * @param bizId id
+     * @param bizType 类型
+     * @return int
      */
-    int handle(Track body, String fileName);
+    int handle(Track body, String fileDir, String bizId, String bizType);
+
 
     /**
      * get document status
@@ -41,5 +49,11 @@ public interface Callback {
     default void selfRegistration(CallbackHandler callbackHandler) {
         callbackHandler.register(getStatus(), this);
     }
+
+    /**
+     * 排序
+     * @return int
+     */
+    int sort();
 
 }

@@ -19,41 +19,61 @@
 package com.flash.onlyoffice.domain.callbacks;
 
 import com.flash.onlyoffice.dto.Track;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+/**
+ * @author zsp
+ */
 @Service
+@Slf4j
 public class CallbackHandler {
 
-    private Logger logger = LoggerFactory.getLogger(CallbackHandler.class);
+    private final Map<Integer, List<Callback>> callbackHandlers = new HashMap<>();
 
-    private Map<Integer, Callback> callbackHandlers = new HashMap<>();
-
-    public void register(final int code, final Callback callback) {  // register a callback handler
-        callbackHandlers.put(code, callback);
+    public synchronized void register(final int code, final Callback callback) {
+        List<Callback> callbacks = callbackHandlers.getOrDefault(code, new ArrayList<>());
+        callbacks.add(callback);
+        callbackHandlers.put(code, callbacks);
     }
 
-    public int handle(final Track body, final String fileName) {  // handle a callback
+    @Transactional(rollbackFor = Exception.class)
+    public int handle(final Track body, final String fileDir, String bizId, String bizType) {
 
         Status of = Status.of(body.getStatus());
         if (of != null) {
-            logger.info("status.code={}, status.name={}, action={}", of.getCode(), of.name(), body.getActions());
+            log.info("status.code={}, status.name={}, action={}", of.getCode(), of.name(), body.getActions());
         } else {
-            logger.info("status={}, action={}", body.getStatus(), body.getActions());
+            log.info("status={}, action={}", body.getStatus(), body.getActions());
         }
-        logger.info(body.toString());
+        log.info(body.toString());
 
-        Callback callback = callbackHandlers.get(body.getStatus());
-        if (callback == null) {
-            logger.warn("Callback status " + body.getStatus() + " is not supported yet");
+        List<Callback> callbacks = callbackHandlers.get(body.getStatus());
+        if (CollectionUtils.isEmpty(callbacks)) {
+            log.warn("Callback status " + body.getStatus() + " is not supported yet");
            return 0;
         }
+        try {
+            // 按顺序执行
+            callbacks.sort(Comparator.comparingInt(Callback::sort));
 
-        int result = callback.handle(body, fileName);
-        return result;
+            for (Callback callback : callbacks) {
+                callback.handle(body, fileDir, bizId, bizType);
+            }
+        } catch (Exception ex) {
+            log.error(ex.getMessage(), ex);
+            throw new RuntimeException("回调处理异常");
+        }
+        return 0;
     }
+
+
 }

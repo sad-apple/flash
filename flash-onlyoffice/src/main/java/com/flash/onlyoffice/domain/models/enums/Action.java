@@ -20,8 +20,13 @@ package com.flash.onlyoffice.domain.models.enums;
 
 import lombok.ToString;
 
+/**
+ * @author zhangsp
+ */
+
 @ToString
 public enum Action {
+    // 断开了连接，需要编辑
     edit,
     review,
     view,

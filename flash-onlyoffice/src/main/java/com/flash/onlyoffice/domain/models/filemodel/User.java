@@ -24,6 +24,9 @@ import lombok.Setter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author zhangsp
+ */
 @Component
 @Scope("prototype")
 @Getter
@@ -35,11 +38,13 @@ public class User extends AbstractModel {
     private Permission permissions;
     private Boolean favorite;
 
-    // the user configuration parameters
     public void configure(final int idParam, final String nameParam, final String groupParam, final Permission permissions) {
-        this.id = "uid-" + idParam;  // the user id
-        this.name = nameParam;  // the user name
-        this.group = groupParam;  // the group the user belongs to
+        // the user id
+        this.id = "uid-" + idParam;
+        // the user name
+        this.name = nameParam;
+        // the group the user belongs to
+        this.group = groupParam;
         this.permissions = permissions;
     }
 }

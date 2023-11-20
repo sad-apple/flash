@@ -14,7 +14,8 @@ public class FileStorageProperties {
     private String path;
     private String folder;
     private String filesizeMax;
-    private String site;
+    private String innerSite;
+    private String outSite;
     private String callbackUrl;
     private String downloadUrl;
     private String historyPostfix;

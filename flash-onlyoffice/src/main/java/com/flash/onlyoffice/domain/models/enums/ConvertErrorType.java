@@ -18,7 +18,14 @@
 
 package com.flash.onlyoffice.domain.models.enums;
 
+/**
+ * @author zhangsp
+ */
+
 public enum ConvertErrorType {
+    /**
+     * 枚举
+     */
     EMPTY_ERROR(0, ""),
     CONVERTATION_UNKNOWN(-1, "Error convertation unknown"),
     CONVERTATION_TIMEOUT(-2, "Error convertation timeout"),

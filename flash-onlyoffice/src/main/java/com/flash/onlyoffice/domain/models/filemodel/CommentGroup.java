@@ -27,15 +27,29 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * @author zsp
+ */
 @Component
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentGroup {
+
+    /**
+     * 定义用户可以查看其评论的组列表
+     */
     @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = SerializerFilter.class)
-    private List<String> view;  // define a list of groups whose comments the user can view
+    private List<String> view;
+    /**
+     * 定义用户可以编辑其评论的组列表
+     */
     @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = SerializerFilter.class)
-    private List<String> edit;  // define a list of groups whose comments the user can edit
+    private List<String> edit;
+    /**
+     * 定义用户可以删除其评论的组列表
+     */
     @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = SerializerFilter.class)
-    private List<String> remove;  // define a list of groups whose comments the user can remove
+    private List<String> remove;
+
 }

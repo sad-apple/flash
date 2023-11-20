@@ -24,15 +24,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author zhangsp
+ */
 @Component
 @Scope("prototype")
 @Getter
 @Setter
 public class Logo {  // the image file at the top left corner of the Editor header
+    /** the path to the image file used to show in common work mode*/
     @Value("${only.logo.image}")
-    private String image;  // the path to the image file used to show in common work mode
+    private String image;
+    /** the path to the image file used to show in the embedded mode*/
     @Value("${only.logo.imageEmbedded}")
-    private String imageEmbedded;  // the path to the image file used to show in the embedded mode
+    private String imageEmbedded;
+    /** the absolute URL which will be used when someone clicks the logo image*/
     @Value("${only.logo.url}")
-    private String url;  // the absolute URL which will be used when someone clicks the logo image
+    private String url;
 }

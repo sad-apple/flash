@@ -20,6 +20,9 @@ package com.flash.onlyoffice.domain.serializers;
 
 import java.util.List;
 
+/**
+ * @author zsp
+ */
 public class SerializerFilter {
     @Override
     public boolean equals(final Object obj) {

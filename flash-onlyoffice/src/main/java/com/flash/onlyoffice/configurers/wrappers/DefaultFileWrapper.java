@@ -25,11 +25,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author zsp
+ */
 @Getter
 @Builder
 @Setter
 public class DefaultFileWrapper {
-    private String fileName;
+    private String fileDir;
+    private String bizId;
+    private String bizType;
+
+    private String title;
     private Type type;
     private User user;
     private String lang;

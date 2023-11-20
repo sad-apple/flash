@@ -22,8 +22,31 @@ import com.flash.onlyoffice.dto.Track;
 
 import java.util.HashMap;
 
-public interface CallbackManager {  // specify the callback manager functions
-    void processSave(Track body, String fileName);  // file saving process
+/**
+ * @author zhangsp
+ */
+public interface CallbackManager {
+    /**
+     * 保存
+     * @param body 实体
+     * @param fileDir 文件路径
+     */
+    void processSave(Track body, String fileDir);  // file saving process
+
+    /**
+     * 请求
+     * @param method method
+     * @param key key
+     * @param meta meta
+     */
     void commandRequest(String method, String key, HashMap meta);  // create a command request
-    void processForceSave(Track body, String fileName);  // file force saving process
+
+    /**
+     *file force saving process
+     * @param body body
+     * @param fileDir fileDir
+     */
+    void processForceSave(Track body, String fileDir);  // file force saving process
+
+
 }

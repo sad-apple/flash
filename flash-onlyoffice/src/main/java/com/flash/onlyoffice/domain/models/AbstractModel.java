@@ -20,5 +20,8 @@ package com.flash.onlyoffice.domain.models;
 
 import java.io.Serializable;
 
+/**
+ * @author zsp
+ */
 public abstract class AbstractModel implements Serializable {
 }

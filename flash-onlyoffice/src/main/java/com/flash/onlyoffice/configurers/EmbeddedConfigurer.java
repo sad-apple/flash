@@ -20,7 +20,16 @@ package com.flash.onlyoffice.configurers;
 
 import com.flash.onlyoffice.domain.models.configurations.Embedded;
 
+/**
+ * @author zhangsp
+ */
 public interface EmbeddedConfigurer<W> extends Configurer<Embedded, W> {
+
+    /**
+     * 配置
+     * @param embedded instance
+     * @param wrapper  wrapper
+     */
     @Override
     void configure(Embedded embedded, W wrapper);
 }

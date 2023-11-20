@@ -18,27 +18,35 @@
 
 package com.flash.onlyoffice.domain.models.filemodel;
 
-import com.flash.onlyoffice.domain.models.enums.Type;
 import com.flash.onlyoffice.domain.models.enums.DocumentType;
+import com.flash.onlyoffice.domain.models.enums.Type;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author zhangsp
+ * the file base parameters which include the platform type used,
+ *  document display size (width and height) and type of the document opened
+ */
 @Component
 @Scope("prototype")
 @Getter
 @Setter
-/* the file base parameters which include the platform type used,
- document display size (width and height) and type of the document opened */
 public class FileModel {
+    /** the parameters pertaining to the document (title, url, file type, etc.)*/
     @Autowired
-    private Document document;  // the parameters pertaining to the document (title, url, file type, etc.)
-    private DocumentType documentType;  // the document type to be opened
-    @Autowired
-    private EditorConfig editorConfig;  /*  the parameters pertaining to the
+    private Document document;
+    /** the document type to be opened*/
+    private DocumentType documentType;
+    /**  the parameters pertaining to the
      editor interface: opening mode (viewer or editor), interface language, additional buttons, etc. */
-    private String token;  // the encrypted signature added to the Document Server config
-    private Type type;  // the platform type used to access the document
+    @Autowired
+    private EditorConfig editorConfig;
+    /** the encrypted signature added to the Document Server config*/
+    private String token;
+    /** the platform type used to access the document*/
+    private Type type;
 }

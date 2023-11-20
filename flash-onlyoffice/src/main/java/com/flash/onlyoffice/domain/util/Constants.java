@@ -18,6 +18,9 @@
 
 package com.flash.onlyoffice.domain.util;
 
+/**
+ * @author zhangsp
+ */
 public final class Constants {
     public static final Integer MAX_FILE_SIZE = 5 * 1024 * 1024;
     public static final Integer CONVERT_TIMEOUT_MS = 120000;

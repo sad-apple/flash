@@ -18,6 +18,13 @@
 
 package com.flash.onlyoffice.domain.serializers;
 
+/**
+ * @author zsp
+ */
+
 public enum FilterState {
+    /**
+     * 枚举
+     */
     NULL
 }

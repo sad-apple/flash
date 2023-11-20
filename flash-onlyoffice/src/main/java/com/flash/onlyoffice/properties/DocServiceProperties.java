@@ -11,13 +11,33 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "only.docservice")
 public class DocServiceProperties {
 
+    /**
+     * 填充表单的文件格式
+     */
     private String fillformsDocs;
+    /**
+     * 查看文件格式
+     */
     private String viewedDocs;
+    /**
+     * 编辑文件格式
+     */
     private String editedDocs;
+    /**
+     * 转换文件格式
+     */
     private String convertDocs;
+    /**
+     * 转换超时时间
+     */
     private String timeout;
-
+    /**
+     * 密钥
+     */
     private String secret;
+    /**
+     * token header前缀
+     */
     private String header;
     private String verifyPeerOff;
     private String languages;
@@ -36,6 +56,10 @@ public class DocServiceProperties {
         private String command;
         private String api;
         private String preloader;
+
+        public String getAllApi() {
+            return site + api;
+        }
     }
 
 

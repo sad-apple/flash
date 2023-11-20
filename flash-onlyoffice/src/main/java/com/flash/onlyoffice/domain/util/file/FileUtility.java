@@ -23,19 +23,96 @@ import com.flash.onlyoffice.domain.models.enums.DocumentType;
 import java.nio.file.Path;
 import java.util.List;
 
-// specify the file utility functions
+/**
+ * @author zhangsp
+ */
 public interface FileUtility {
-    DocumentType getDocumentType(String fileName);  // get the document type
-    String getFileName(String url);  // get file name from its URL
-    String getFileNameWithoutExtension(String url);  // get file name without extension
-    String getFileExtension(String url);  // get file extension from URL
+
+    /**
+     * get the document type
+     * @param fileName 文件名
+     * @return 文件类型
+     */
+    DocumentType getDocumentType(String fileName);
+
+    /**
+     * get file name from its URL
+     * @param url 地址
+     * @return 文件名
+     */
+    String getFileName(String url);
+
+    /**
+     * 获取没有后缀的文件名
+     * @param url 地址
+     * @return 文件名
+     */
+    String getFileNameWithoutExtension(String url);
+
+    /**
+     * 获取没有后缀的文件路径
+     * @param url url
+     * @return 地址
+     */
+    String getFileDirWithoutExtension(String url);
+
+    /**
+     * get file extension from URL
+     * @param url 地址
+     * @return 地址
+     */
+    String getFileExtension(String url);
+
+    /**
+     * getInternalExtension
+     * @param type
+     * @return
+     */
     String getInternalExtension(DocumentType type);  // get an editor internal extension
+
+    /**
+     * getFileExts
+     * @return
+     */
     List<String> getFileExts();  // get all the supported file extensions
+
+    /**
+     * getFillExts
+     * @return
+     */
     List<String> getFillExts();  // get file extensions that can be filled
+
+    /**
+     * getViewedExts
+     * @return
+     */
     List<String> getViewedExts();  // get file extensions that can be viewed
+
+    /**
+     * getEditedExts
+     * @return
+     */
     List<String> getEditedExts();  // get file extensions that can be edited
+
+    /**
+     * getConvertExts
+     * @return
+     */
     List<String> getConvertExts();  // get file extensions that can be converted
-    Path generateFilepath(String directory, String fullFileName);  /* generate the file path
-     from file directory and name */
+    /**
+     * generateFilepath
+     */
+    /**
+     * generateFilepath
+     * @param directory
+     * @param fullFileName
+     * @return
+     */
+    Path generateFilepath(String directory, String fullFileName); // generate the file path from file directory and name
+
+    /**
+     * getMaxFileSize
+     * @return
+     */
     long getMaxFileSize();  // get maximum file size
 }

@@ -18,7 +18,14 @@
 
 package com.flash.onlyoffice.domain.models.enums;
 
+/**
+ * @author zhangsp
+ */
+
 public enum DocumentType {
+    /**
+     * 枚举
+     */
     word,
     cell,
     slide

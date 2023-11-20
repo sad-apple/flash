@@ -20,7 +20,15 @@ package com.flash.onlyoffice.configurers;
 
 import com.flash.onlyoffice.domain.models.filemodel.Document;
 
+/**
+ * @author zhangsp
+ */
 public interface DocumentConfigurer<W> extends Configurer<Document, W> {
+    /**
+     * 配置
+     * @param document document
+     * @param wrapper  wrapper
+     */
     @Override
     void configure(Document document, W wrapper);
 }

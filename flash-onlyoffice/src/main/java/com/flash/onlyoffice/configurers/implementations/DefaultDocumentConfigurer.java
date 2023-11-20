@@ -23,24 +23,21 @@ import com.flash.onlyoffice.configurers.wrappers.DefaultDocumentWrapper;
 import com.flash.onlyoffice.domain.managers.document.DocumentManager;
 import com.flash.onlyoffice.domain.models.filemodel.Document;
 import com.flash.onlyoffice.domain.models.filemodel.Permission;
-import com.flash.onlyoffice.domain.storage.FileStoragePathBuilder;
 import com.flash.onlyoffice.domain.util.file.FileUtility;
 import com.flash.onlyoffice.domain.util.service.ServiceConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-
+/**
+ * @author zsp
+ */
 @Service
 @Primary
 public class DefaultDocumentConfigurer implements DocumentConfigurer<DefaultDocumentWrapper> {
 
     @Autowired
     private DocumentManager documentManager;
-
-    @Autowired
-    private FileStoragePathBuilder storagePathBuilder;
 
     @Autowired
     private FileUtility fileUtility;
@@ -50,28 +47,20 @@ public class DefaultDocumentConfigurer implements DocumentConfigurer<DefaultDocu
 
     @Override
     public void configure(final Document document,
-                          final DefaultDocumentWrapper wrapper) {  // define the document configurer
-        String fileName = wrapper.getFileName();  // get the fileName parameter from the document wrapper
-        Permission permission = wrapper.getPermission();  // get the permission parameter from the document wrapper
+                          final DefaultDocumentWrapper wrapper) {
+        String fileDir = wrapper.getFileDir();
+        Permission permission = wrapper.getPermission();
 
-        document.setTitle(fileName);  // set the title to the document config
+        document.setTitle(wrapper.getTitle());
+        document.setUrl(documentManager.getDownloadUrl(fileDir, true));
+        document.setUrlUser(documentManager.getFileUri(fileDir, false));
+        document.setDirectUrl(wrapper.getIsEnableDirectUrl() ? documentManager.getDownloadUrl(fileDir, false) : "");
+        document.setFileType(fileUtility.getFileExtension(fileDir).replace(".", ""));
+        document.getInfo().setFavorite(wrapper.getFavorite());
 
-        // set the URL to download a file to the document config
-        document.setUrl(documentManager.getDownloadUrl(fileName, true));
-        // set the file URL to the document config
-        document.setUrlUser(documentManager.getFileUri(fileName, false));
-        document.setDirectUrl(wrapper.getIsEnableDirectUrl() ? documentManager.getDownloadUrl(fileName, false) : "");
-        document.setFileType(fileUtility.getFileExtension(fileName)
-                .replace(".", ""));  // set the file type to the document config
-        document.getInfo().setFavorite(wrapper.getFavorite());  // set the favorite parameter to the document config
+        String key = serviceConverter.generateRevisionIdByFileDir(fileDir);
 
-        // get the document key
-        String key = serviceConverter
-                .generateRevisionId(storagePathBuilder.getStorageLocation()
-                        + "/" + fileName + "/"
-                        + new File(storagePathBuilder.getFileLocation(fileName)).lastModified());
-
-        document.setKey(key);  // set the key to the document config
-        document.setPermissions(permission);  // set the permission parameters to the document config
+        document.setKey(key);
+        document.setPermissions(permission);
     }
 }

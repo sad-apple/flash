@@ -18,7 +18,14 @@
 
 package com.flash.onlyoffice.domain.models.enums;
 
+/**
+ * @author zhangsp
+ */
+
 public enum Mode {
+    /**
+     * 枚举
+     */
     edit,
     view
 }

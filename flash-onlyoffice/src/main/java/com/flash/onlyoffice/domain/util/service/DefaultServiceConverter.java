@@ -18,36 +18,41 @@
 
 package com.flash.onlyoffice.domain.util.service;
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flash.onlyoffice.domain.managers.jwt.JwtManager;
-import com.flash.onlyoffice.properties.DocServiceProperties;
 import com.flash.onlyoffice.domain.models.enums.ConvertErrorType;
+import com.flash.onlyoffice.domain.storage.FileStoragePathBuilder;
 import com.flash.onlyoffice.domain.util.file.FileUtility;
 import com.flash.onlyoffice.dto.Convert;
-import jakarta.annotation.PostConstruct;
+import com.flash.onlyoffice.properties.DocServiceProperties;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import static com.flash.onlyoffice.domain.util.Constants.CONVERTATION_ERROR_MESSAGE_TEMPLATE;
 import static com.flash.onlyoffice.domain.util.Constants.CONVERT_TIMEOUT_MS;
 import static com.flash.onlyoffice.domain.util.Constants.FULL_LOADING_IN_PERCENT;
 import static com.flash.onlyoffice.domain.util.Constants.MAX_KEY_LENGTH;
 
-// todo: Refactoring
+/**
+ * 文件转换
+ * @author zsp
+ */
 @Component
 @Slf4j
 public class DefaultServiceConverter implements ServiceConverter {
@@ -70,9 +75,9 @@ public class DefaultServiceConverter implements ServiceConverter {
     @Autowired
     private FileUtility fileUtility;
     @Autowired
-    private JSONParser parser;
-    @Autowired
     private ObjectMapper objectMapper;
+    @Autowired
+    private FileStoragePathBuilder fileStoragePathBuilder;
 
     @PostConstruct
     public void init() {
@@ -83,22 +88,22 @@ public class DefaultServiceConverter implements ServiceConverter {
 
     @SneakyThrows
     private String postToServer(final Convert body, final String headerToken) {  // send the POST request to the server
+        // write the body request to the object mapper in the string format
         String bodyString = objectMapper
-                .writeValueAsString(body);  // write the body request to the object mapper in the string format
-        URL url = null;
-        java.net.HttpURLConnection connection = null;
-        InputStream response = null;
+                .writeValueAsString(body);
+        URL url;
+        HttpURLConnection connection = null;
+        InputStream response;
         String jsonString = null;
-
-        byte[] bodyByte = bodyString.getBytes(StandardCharsets.UTF_8);  // convert body string into bytes
+        // convert body string into bytes
+        byte[] bodyByte = bodyString.getBytes(StandardCharsets.UTF_8);
         try {
             // set the request parameters
             url = new URL(docServiceUrl + docServiceUrlConverter);
-            connection = (java.net.HttpURLConnection) url.openConnection();
+            connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-//            connection.setFixedLengthStreamingMode(bodyByte.length);
             connection.setRequestProperty("Accept", "application/json");
             connection.setConnectTimeout(convertTimeout);
 
@@ -111,44 +116,31 @@ public class DefaultServiceConverter implements ServiceConverter {
 
             connection.connect();
 
-            /*int statusCode = connection.getResponseCode();
-            if (statusCode != HttpStatus.OK.value()) {  // checking status code
-                connection.disconnect();
-                throw new RuntimeException("Convertation service returned status: " + statusCode);
-            }*/
-
             try (OutputStream os = connection.getOutputStream()) {
-                os.write(bodyByte);  // write bytes to the output stream
-                os.flush();  // force write data to the output stream that can be cached in the current thread
+                // write bytes to the output stream
+                os.write(bodyByte);
+                // force write data to the output stream that can be cached in the current thread
+                os.flush();
             }
-
-            response = connection.getInputStream();  // get the input stream
-            jsonString = convertStreamToString(response);  // convert the response stream into a string
+            // get the input stream
+            response = connection.getInputStream();
+            // convert the response stream into a string
+            jsonString = convertStreamToString(response);
         }catch (Exception e){
             log.error(e.getMessage(), e);
         }finally {
             connection.disconnect();
-            return jsonString;
         }
+        return jsonString;
     }
 
-    // get the URL to the converted file
     @Override
-    public String getConvertedUri(final String documentUri, final String fromExtension,
+    public String getConvertedUri(final String documentUri, String title, final String fromExtension,
                                   final String toExtension, final String documentRevisionId,
                                   final String filePass, final Boolean isAsync, final String lang) {
         // check if the fromExtension parameter is defined; if not, get it from the document url
         String fromExt = fromExtension == null || fromExtension.isEmpty()
                 ? fileUtility.getFileExtension(documentUri) : fromExtension;
-
-        // check if the file name parameter is defined; if not, get random uuid for this file
-        String title = fileUtility.getFileName(documentUri);
-        title = title == null || title.isEmpty() ? UUID.randomUUID().toString() : title;
-
-        String documentRevId = documentRevisionId == null || documentRevisionId.isEmpty()
-                ? documentUri : documentRevisionId;
-
-        documentRevId = generateRevisionId(documentRevId);  // create document token
 
         // write all the necessary parameters to the body object
         Convert body = new Convert();
@@ -157,7 +149,7 @@ public class DefaultServiceConverter implements ServiceConverter {
         body.setOutputtype(toExtension.replace(".", ""));
         body.setFiletype(fromExt.replace(".", ""));
         body.setTitle(title);
-        body.setKey(documentRevId);
+        body.setKey(documentRevisionId);
         body.setFilePass(filePass);
         if (isAsync) {
             body.setAsync(true);
@@ -165,7 +157,7 @@ public class DefaultServiceConverter implements ServiceConverter {
 
         String headerToken = "";
         if (jwtManager.tokenEnabled()) {
-            HashMap<String, Object> map = new HashMap<String, Object>();
+            HashMap<String, Object> map = new HashMap<String, Object>(8);
             map.put("region", lang);
             map.put("url", body.getUrl());
             map.put("outputtype", body.getOutputtype());
@@ -181,9 +173,11 @@ public class DefaultServiceConverter implements ServiceConverter {
             String token = jwtManager.createToken(map);
             body.setToken(token);
 
-            Map<String, Object> payloadMap = new HashMap<String, Object>();
-            payloadMap.put("payload", map);  // create payload object
-            headerToken = jwtManager.createToken(payloadMap);  // create header token
+            Map<String, Object> payloadMap = new HashMap<String, Object>(8);
+            // create payload object
+            payloadMap.put("payload", map);
+            // create header token
+            headerToken = jwtManager.createToken(payloadMap);
         }
 
         String jsonString = postToServer(body, headerToken);
@@ -191,7 +185,6 @@ public class DefaultServiceConverter implements ServiceConverter {
         return getResponseUri(jsonString);
     }
 
-    // generate document key
     @Override
     public String generateRevisionId(final String expectedKey) {
         /* if the expected key length is greater than 20
@@ -200,38 +193,48 @@ public class DefaultServiceConverter implements ServiceConverter {
                 ? Integer.toString(expectedKey.hashCode()) : expectedKey;
         String key = formatKey.replace("[^0-9-.a-zA-Z_=]", "_");
 
-        return key.substring(0, Math.min(key.length(), MAX_KEY_LENGTH));  // the resulting key length is 20 or less
+        // the resulting key length is 20 or less
+        return key.substring(0, Math.min(key.length(), MAX_KEY_LENGTH));
     }
 
-    // todo: Replace with a registry (callbacks package for reference)
-    // create an error message for an error code
+    @Override
+    public String generateRevisionIdByFileDir(String fileDir) {
+        String expectedKey = fileStoragePathBuilder.getFileLocation(fileDir) + "/" +
+                             new File(fileStoragePathBuilder.getFileLocation(fileDir)).lastModified();
+        return generateRevisionId(expectedKey);
+    }
+
     private void processConvertServiceResponceError(final int errorCode) {
         String errorMessage = CONVERTATION_ERROR_MESSAGE_TEMPLATE + ConvertErrorType.labelOfCode(errorCode);
 
         throw new RuntimeException(errorMessage);
     }
 
-    // get the response URL
     @SneakyThrows
     private String getResponseUri(final String jsonString) {
-        JSONObject jsonObj = convertStringToJSON(jsonString);
+        JSONObject jsonObj = convertStringToJson(jsonString);
 
         Object error = jsonObj.get("error");
-        if (error != null) {  // if an error occurs
-            processConvertServiceResponceError(Math.toIntExact((long) error));  // then get an error message
+        if (error != null) {
+            // if an error occurs
+            // then get an error message
+            processConvertServiceResponceError(Math.toIntExact((long) error));
         }
 
         // check if the conversion is completed and save the result to a variable
         Boolean isEndConvert = (Boolean) jsonObj.get("endConvert");
 
-        Long resultPercent = 0L;
+        Long resultPercent;
         String responseUri = null;
 
-        if (isEndConvert) {  // if the conversion is completed
+        if (isEndConvert) {
+            // if the conversion is completed
             resultPercent = FULL_LOADING_IN_PERCENT;
-            responseUri = (String) jsonObj.get("fileUrl");  // get the file URL
-        } else {  // if the conversion isn't completed
-            resultPercent = (Long) jsonObj.get("percent");
+            // get the file URL
+            responseUri = jsonObj.getString("fileUrl");
+        } else {
+            // if the conversion isn't completed
+            resultPercent =  jsonObj.getLong("percent");
 
             // get the percentage value of the conversion process
             resultPercent = resultPercent >= FULL_LOADING_IN_PERCENT ? FULL_LOADING_IN_PERCENT - 1 : resultPercent;
@@ -240,31 +243,33 @@ public class DefaultServiceConverter implements ServiceConverter {
         return resultPercent >= FULL_LOADING_IN_PERCENT ? responseUri : "";
     }
 
-    // convert stream to string
     @Override
     @SneakyThrows
     public String convertStreamToString(final InputStream stream) {
-        InputStreamReader inputStreamReader = new InputStreamReader(stream);  // create an object to get incoming stream
-        StringBuilder stringBuilder = new StringBuilder();  // create a string builder object
+        // create an object to get incoming stream
+        InputStreamReader inputStreamReader = new InputStreamReader(stream);
+        // create a string builder object
+        StringBuilder stringBuilder = new StringBuilder();
 
         // create an object to read incoming streams
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        String line = bufferedReader.readLine();  // get incoming streams by lines
+        // get incoming streams by lines
+        String line = bufferedReader.readLine();
 
         while (line != null) {
-            stringBuilder.append(line);  // concatenate strings using the string builder
+            // concatenate strings using the string builder
+            stringBuilder.append(line);
             line = bufferedReader.readLine();
         }
 
         return stringBuilder.toString();
     }
 
-    // convert string to json
     @Override
     @SneakyThrows
-    public JSONObject convertStringToJSON(final String jsonString) {
-        Object obj = parser.parse(jsonString);  // parse json string
+    public JSONObject convertStringToJson(final String jsonString) {
+        //        Object obj = parser.parse(jsonString);  // parse json string
 
-        return (JSONObject) obj;
+        return JSON.parseObject(jsonString);
     }
 }

@@ -22,6 +22,7 @@ import com.flash.onlyoffice.configurers.wrappers.DefaultFileWrapper;
 import com.flash.onlyoffice.domain.managers.jwt.JwtManager;
 import com.flash.onlyoffice.domain.models.enums.Action;
 import com.flash.onlyoffice.domain.models.enums.DocumentType;
+import com.flash.onlyoffice.domain.models.filemodel.CommentGroup;
 import com.flash.onlyoffice.domain.models.filemodel.FileModel;
 import com.flash.onlyoffice.domain.models.filemodel.Permission;
 import com.flash.onlyoffice.domain.util.file.FileUtility;
@@ -31,8 +32,12 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+/**
+ * @author zhangsp
+ */
 @Service
 @Primary
 public class DefaultFileConfigurer implements FileConfigurer<DefaultFileWrapper> {
@@ -57,22 +62,28 @@ public class DefaultFileConfigurer implements FileConfigurer<DefaultFileWrapper>
 
     @Override
     public void configure(final FileModel fileModel, final DefaultFileWrapper wrapper) {  // define the file configurer
-        if (fileModel != null) {  // check if the file model is specified
-            String fileName = wrapper.getFileName();  // get the fileName parameter from the file wrapper
-            Action action = wrapper.getAction();  // get the action parameter from the file wrapper
+        if (fileModel != null) {
+            // check if the file model is specified
 
-            DocumentType documentType = fileUtility
-                    .getDocumentType(fileName);  // get the document type of the specified file
-            fileModel.setDocumentType(documentType);  // set the document type to the file model
-            fileModel.setType(wrapper.getType());  // set the platform type to the file model
+            // get the fileName parameter from the file wrapper
+            String fileDir = wrapper.getFileDir();
+            // get the action parameter from the file wrapper
+            Action action = wrapper.getAction();
+
+            // get the document type of the specified file
+            DocumentType documentType = fileUtility.getDocumentType(fileDir);
+            // set the document type to the file model
+            fileModel.setDocumentType(documentType);
+            // set the platform type to the file model
+            fileModel.setType(wrapper.getType());
 
             Permission userPermissions = wrapper.getUser()
-                                                .getPermissions();  // convert the permission entity to the model
+                                                .getPermissions();
 
-            String fileExt = fileUtility.getFileExtension(wrapper.getFileName());
-            Boolean canEdit = fileUtility.getEditedExts().contains(fileExt);
-            if ((!canEdit && action.equals(Action.edit) || action.equals(Action.fillForms)) && fileUtility
-                    .getFillExts().contains(fileExt)) {
+            String fileExt = fileUtility.getFileExtension(fileDir);
+            boolean canEdit = fileUtility.getEditedExts().contains(fileExt);
+            boolean boo = (!canEdit && action.equals(Action.edit) || action.equals(Action.fillForms));
+            if (boo && fileUtility.getFillExts().contains(fileExt)) {
                 canEdit = true;
                 wrapper.setAction(Action.fillForms);
             }
@@ -81,31 +92,34 @@ public class DefaultFileConfigurer implements FileConfigurer<DefaultFileWrapper>
             // define the document wrapper
             DefaultDocumentWrapper documentWrapper = DefaultDocumentWrapper
                     .builder()
-                    .fileName(fileName)
+                    .fileDir(fileDir)
                     .permission(updatePermissions(userPermissions, action, canEdit))
                     .favorite(wrapper.getUser().getFavorite())
                     .isEnableDirectUrl(wrapper.getIsEnableDirectUrl())
+                    .title(wrapper.getTitle())
                     .build();
 
-            defaultDocumentConfigurer
-                    .configure(fileModel.getDocument(), documentWrapper);  // define the document configurer
-            defaultEditorConfigConfigurer
-                    .configure(fileModel.getEditorConfig(), wrapper);  // define the editorConfig configurer
+            // define the document configurer
+            defaultDocumentConfigurer.configure(fileModel.getDocument(), documentWrapper);
+            // define the editorConfig configurer
+            defaultEditorConfigConfigurer.configure(fileModel.getEditorConfig(), wrapper);
 
-            Map<String, Object> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>(8);
             map.put("type", fileModel.getType());
             map.put("documentType", documentType);
             map.put("document", fileModel.getDocument());
             map.put("editorConfig", fileModel.getEditorConfig());
 
-            fileModel.setToken(jwtManager.createToken(map));  // create a token and set it to the file model
+            // create a token and set it to the file model
+            fileModel.setToken(jwtManager.createToken(map));
         }
     }
 
     @Override
     public FileModel getFileModel(final DefaultFileWrapper wrapper) {  // get file model
         FileModel fileModel = fileModelObjectFactory.getObject();
-        configure(fileModel, wrapper);  // and configure it
+        // and configure it
+        configure(fileModel, wrapper);
         return fileModel;
     }
 
@@ -132,6 +146,15 @@ public class DefaultFileConfigurer implements FileConfigurer<DefaultFileWrapper>
                                     || action.equals(Action.edit)
                                     || action.equals(Action.filter)
                                     || action.equals(Action.blockcontent)));
+
+        userPermissions.setReviewGroups(List.of("NULL"));
+        // set the commentGroups parameter
+        userPermissions.setCommentGroups(
+                new CommentGroup(List.of("NULL"),
+                                 List.of("NULL"),
+                                 List.of("NULL"))
+        );
+        userPermissions.setUserInfoGroups(List.of("NULL"));
 
         return userPermissions;
     }

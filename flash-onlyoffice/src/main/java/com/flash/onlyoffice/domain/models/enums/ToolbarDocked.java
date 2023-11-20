@@ -18,7 +18,14 @@
 
 package com.flash.onlyoffice.domain.models.enums;
 
+/**
+ * @author zhangsp
+ */
+
 public enum ToolbarDocked {
+    /**
+     * 枚举
+     */
     top,
     bottom
 }

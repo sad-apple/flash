@@ -22,9 +22,12 @@ import com.flash.onlyoffice.domain.models.enums.Type;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * @author zhangsp
+ */
 @Getter
 @Builder
 public class DefaultEmbeddedWrapper {
     private Type type;
-    private String fileName;
+    private String fileDir;
 }

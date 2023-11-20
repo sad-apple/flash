@@ -20,8 +20,24 @@ package com.flash.onlyoffice.configurers;
 
 import com.flash.onlyoffice.domain.models.filemodel.FileModel;
 
+/**
+ * @author zhangsp
+ */
 public interface FileConfigurer<W> extends Configurer<FileModel, W> {
+
+    /**
+     * 配置
+     * @param model instance
+     * @param wrapper  wrapper
+     */
     @Override
     void configure(FileModel model, W wrapper);
+
+    /**
+     * 获取fileModel
+     * @param wrapper 包装器
+     * @return fileModel
+     */
     FileModel getFileModel(W wrapper);
+
 }

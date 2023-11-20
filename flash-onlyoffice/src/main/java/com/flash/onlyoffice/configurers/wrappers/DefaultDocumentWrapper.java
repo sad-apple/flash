@@ -22,11 +22,15 @@ import com.flash.onlyoffice.domain.models.filemodel.Permission;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * @author zsp
+ */
 @Getter
 @Builder
 public class DefaultDocumentWrapper {
     private Permission permission;
-    private String fileName;
+    private String fileDir;
     private Boolean favorite;
     private Boolean isEnableDirectUrl;
+    private String title;
 }

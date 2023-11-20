@@ -18,13 +18,14 @@
 
 package com.flash.onlyoffice.domain.util.file;
 
-import com.flash.onlyoffice.properties.DocServiceProperties;
 import com.flash.onlyoffice.domain.models.enums.DocumentType;
+import com.flash.onlyoffice.properties.DocServiceProperties;
 import com.flash.onlyoffice.properties.FileStorageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,6 +35,9 @@ import java.util.List;
 
 import static com.flash.onlyoffice.domain.util.Constants.MAX_FILE_SIZE;
 
+/**
+ * @author zhangsp
+ */
 @Component
 @Qualifier("default")
 public class DefaultFileUtility implements FileUtility {
@@ -42,7 +46,9 @@ public class DefaultFileUtility implements FileUtility {
     @Autowired
     private FileStorageProperties fileStorageProperties;
 
-    // document extensions
+    /**
+     * document extensions
+     */
     private final List<String> extsDocument = Arrays.asList(
                             ".doc", ".docx", ".docm",
                             ".dot", ".dotx", ".dotm",
@@ -50,23 +56,27 @@ public class DefaultFileUtility implements FileUtility {
                             ".html", ".htm", ".mht", ".xml",
                             ".pdf", ".djvu", ".fb2", ".epub", ".xps", ".oform");
 
-    // spreadsheet extensions
     private final List<String> extsSpreadsheet = Arrays.asList(
                             ".xls", ".xlsx", ".xlsm", ".xlsb",
                             ".xlt", ".xltx", ".xltm",
                             ".ods", ".fods", ".ots", ".csv");
 
-    // presentation extensions
+    /**
+     * presentation extensions
+     */
     private final List<String> extsPresentation = Arrays.asList(
                             ".pps", ".ppsx", ".ppsm",
                             ".ppt", ".pptx", ".pptm",
                             ".pot", ".potx", ".potm",
                             ".odp", ".fodp", ".otp");
 
-    // get the document type
+    /**
+     * get the document type
+     */
     @Override
     public DocumentType getDocumentType(final String fileName) {
-        String ext = getFileExtension(fileName).toLowerCase();  // get file extension from its name
+        // get file extension from its name
+        String ext = getFileExtension(fileName).toLowerCase();
         // word type for document extensions
         if (extsDocument.contains(ext)) {
             return DocumentType.word;
@@ -86,20 +96,27 @@ public class DefaultFileUtility implements FileUtility {
         return DocumentType.word;
     }
 
-    // get file name from its URL
+    /**
+     * get file name from its URL
+     */
     @Override
     public String getFileName(final String url) {
         if (url == null) {
             return "";
         }
 
+        File file = new File(url);
+        return file.getName();
+
         // get file name from the last part of URL
-        String fileName = url.substring(url.lastIndexOf('/') + 1);
-        fileName = fileName.split("\\?")[0];
-        return fileName;
+//        String fileName = url.substring(url.lastIndexOf('/') + 1);
+//        fileName = fileName.split("\\?")[0];
+//        return fileName;
     }
 
-    // get file name without extension
+    /**
+     * get file name without extension
+     */
     @Override
     public String getFileNameWithoutExtension(final String url) {
         String fileName = getFileName(url);
@@ -110,7 +127,15 @@ public class DefaultFileUtility implements FileUtility {
         return fileNameWithoutExt;
     }
 
-    // get file extension from URL
+    @Override
+    public String getFileDirWithoutExtension(String url) {
+        String fileDirWithoutExt = url.substring(0, url.lastIndexOf('.'));
+        return fileDirWithoutExt;
+    }
+
+    /**
+     * get file extension from URL
+     */
     @Override
     public String getFileExtension(final String url) {
         String fileName = getFileName(url);
@@ -121,7 +146,9 @@ public class DefaultFileUtility implements FileUtility {
         return fileExt.toLowerCase();
     }
 
-    // get an editor internal extension
+    /**
+     * get an editor internal extension
+     */
     @Override
     public String getInternalExtension(final DocumentType type) {
         // .docx for word file type
@@ -149,28 +176,36 @@ public class DefaultFileUtility implements FileUtility {
         return Arrays.asList(fillformsDocs.split("\\|"));
     }
 
-    // get file extensions that can be viewed
+    /**
+     * get file extensions that can be viewed
+     */
     @Override
     public List<String> getViewedExts() {
         String viewedDocs = docServiceProperties.getViewedDocs();
         return Arrays.asList(viewedDocs.split("\\|"));
     }
 
-    // get file extensions that can be edited
+    /**
+     * get file extensions that can be edited
+     */
     @Override
     public List<String> getEditedExts() {
         String editedDocs = docServiceProperties.getEditedDocs();
         return Arrays.asList(editedDocs.split("\\|"));
     }
 
-    // get file extensions that can be converted
+    /**
+     * get file extensions that can be converted
+     */
     @Override
     public List<String> getConvertExts() {
         String convertDocs = docServiceProperties.getConvertDocs();
         return Arrays.asList(convertDocs.split("\\|"));
     }
 
-    // get all the supported file extensions
+    /**
+     * get all the supported file extensions
+     */
     @Override
     public List<String> getFileExts() {
         List<String> res = new ArrayList<>();
@@ -183,14 +218,20 @@ public class DefaultFileUtility implements FileUtility {
         return res;
     }
 
-    // generate the file path from file directory and name
+    /**
+     * generate the file path from file directory and name
+     */
     @Override
     public Path generateFilepath(final String directory, final String fullFileName) {
-        String fileName = getFileNameWithoutExtension(fullFileName);  // get file name without extension
-        String fileExtension = getFileExtension(fullFileName);  // get file extension
-        Path path = Paths.get(directory + fullFileName);  // get the path to the files with the specified name
+        // get file name without extension
+        String fileName = getFileNameWithoutExtension(fullFileName);
+        // get file extension
+        String fileExtension = getFileExtension(fullFileName);
+        // get the path to the files with the specified name
+        Path path = Paths.get(directory + fullFileName);
 
-        for (int i = 1; Files.exists(path); i++) {  // run through all the files with the specified name
+        for (int i = 1; Files.exists(path); i++) {
+            // run through all the files with the specified name
             // get a name of each file without extension and add an index to it
             fileName = getFileNameWithoutExtension(fullFileName) + "(" + i + ")";
 
@@ -202,7 +243,9 @@ public class DefaultFileUtility implements FileUtility {
         return path;
     }
 
-    // get maximum file size
+    /**
+     * get maximum file size
+     */
     @Override
     public long getMaxFileSize() {
         long size = Long.parseLong(fileStorageProperties.getFilesizeMax());

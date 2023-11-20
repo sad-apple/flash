@@ -18,16 +18,19 @@
 
 package com.flash.onlyoffice.configurers.implementations;
 
+import com.flash.onlyoffice.configurers.EmbeddedConfigurer;
 import com.flash.onlyoffice.configurers.wrappers.DefaultEmbeddedWrapper;
 import com.flash.onlyoffice.domain.managers.document.DocumentManager;
 import com.flash.onlyoffice.domain.models.configurations.Embedded;
 import com.flash.onlyoffice.domain.models.enums.ToolbarDocked;
 import com.flash.onlyoffice.domain.models.enums.Type;
-import com.flash.onlyoffice.configurers.EmbeddedConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author zsp
+ */
 @Service
 @Primary
 public class DefaultEmbeddedConfigurer implements EmbeddedConfigurer<DefaultEmbeddedWrapper> {
@@ -38,9 +41,10 @@ public class DefaultEmbeddedConfigurer implements EmbeddedConfigurer<DefaultEmbe
     @Override
     public void configure(final Embedded embedded,
                           final DefaultEmbeddedWrapper wrapper) {  // define the embedded configurer
-        if (wrapper.getType().equals(Type.embedded)) {  // check if the type from the embedded wrapper is embedded
-            String url = documentManager.getDownloadUrl(wrapper
-                    .getFileName(), false);  // get file URL of the specified file
+        if (wrapper.getType().equals(Type.embedded)) {
+            // check if the type from the embedded wrapper is embedded
+            // get file URL of the specified file
+            String url = documentManager.getDownloadUrl(wrapper.getFileDir(), false);
 
             /* set the embedURL parameter to the embedded config (the absolute URL to the document serving
              as a source file for the document embedded into the web page) */

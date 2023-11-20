@@ -20,7 +20,15 @@ package com.flash.onlyoffice.configurers;
 
 import com.flash.onlyoffice.domain.models.configurations.Customization;
 
+/**
+ * @author zhangsp
+ */
 public interface CustomizationConfigurer<W> extends Configurer<Customization, W> {
+    /**
+     * 配置
+     * @param customization customization
+     * @param wrapper  wrapper
+     */
     @Override
     void configure(Customization customization, W wrapper);
 }

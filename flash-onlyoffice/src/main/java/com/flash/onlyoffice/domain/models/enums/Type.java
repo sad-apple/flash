@@ -18,7 +18,14 @@
 
 package com.flash.onlyoffice.domain.models.enums;
 
+/**
+ * @author zhangsp
+ */
+
 public enum Type {
+    /**
+     * 枚举
+     */
     desktop,
     mobile,
     embedded
